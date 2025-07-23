@@ -111,15 +111,22 @@ export const CropifyApp: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* 页面标题和说明 */}
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          批量图片裁剪工具
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          支持多种格式图片的批量导入、精准裁剪和批量导出。所有处理均在本地完成，保护您的数据隐私。
-        </p>
-      </div>
+      {/* 页面标题和说明 - 仅在空状态时显示 */}
+      {images.length === 0 && (
+        <div className="text-center mb-8">
+          <div className="mb-6">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+              Cropify
+            </h1>
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">
+              专业级批量图片裁剪工具
+            </h2>
+          </div>
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+            支持多种格式图片的批量导入、精准裁剪和高效导出。所有处理均在本地完成，确保您的数据隐私安全。
+          </p>
+        </div>
+      )}
 
       {/* 主功能区域 */}
       {images.length > 0 ? (
@@ -229,67 +236,68 @@ export const CropifyApp: React.FC = () => {
           </div>
         </div>
       ) : (
-        // 空状态：图片导入区域
-        <div className="max-w-4xl mx-auto">
-          <ImageImportManager
-            images={images}
-            isUploading={isUploading}
-            errors={errors}
-            selectedImageId={selectedImageId}
-            addImages={addImages}
-            removeImage={removeImage}
-            clearImages={clearImages}
-            clearErrors={clearErrors}
-            dismissError={dismissError}
-            onSelectImage={selectImage}
-          />
+        // 空状态：优雅的引导界面
+        <div className="max-w-5xl mx-auto">
+          {/* 主要上传区域 */}
+          <div className="mb-12">
+            <ImageImportManager
+              images={images}
+              isUploading={isUploading}
+              errors={errors}
+              selectedImageId={selectedImageId}
+              addImages={addImages}
+              removeImage={removeImage}
+              clearImages={clearImages}
+              clearErrors={clearErrors}
+              dismissError={dismissError}
+              onSelectImage={selectImage}
+            />
+          </div>
 
-          {/* 功能完成展示 */}
-          <div className="mt-8 bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-            <h3 className="text-lg font-semibold text-green-900 mb-4">
-              🎉 Cropify 功能已全面完成！
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-green-800 text-sm">
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>图片批量导入</span>
+          {/* 功能介绍卡片 */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
               </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>图片信息面板</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>实时预览系统</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>智能裁剪工具</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>高级裁剪选项</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>图像质量控制</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>批处理工作流</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>✅</span>
-                <span>批量导出功能</span>
-              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">智能批量导入</h3>
+              <p className="text-sm text-gray-600">支持拖拽上传多种格式图片，自动识别并批量处理</p>
             </div>
-            
-            <div className="mt-6 p-4 bg-white rounded-lg">
-              <h4 className="font-medium text-green-900 mb-2">开始使用</h4>
-              <p className="text-sm text-green-700">
-                上传图片文件到上方区域，即可开始专业级的批量图片裁剪体验！
-              </p>
+
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1M9 16h1m4 0h1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">精准裁剪控制</h3>
+              <p className="text-sm text-gray-600">实时预览、智能网格对齐、多种裁剪模式</p>
             </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-100 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">高效批量导出</h3>
+              <p className="text-sm text-gray-600">支持多种格式输出、质量控制、批量下载</p>
+            </div>
+          </div>
+
+          {/* 开始使用指引 */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+              </svg>
+              <span className="font-medium">点击上方区域或拖拽图片开始裁剪</span>
+            </div>
+            <p className="mt-4 text-sm text-gray-500 max-w-md mx-auto">
+              所有处理均在本地完成，确保您的图片数据完全私密安全
+            </p>
           </div>
         </div>
       )}
