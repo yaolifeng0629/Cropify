@@ -2,11 +2,12 @@
 
 <div align="center">
 
-![Cropify Logo](https://img.shields.io/badge/Cropify-v1.0.0-brightgreen)
+![Cropify Logo](https://img.shields.io/badge/Cropify-v0.1.0-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-15.4.2-black)
 ![React](https://img.shields.io/badge/React-19.1.0-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4)
 
 **A modern, powerful, and user-friendly batch image cropping tool built with Next.js 15 and React 19.**
 
@@ -14,7 +15,17 @@
 
 </div>
 
-## ✨ Features
+## 🎯 What Makes Cropify Special?
+
+Cropify stands out as a comprehensive, client-side image processing solution that prioritizes **privacy, performance, and professional-grade functionality**:
+
+- **🔐 Complete Privacy**: All processing happens locally in your browser - your images never leave your device
+- **⚡ Lightning Fast**: Optimized Canvas API processing with efficient memory management
+- **🎛️ Professional Controls**: Advanced cropping options rivaling desktop software
+- **📱 Modern UI/UX**: Built with the latest web technologies for a smooth experience
+- **🔄 Batch Intelligence**: Smart queue management and progress tracking for large batches
+
+## ✨ Core Features
 
 ### 🖼️ Image Management
 - **Multiple Import Methods**: Drag & drop, click to select, clipboard paste
@@ -22,47 +33,79 @@
 - **Batch Processing**: Handle up to 100 images simultaneously
 - **Smart Validation**: File format and size validation with detailed error messages
 
-### ✂️ Advanced Cropping
-- **Intelligent Cropping System**: Manual adjustment with real-time preview
-- **Preset Sizes**: Photo ID, social media, wallpaper, and custom dimensions
-- **Aspect Ratio Control**: Maintain proportions or set custom ratios
-- **Anchor Points**: 9-point positioning system for precise cropping
-- **Advanced Options**: Rotation (90°, 180°, 270°), horizontal/vertical flip, rounded corners
+### ✂️ Advanced Cropping System
+- **Intelligent Cropping**: Manual adjustment with real-time preview and visual feedback
+- **Smart Preset Sizes**: 
+  - **Photo ID**: 1-inch (25×35mm), 2-inch (35×49mm), ID card (26×32mm)
+  - **Social Media**: WeChat cover (900×833px), profile pics (200×200px), stories (1080×1920px)
+  - **Print Ready**: A4 (210×297mm), custom print dimensions
+  - **Wallpapers**: Desktop (1920×1080px), mobile (1080×1920px)
+  - **E-commerce**: Square (800×800px), product shots (3:4 ratio)
+- **9-Point Anchor System**: Precise positioning with TOP_LEFT, CENTER, BOTTOM_RIGHT controls
+- **Advanced Transformations**: 
+  - Rotation (0-360° with fine control)
+  - Horizontal/Vertical flipping
+  - Rounded corner cropping with adjustable radius
+  - Aspect ratio locking/unlocking
 
-### 🎨 User Experience
-- **Real-time Preview**: Instant before/after comparison
-- **Zoom Controls**: 25% to 400% zoom with smooth scaling
-- **Grid Guidelines**: Rule of thirds and custom grid overlays
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Light Theme**: Clean, modern interface optimized for productivity
+### 🎨 Enhanced User Experience
+- **Real-time Preview System**: Instant before/after comparison with seamless updates
+- **Advanced Zoom Controls**: 25% to 400% zoom with smooth scaling and pan navigation
+- **Smart Grid Overlays**: Rule of thirds, golden ratio, and custom grid guidelines
+- **Responsive Design**: Optimized for desktop workflow, tablet-friendly, mobile-accessible
+- **Clean Interface**: Modern, distraction-free UI focused on productivity
+- **Keyboard Shortcuts**: Ctrl+V paste, Delete remove, Escape cancel operations
 
-### ⚙️ Quality Control
-- **Output Formats**: JPG, PNG, WebP
-- **Compression Settings**: Adjustable quality levels (1-100%)
-- **Size Information**: Real-time file size estimation
-- **Metadata Preservation**: Optional EXIF data handling
+### ⚙️ Professional Quality Control
+- **Multi-format Output**: JPG (universal compatibility), PNG (lossless), WebP (modern efficiency)
+- **Smart Compression**: 
+  - JPG: Quality levels 1-100% with real-time size estimation
+  - PNG: Compression levels 0-9 for optimal balance
+  - WebP: Advanced compression with superior quality-to-size ratio
+- **Metadata Management**: Optional EXIF data preservation or removal
+- **File Size Optimization**: Real-time size estimation and compression previews
 
-### 📦 Export Options
-- **Single Download**: Individual image download
-- **Batch Export**: Sequential download of all processed images
-- **ZIP Archive**: Compressed bundle for easy sharing
-- **Custom Naming**: Automatic filename generation with customizable patterns
+### 📦 Flexible Export System
+- **Individual Downloads**: Instant single image download as processed
+- **Sequential Batch Export**: Automated download of all processed images with progress tracking
+- **ZIP Archive Creation**: Compressed bundle for easy sharing and storage
+- **Smart Filename Generation**: 
+  - Preserve original names or apply custom patterns
+  - Automatic conflict resolution
+  - Customizable prefixes and suffixes
 
-### 🚀 Performance
-- **Client-side Processing**: All operations performed locally for privacy
-- **Memory Management**: Efficient handling of large image batches
-- **Background Processing**: Non-blocking UI during batch operations
-- **Progress Tracking**: Real-time progress indicators and error handling
+### 🚀 Enterprise-Grade Performance
+- **100% Client-Side Processing**: Zero server dependency, complete data privacy
+- **Advanced Memory Management**: 
+  - Smart garbage collection for large image batches
+  - Efficient Canvas buffer handling
+  - Memory usage monitoring with warnings
+- **Optimized Batch Processing**: 
+  - Background processing with Web Workers
+  - Queue-based task management
+  - Intelligent progress tracking and error recovery
+- **Hardware Acceleration**: Canvas API optimization for GPU-accelerated operations
 
-## 🛠️ Technology Stack
+## 🛠️ Modern Technology Stack
 
-- **Frontend**: Next.js 15.4.2, React 19.1.0
-- **Language**: TypeScript 5.x
-- **Styling**: Tailwind CSS 4
-- **Image Processing**: HTML5 Canvas API
-- **File Handling**: HTML5 File API, Blob API
-- **Compression**: JSZip for archive creation
-- **Build Tool**: Turbopack (Next.js)
+### Core Framework
+- **Next.js 15.4.2**: Latest App Router with Turbopack for blazing-fast development
+- **React 19.1.0**: Cutting-edge React with concurrent features and improved performance
+- **TypeScript 5.x**: Full type safety with advanced type inference
+
+### Styling & UI
+- **Tailwind CSS 4**: Utility-first CSS with the latest features and optimizations
+- **Responsive Design**: Mobile-first approach with desktop optimization
+
+### Image Processing
+- **HTML5 Canvas API**: Hardware-accelerated image manipulation
+- **Blob API**: Efficient binary data handling for file operations
+- **File API**: Modern file handling with drag-and-drop support
+
+### Build & Development
+- **Turbopack**: Next-generation bundler for instant reloads
+- **ESLint 9**: Latest linting with custom Next.js configurations
+- **PostCSS**: Advanced CSS processing pipeline
 
 ## 🚀 Quick Start
 
