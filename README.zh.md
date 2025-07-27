@@ -1,17 +1,129 @@
-# Cropify - 专业批量图片裁剪工具
-
 <div align="center">
 
-![Cropify Logo](https://img.shields.io/badge/Cropify-v0.1.0-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Next.js](https://img.shields.io/badge/Next.js-15.4.2-black)
-![React](https://img.shields.io/badge/React-19.1.0-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4)
+<!-- Header Banner -->
+<img src="https://via.placeholder.com/800x200/4F46E5/FFFFFF?text=CROPIFY" alt="Cropify Banner" width="100%" style="max-width: 800px; border-radius: 12px; margin-bottom: 20px;">
 
-**基于 Next.js 15 和 React 19 构建的现代化、功能强大且用户友好的批量图片裁剪工具。**
+# 🎨 Cropify
+## 专业批量图片裁剪工具
 
-[English Documentation](./README.md) | [演示](#) | [报告问题](#) | [功能建议](#)
+<p align="center">
+  <strong>🚀 基于 Next.js 15 和 React 19 构建的现代化、功能强大且用户友好的批量图片裁剪工具</strong>
+</p>
+
+<!-- Badges -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Cropify-v0.1.0-brightgreen?style=for-the-badge&logo=image&logoColor=white" alt="Version">
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License">
+  <img src="https://img.shields.io/badge/Next.js-15.4.2-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+</p>
+
+<!-- Key Features Highlight -->
+<p align="center">
+  <img src="https://img.shields.io/badge/🔐_完全隐私保护-本地处理-green?style=flat-square" alt="Privacy">
+  <img src="https://img.shields.io/badge/⚡_闪电般快速-优化处理-orange?style=flat-square" alt="Fast">
+  <img src="https://img.shields.io/badge/🎛️_专业级控制-高级功能-blue?style=flat-square" alt="Professional">
+  <img src="https://img.shields.io/badge/📱_现代化界面-响应式设计-purple?style=flat-square" alt="Modern">
+</p>
+
+<!-- Navigation Links -->
+<p align="center">
+  <a href="./README.md">
+    <img src="https://img.shields.io/badge/📖_English_Documentation-4285F4?style=for-the-badge&logo=googletranslate&logoColor=white" alt="English Docs">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/🎯_在线演示-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white" alt="Demo">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/🐛_报告问题-FFA500?style=for-the-badge&logo=github&logoColor=white" alt="Issues">
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/💡_功能建议-9B59B6?style=for-the-badge&logo=lightbulb&logoColor=white" alt="Feature Request">
+  </a>
+</p>
+
+<!-- Stats -->
+<p align="center">
+  <img src="https://img.shields.io/badge/⭐_GitHub_Stars-0-yellow?style=social&logo=github" alt="GitHub Stars">
+  <img src="https://img.shields.io/badge/🍴_Forks-0-blue?style=social&logo=github" alt="GitHub Forks">
+  <img src="https://img.shields.io/badge/👀_Watchers-0-green?style=social&logo=github" alt="GitHub Watchers">
+  <img src="https://img.shields.io/badge/📦_Downloads-0-red?style=social&logo=npm" alt="NPM Downloads">
+</p>
+
+<!-- Quick Start CTA -->
+<p align="center">
+  <a href="#🚀-快速开始">
+    <img src="https://img.shields.io/badge/🚀_立即开始-开始使用_Cropify-success?style=for-the-badge&logo=rocket&logoColor=white" alt="Get Started">
+  </a>
+</p>
+
+<!-- Screenshot/Demo Section -->
+<br>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <img src="https://via.placeholder.com/400x300/F3F4F6/6B7280?text=空状态界面" alt="Empty State" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <br>
+      <sub><b>🎯 直观的空状态引导界面</b></sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="https://via.placeholder.com/400x300/EFF6FF/3B82F6?text=批量处理界面" alt="Batch Processing" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <br>
+      <sub><b>⚡ 强大的批量处理工作流</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="https://via.placeholder.com/400x300/F0FDF4/16A34A?text=实时预览" alt="Real-time Preview" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <br>
+      <sub><b>👁️ 实时预览和精确控制</b></sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="https://via.placeholder.com/400x300/FEF3C7/F59E0B?text=导出系统" alt="Export System" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <br>
+      <sub><b>📦 灵活的导出和下载选项</b></sub>
+    </td>
+  </tr>
+</table>
+
+<!-- Feature Highlights -->
+<br>
+
+<details>
+<summary><b>🌟 核心功能亮点 (点击展开)</b></summary>
+<br>
+
+<table>
+  <tr>
+    <td align="center" width="25%">
+      <img src="https://img.shields.io/badge/🔐-隐私保护-green?style=for-the-badge" alt="Privacy">
+      <br>
+      <sub>100% 本地处理<br>数据永不离开设备</sub>
+    </td>
+    <td align="center" width="25%">
+      <img src="https://img.shields.io/badge/⚡-高性能-orange?style=for-the-badge" alt="Performance">
+      <br>
+      <sub>Canvas API 优化<br>硬件加速处理</sub>
+    </td>
+    <td align="center" width="25%">
+      <img src="https://img.shields.io/badge/🎛️-专业控制-blue?style=for-the-badge" alt="Professional">
+      <br>
+      <sub>九点锚定系统<br>精确裁剪控制</sub>
+    </td>
+    <td align="center" width="25%">
+      <img src="https://img.shields.io/badge/📱-响应式-purple?style=for-the-badge" alt="Responsive">
+      <br>
+      <sub>移动端友好<br>桌面端优化</sub>
+    </td>
+  </tr>
+</table>
+
+</details>
+
+---
 
 </div>
 
@@ -88,63 +200,137 @@ Cropify 作为一个综合性的客户端图像处理解决方案，专注于**�
 
 ## 🛠️ 现代技术栈
 
-### 核心框架
-- **Next.js 15.4.2**：最新的 App Router 配合 Turbopack，实现超快开发速度
-- **React 19.1.0**：前沿的 React，具备并发特性和改进的性能
-- **TypeScript 5.x**：完整类型安全和高级类型推断
+<div align="center">
 
-### 样式与用户界面
-- **Tailwind CSS 4**：实用优先的 CSS，包含最新功能和优化
-- **响应式设计**：移动优先方法，桌面端优化
+<table>
+  <tr>
+    <th align="center">🚀 核心框架</th>
+    <th align="center">🎨 样式与UI</th>
+    <th align="center">🖼️ 图像处理</th>
+    <th align="center">⚙️ 构建工具</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Next.js-15.4.2-black?style=flat&logo=next.js" alt="Next.js"><br>
+      <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=flat&logo=react" alt="React"><br>
+      <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat&logo=typescript" alt="TypeScript">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat&logo=tailwindcss" alt="Tailwind"><br>
+      <img src="https://img.shields.io/badge/响应式设计-移动优先-purple?style=flat" alt="Responsive"><br>
+      <img src="https://img.shields.io/badge/现代化UI-组件化-blue?style=flat" alt="Modern UI">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Canvas_API-硬件加速-orange?style=flat" alt="Canvas"><br>
+      <img src="https://img.shields.io/badge/Blob_API-文件处理-green?style=flat" alt="Blob"><br>
+      <img src="https://img.shields.io/badge/File_API-拖拽上传-red?style=flat" alt="File API">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Turbopack-下一代打包-yellow?style=flat" alt="Turbopack"><br>
+      <img src="https://img.shields.io/badge/ESLint_9-代码检查-4B32C3?style=flat&logo=eslint" alt="ESLint"><br>
+      <img src="https://img.shields.io/badge/PostCSS-CSS处理-DD3A0A?style=flat&logo=postcss" alt="PostCSS">
+    </td>
+  </tr>
+</table>
 
-### 图像处理
-- **HTML5 Canvas API**：硬件加速的图像操作
-- **Blob API**：文件操作的高效二进制数据处理
-- **File API**：现代文件处理，支持拖拽上传
+</div>
 
-### 构建与开发
-- **Turbopack**：下一代打包器，实现即时重载
-- **ESLint 9**：最新的代码检查，配合自定义 Next.js 配置
-- **PostCSS**：高级 CSS 处理管道
+### 🔧 技术特性
+
+- **⚡ Next.js 15.4.2**：最新的 App Router 配合 Turbopack，实现超快开发速度
+- **🔄 React 19.1.0**：前沿的 React，具备并发特性和改进的性能
+- **🛡️ TypeScript 5.x**：完整类型安全和高级类型推断
+- **🎨 Tailwind CSS 4**：实用优先的 CSS，包含最新功能和优化
+- **🖼️ Canvas API**：硬件加速的图像操作和高效处理
+- **📦 Turbopack**：下一代打包器，实现即时重载和优化构建
 
 ## 🚀 快速开始
 
-### 系统要求
+<div align="center">
 
-- Node.js 18.x 或更高版本
-- npm、yarn 或 pnpm
+### 📋 系统要求
 
-### 安装步骤
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Node.js-18.x+-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/npm-yarn-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="Package Manager">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/pnpm-支持-F69220?style=for-the-badge&logo=pnpm&logoColor=white" alt="PNPM">
+    </td>
+  </tr>
+</table>
 
-1. **克隆仓库**
-   ```bash
-   git clone https://github.com/yourusername/cropify.git
-   cd cropify
-   ```
+</div>
 
-2. **安装依赖**
-   ```bash
-   npm install
-   # 或者
-   yarn install
-   # 或者
-   pnpm install
-   ```
+### 🛠️ 安装步骤
 
-3. **启动开发服务器**
-   ```bash
-   npm run dev
-   # 或者
-   yarn dev
-   # 或者
-   pnpm dev
-   ```
+<table>
+  <tr>
+    <td width="50%">
 
-4. **打开浏览器**
-   
-   访问 [http://localhost:3000](http://localhost:3000)
+#### 1️⃣ 克隆仓库
+```bash
+git clone https://github.com/yourusername/cropify.git
+cd cropify
+```
 
-### 生产环境构建
+#### 2️⃣ 安装依赖
+```bash
+# 使用 npm
+npm install
+
+# 使用 yarn
+yarn install
+
+# 使用 pnpm
+pnpm install
+```
+
+    </td>
+    <td width="50%">
+
+#### 3️⃣ 启动开发服务器
+```bash
+# 使用 npm
+npm run dev
+
+# 使用 yarn
+yarn dev
+
+# 使用 pnpm
+pnpm dev
+```
+
+#### 4️⃣ 打开浏览器
+🌐 访问 [http://localhost:3000](http://localhost:3000)
+
+    </td>
+  </tr>
+</table>
+
+### 🏭 生产环境部署
+
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/1._构建-npm_run_build-blue?style=for-the-badge" alt="Build">
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/2._启动-npm_start-green?style=for-the-badge" alt="Start">
+    </td>
+    <td align="center" width="33%">
+      <img src="https://img.shields.io/badge/3._部署-Vercel/Netlify-purple?style=for-the-badge" alt="Deploy">
+    </td>
+  </tr>
+</table>
+
+</div>
 
 ```bash
 # 构建生产版本
@@ -152,6 +338,9 @@ npm run build
 
 # 启动生产服务器
 npm start
+
+# 或者部署到 Vercel (推荐)
+npx vercel --prod
 ```
 
 ## 📖 使用指南
@@ -282,5 +471,51 @@ NEXT_PUBLIC_MAX_FILE_SIZE=10
 ---
 
 <div align="center">
-  <strong>由 Cropify 团队用 ❤️ 制作</strong>
+
+## 🤝 加入我们的社区
+
+<p>
+  <a href="https://github.com/yourusername/cropify/discussions">
+    <img src="https://img.shields.io/badge/💬_讨论-GitHub_Discussions-blue?style=for-the-badge&logo=github" alt="Discussions">
+  </a>
+  <a href="https://discord.gg/cropify">
+    <img src="https://img.shields.io/badge/💬_聊天-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+  </a>
+  <a href="https://twitter.com/cropify_app">
+    <img src="https://img.shields.io/badge/🐦_关注-Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter">
+  </a>
+</p>
+
+### 📊 项目统计
+
+<img src="https://github-readme-stats.vercel.app/api?username=yourusername&repo=cropify&show_icons=true&theme=default" alt="GitHub Stats" width="400">
+
+### 🌟 Star 历史
+
+<img src="https://api.star-history.com/svg?repos=yourusername/cropify&type=Date" alt="Star History" width="500">
+
+---
+
+<br>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Made_with-❤️-red?style=for-the-badge" alt="Made with Love">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Powered_by-Next.js-black?style=for-the-badge&logo=next.js" alt="Powered by Next.js">
+    </td>
+    <td align="center">
+      <img src="https://img.shields.io/badge/Built_for-开发者-blue?style=for-the-badge&logo=code" alt="Built for Developers">
+    </td>
+  </tr>
+</table>
+
+<br>
+
+**🎨 由 Cropify 团队用 ❤️ 制作**
+
+<sub>© 2024 Cropify. 保留所有权利。</sub>
+
 </div>
