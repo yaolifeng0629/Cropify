@@ -121,7 +121,7 @@ export const CropDemo: React.FC<CropDemoProps> = ({
           <div className="bg-gray-50 rounded p-2 text-center">
             <div className="text-gray-500 mb-1">尺寸</div>
             <div className="font-medium text-gray-900">
-              {cropParams.width}×{cropParams.height}
+              {Math.round(cropParams.height)}×{Math.round(cropParams.width)}
             </div>
           </div>
 

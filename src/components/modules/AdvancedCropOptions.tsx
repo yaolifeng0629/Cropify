@@ -57,7 +57,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         {/* 旋转控制 */}
         <div>
           <h4 className="text-sm font-medium text-gray-700 mb-3">旋转</h4>
-          
+
           {/* 旋转滑块 */}
           <div className="mb-3">
             <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
@@ -131,7 +131,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         {/* 翻转控制 */}
         <div className="pt-4 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">翻转</h4>
-          
+
           <div className="grid grid-cols-2 gap-3">
             {/* 水平翻转 */}
             <button
@@ -168,7 +168,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         {/* 圆角设置 */}
         <div className="pt-4 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">圆角</h4>
-          
+
           {/* 圆角滑块 */}
           <div className="mb-3">
             <div className="flex items-center justify-between text-sm text-gray-600 mb-2">

@@ -141,14 +141,14 @@ export const CropifyApp: React.FC = () => {
                         <AdvancedCropOptions cropParams={cropParams} onCropChange={setCropParams} />
 
                         {/* 视图设置 */}
-                        <ViewSettings
+                        {/* <ViewSettings
                             zoom={zoom}
                             showGrid={showGrid}
                             gridType={gridType}
                             onZoomChange={setZoom}
                             onGridToggle={setShowGrid}
                             onGridTypeChange={setGridType}
-                        />
+                        /> */}
 
                         {/* 质量控制 */}
                         <QualityControlPanel outputSettings={outputSettings} onSettingsChange={setOutputSettings} />

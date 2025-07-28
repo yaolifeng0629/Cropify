@@ -26,31 +26,31 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
             <div className="text-2xl font-bold text-blue-600">
               {batchSummary.totalCount}
             </div>
-            <div className="text-sm text-gray-500">总图片数量</div>
+            <div className="text-sm text-gray-500">总数量</div>
           </div>
-          
+
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">
               {batchSummary.completedCount}
             </div>
             <div className="text-sm text-gray-500">已处理</div>
           </div>
-          
+
           <div className="text-center">
             <div className="text-2xl font-bold text-yellow-600">
               {batchSummary.pendingCount + batchSummary.processingCount}
             </div>
             <div className="text-sm text-gray-500">待处理</div>
           </div>
-          
+
           <div className="text-center">
             <div className="text-2xl font-bold text-red-600">
               {batchSummary.failedCount}
             </div>
-            <div className="text-sm text-gray-500">处理失败</div>
+            <div className="text-sm text-gray-500">失败</div>
           </div>
         </div>
-        
+
         {/* 总文件大小和预估时间 */}
         <div className="mt-6 pt-4 border-t border-gray-200">
           <div className="flex justify-between items-center text-sm">
@@ -103,7 +103,7 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
             {/* 图片属性信息 */}
             <div className="space-y-4">
               <h4 className="font-medium text-gray-900">基础信息</h4>
-              
+
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-500">文件名称:</span>

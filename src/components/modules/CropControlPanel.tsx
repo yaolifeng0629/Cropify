@@ -25,7 +25,8 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
   onApplyPresetSize,
   onReset,
 }) => {
-  const [activeTab, setActiveTab] = useState<'manual' | 'preset' | 'ratio'>('manual');
+  const [activeTab, setActiveTab] = useState<'manual' | 'presets'>('manual');
+  const [selectedPreset, setSelectedPreset] = useState<string>('');
 
   // 处理数值输入变化
   const handleValueChange = (field: keyof CropParams, value: number | boolean) => {
@@ -57,6 +58,53 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
     return acc;
   }, {} as Record<string, typeof PRESET_SIZES>);
 
+  // 创建下拉菜单选项：预设尺寸 + 预设比例
+  const dropdownOptions = [
+    { type: 'header', label: '预设尺寸', value: '' },
+    ...Object.entries(groupedPresets).flatMap(([category, presets]) => [
+      { type: 'category', label: category, value: '' },
+      ...presets.map(preset => ({
+        type: 'preset',
+        label: `${preset.name} (${preset.width} × ${preset.height} ${preset.unit})`,
+        value: `preset_${preset.name}`,
+        preset
+      }))
+    ]),
+    { type: 'header', label: '预设比例', value: '' },
+    ...PRESET_RATIOS.map(ratio => ({
+      type: 'ratio',
+      label: `${ratio.name} (${ratio.ratio})`,
+      value: `ratio_${ratio.name}`,
+      ratio
+    }))
+  ];
+
+  // 处理下拉菜单选择
+  const handlePresetChange = (value: string) => {
+    setSelectedPreset(value);
+
+    if (!selectedImage) return;
+
+    if (value.startsWith('preset_')) {
+      const presetName = value.replace('preset_', '');
+      onApplyPresetSize(presetName, selectedImage);
+    } else if (value.startsWith('ratio_')) {
+      const ratioName = value.replace('ratio_', '');
+      const ratio = PRESET_RATIOS.find(r => r.name === ratioName);
+      if (ratio) {
+        const newHeight = cropParams.width / ratio.value;
+        const maxHeight = selectedImage.height - cropParams.y;
+        const finalHeight = Math.min(newHeight, maxHeight);
+
+        onCropChange({
+          ...cropParams,
+          height: finalHeight,
+          maintainAspectRatio: true,
+        });
+      }
+    }
+  };
+
   if (!selectedImage) {
     return (
       <Card title="裁剪设置" className="bg-white">
@@ -74,8 +122,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
         <div className="flex space-x-1 bg-gray-100 rounded p-0.5">
           {[
             { key: 'manual', label: '手动' },
-            { key: 'preset', label: '预设' },
-            { key: 'ratio', label: '比例' },
+            { key: 'presets', label: '预设/比例' },
           ].map((tab) => (
             <button
               key={tab.key}
@@ -169,66 +216,72 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
           </div>
         )}
 
-        {/* 预设尺寸选项卡 */}
-        {activeTab === 'preset' && (
+        {/* 预设尺寸和比例选项卡 */}
+        {activeTab === 'presets' && (
           <div className="space-y-3">
-            {Object.entries(groupedPresets).map(([category, presets]) => (
-              <div key={category}>
-                <h4 className="text-xs font-medium text-gray-700 mb-1">{category}</h4>
-                <div className="grid grid-cols-1 gap-1">
-                  {presets.map((preset) => (
-                    <button
-                      key={preset.name}
-                      onClick={() => onApplyPresetSize(preset.name, selectedImage)}
-                      className="flex items-center justify-between p-3 text-sm border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left"
-                    >
-                      <div>
-                        <div className="font-medium text-gray-900">{preset.name}</div>
-                        <div className="text-gray-500">
-                          {preset.width} × {preset.height} {preset.unit}
-                        </div>
-                      </div>
-                      <div className="text-gray-400">
-                        {preset.unit === 'mm' ? '📏' : '📱'}
-                      </div>
-                    </button>
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-2">
+                选择预设尺寸或比例
+              </label>
+              <select
+                value={selectedPreset}
+                onChange={(e) => handlePresetChange(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">请选择...</option>
+
+                {/* 预设尺寸分组 */}
+                <optgroup label="预设尺寸">
+                  {Object.entries(groupedPresets).map(([category, presets]) => (
+                    <React.Fragment key={category}>
+                      <option disabled className="font-medium text-gray-900">
+                        ── {category} ──
+                      </option>
+                      {presets.map((preset) => (
+                        <option
+                          key={preset.name}
+                          value={`preset_${preset.name}`}
+                        >
+                          {preset.name} ({preset.width} × {preset.height} {preset.unit})
+                        </option>
+                      ))}
+                    </React.Fragment>
                   ))}
+                </optgroup>
+
+                {/* 预设比例分组 */}
+                <optgroup label="预设比例">
+                  {PRESET_RATIOS.map((ratio) => (
+                    <option
+                      key={ratio.name}
+                      value={`ratio_${ratio.name}`}
+                    >
+                      {ratio.name} ({ratio.ratio})
+                    </option>
+                  ))}
+                </optgroup>
+              </select>
+            </div>
+
+            {/* 当前选择的信息显示 */}
+            {selectedPreset && (
+              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="text-xs text-blue-800">
+                  {selectedPreset.startsWith('preset_') && (
+                    <div>
+                      <span className="font-medium">已选择预设尺寸：</span>
+                      {selectedPreset.replace('preset_', '')}
+                    </div>
+                  )}
+                  {selectedPreset.startsWith('ratio_') && (
+                    <div>
+                      <span className="font-medium">已选择预设比例：</span>
+                      {selectedPreset.replace('ratio_', '')}
+                    </div>
+                  )}
                 </div>
               </div>
-            ))}
-          </div>
-        )}
-
-        {/* 预设比例选项卡 */}
-        {activeTab === 'ratio' && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-2">
-              {PRESET_RATIOS.map((ratio) => (
-                <button
-                  key={ratio.name}
-                  onClick={() => {
-                    const newHeight = cropParams.width / ratio.value;
-                    const maxHeight = selectedImage.height - cropParams.y;
-                    const finalHeight = Math.min(newHeight, maxHeight);
-
-                    onCropChange({
-                      ...cropParams,
-                      height: finalHeight,
-                      maintainAspectRatio: true,
-                    });
-                  }}
-                  className="flex items-center justify-between p-3 text-sm border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left"
-                >
-                  <div>
-                    <div className="font-medium text-gray-900">{ratio.name}</div>
-                    <div className="text-gray-500">比例 {ratio.ratio}</div>
-                  </div>
-                  <div className="text-gray-400">
-                    📐
-                  </div>
-                </button>
-              ))}
-            </div>
+            )}
           </div>
         )}
 
