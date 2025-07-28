@@ -59,28 +59,28 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
 
   if (!selectedImage) {
     return (
-      <Card title="裁剪控制" className="bg-white">
-        <div className="text-center py-8 text-gray-500">
-          <p>请选择图片开始裁剪设置</p>
+      <Card title="裁剪设置" className="bg-white">
+        <div className="text-center py-4 text-gray-500 text-sm">
+          <p>请选择图片</p>
         </div>
       </Card>
     );
   }
 
   return (
-    <Card title="裁剪控制" className="bg-white">
-      <div className="space-y-6">
+    <Card title="裁剪设置" className="bg-white">
+      <div className="space-y-4">
         {/* 选项卡导航 */}
-        <div className="flex space-x-1 bg-gray-100 rounded-lg p-1">
+        <div className="flex space-x-1 bg-gray-100 rounded p-0.5">
           {[
-            { key: 'manual', label: '手动设置' },
-            { key: 'preset', label: '预设尺寸' },
-            { key: 'ratio', label: '预设比例' },
+            { key: 'manual', label: '手动' },
+            { key: 'preset', label: '预设' },
+            { key: 'ratio', label: '比例' },
           ].map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+              className={`flex-1 px-2 py-1 text-xs font-medium rounded transition-colors ${
                 activeTab === tab.key
                   ? 'bg-white text-blue-600 shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
@@ -93,12 +93,12 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
 
         {/* 手动设置选项卡 */}
         {activeTab === 'manual' && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* 尺寸设置 */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  宽度 (px)
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  宽度
                 </label>
                 <input
                   type="number"
@@ -106,12 +106,12 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
                   onChange={(e) => handleValueChange('width', parseInt(e.target.value) || 0)}
                   min={10}
                   max={selectedImage.width}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-2 py-1 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  高度 (px)
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  高度
                 </label>
                 <input
                   type="number"
@@ -119,16 +119,16 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
                   onChange={(e) => handleValueChange('height', parseInt(e.target.value) || 0)}
                   min={10}
                   max={selectedImage.height}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-2 py-1 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
 
             {/* 位置设置 */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  X 坐标 (px)
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  X 坐标
                 </label>
                 <input
                   type="number"
@@ -136,12 +136,12 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
                   onChange={(e) => handleValueChange('x', parseInt(e.target.value) || 0)}
                   min={0}
                   max={selectedImage.width - cropParams.width}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-2 py-1 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Y 坐标 (px)
+                <label className="block text-xs font-medium text-gray-700 mb-1">
+                  Y 坐标
                 </label>
                 <input
                   type="number"
@@ -149,21 +149,21 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
                   onChange={(e) => handleValueChange('y', parseInt(e.target.value) || 0)}
                   min={0}
                   max={selectedImage.height - cropParams.height}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-2 py-1 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
 
             {/* 约束选项 */}
-            <div className="space-y-3">
+            <div>
               <label className="flex items-center">
                 <input
                   type="checkbox"
                   checked={cropParams.maintainAspectRatio || false}
                   onChange={(e) => handleValueChange('maintainAspectRatio', e.target.checked)}
-                  className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="mr-2 h-3 w-3 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
-                <span className="text-sm text-gray-700">保持宽高比</span>
+                <span className="text-xs text-gray-700">保持宽高比</span>
               </label>
             </div>
           </div>
@@ -171,11 +171,11 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
 
         {/* 预设尺寸选项卡 */}
         {activeTab === 'preset' && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {Object.entries(groupedPresets).map(([category, presets]) => (
               <div key={category}>
-                <h4 className="text-sm font-medium text-gray-700 mb-2">{category}</h4>
-                <div className="grid grid-cols-1 gap-2">
+                <h4 className="text-xs font-medium text-gray-700 mb-1">{category}</h4>
+                <div className="grid grid-cols-1 gap-1">
                   {presets.map((preset) => (
                     <button
                       key={preset.name}
@@ -210,7 +210,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
                     const newHeight = cropParams.width / ratio.value;
                     const maxHeight = selectedImage.height - cropParams.y;
                     const finalHeight = Math.min(newHeight, maxHeight);
-                    
+
                     onCropChange({
                       ...cropParams,
                       height: finalHeight,

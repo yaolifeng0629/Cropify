@@ -10,6 +10,7 @@ export { ImageInfoPanel } from './ImageInfoPanel';
 // 预览系统相关组件
 export { PreviewSystem } from './PreviewSystem';
 export { CropComparison } from './CropComparison';
+export { CropDemo } from './CropDemo';
 
 // 裁剪控制相关组件
 export { CropControlPanel } from './CropControlPanel';

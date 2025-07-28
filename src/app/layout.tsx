@@ -29,11 +29,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen flex flex-col">
-          {/* Header 区域 - 由页面内容控制 */}
-          <div id="header-portal"></div>
-
-          {/* 主内容区域 */}
-          <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+          {/* 主内容区域 - 占据剩余空间并处理内部滚动 */}
+          <main className="flex-1">
             {children}
           </main>
 

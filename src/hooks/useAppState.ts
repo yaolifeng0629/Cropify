@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { ImageFile, BatchSummary, ProcessTask, ProcessStatus } from '@/types';
 
 interface UseAppStateReturn {
@@ -28,7 +28,7 @@ export function useAppState(images: ImageFile[]): UseAppStateReturn {
   // 批处理概览统计
   const batchSummary = useMemo((): BatchSummary => {
     const totalSize = images.reduce((sum, img) => sum + img.size, 0);
-    
+
     // 统计处理任务状态
     const completedCount = processTasks.filter(task => task.status === ProcessStatus.COMPLETED).length;
     const failedCount = processTasks.filter(task => task.status === ProcessStatus.FAILED).length;
@@ -53,6 +53,15 @@ export function useAppState(images: ImageFile[]): UseAppStateReturn {
       estimatedTime,
     };
   }, [images, processTasks]);
+
+  // 自动选择第一张图片
+  useEffect(() => {
+    if (images.length > 0 && !selectedImageId) {
+      setSelectedImageId(images[0].id);
+    } else if (images.length === 0) {
+      setSelectedImageId(null);
+    }
+  }, [images, selectedImageId]);
 
   // 选择图片
   const selectImage = (id: string | null) => {

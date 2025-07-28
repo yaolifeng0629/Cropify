@@ -28,7 +28,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
   const getEstimatedSize = () => {
     const baseSize = 1024; // 1KB 基础大小
     const qualityMultiplier = outputSettings.quality / 100;
-    
+
     switch (outputSettings.format) {
       case 'jpg':
         return Math.round(baseSize * qualityMultiplier * 0.8); // JPG通常更小
@@ -56,8 +56,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
   };
 
   return (
-    <Card title="输出质量设置" className="bg-white">
-      <div className="space-y-6">
+    <Card title="输出" className="bg-white">
+      <div className="space-y-3">
         {/* 输出格式选择 */}
         <div>
           <h4 className="text-sm font-medium text-gray-700 mb-3">输出格式</h4>
@@ -81,7 +81,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               </button>
             ))}
           </div>
-          
+
           {/* 格式说明 */}
           <div className="mt-2 p-2 bg-gray-50 rounded text-xs text-gray-600">
             {getFormatRecommendation(outputSettings.format)}
@@ -93,7 +93,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
           <h4 className="text-sm font-medium text-gray-700 mb-3">
             {outputSettings.format === 'png' ? '压缩级别' : '输出质量'}
           </h4>
-          
+
           {/* 质量滑块 */}
           <div className="mb-3">
             <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
@@ -101,8 +101,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
                 {outputSettings.format === 'png' ? '压缩级别' : '质量'}
               </span>
               <span>
-                {outputSettings.format === 'png' 
-                  ? `${outputSettings.quality}/9` 
+                {outputSettings.format === 'png'
+                  ? `${outputSettings.quality}/9`
                   : `${outputSettings.quality}%`
                 }
               </span>
@@ -134,8 +134,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               <button
                 onClick={() => handleSettingChange('quality', 85)}
                 className={`w-full p-1 rounded ${
-                  outputSettings.quality > 60 && outputSettings.quality <= 90 
-                    ? 'bg-yellow-100 text-yellow-700' 
+                  outputSettings.quality > 60 && outputSettings.quality <= 90
+                    ? 'bg-yellow-100 text-yellow-700'
                     : 'text-gray-500'
                 }`}
               >
@@ -152,7 +152,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
                 高质量
               </button>
             </div>
-            
+
             {/* PNG压缩级别标签 */}
             <div className={outputSettings.format !== 'png' ? 'hidden' : ''}>
               <button
@@ -168,8 +168,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               <button
                 onClick={() => handleSettingChange('quality', 6)}
                 className={`w-full p-1 rounded ${
-                  outputSettings.quality > 3 && outputSettings.quality <= 6 
-                    ? 'bg-yellow-100 text-yellow-700' 
+                  outputSettings.quality > 3 && outputSettings.quality <= 6
+                    ? 'bg-yellow-100 text-yellow-700'
                     : 'text-gray-500'
                 }`}
               >
@@ -192,7 +192,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         {/* 文件命名设置 */}
         <div className="pt-4 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">文件命名</h4>
-          
+
           {/* 保持原文件名 */}
           <div className="space-y-3">
             <label className="flex items-center">
@@ -244,8 +244,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className="flex justify-between">
               <span>质量设置:</span>
               <span className="font-medium">
-                {outputSettings.format === 'png' 
-                  ? `压缩级别 ${outputSettings.quality}` 
+                {outputSettings.format === 'png'
+                  ? `压缩级别 ${outputSettings.quality}`
                   : `${outputSettings.quality}% 质量`
                 }
               </span>
@@ -274,7 +274,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               <div className="text-sm font-medium text-gray-900">照片优化</div>
               <div className="text-xs text-gray-500">JPG格式，85%质量，适合照片</div>
             </button>
-            
+
             <button
               onClick={() => onSettingsChange({
                 format: 'png',
@@ -288,7 +288,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               <div className="text-sm font-medium text-gray-900">图标截图</div>
               <div className="text-xs text-gray-500">PNG格式，平衡压缩，保持透明</div>
             </button>
-            
+
             <button
               onClick={() => onSettingsChange({
                 format: 'webp',

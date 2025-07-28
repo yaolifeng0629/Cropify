@@ -13,7 +13,7 @@ import {
     ImageImportManager,
     ImageInfoPanel,
     PreviewSystem,
-    CropComparison,
+    CropDemo,
     CropControlPanel,
     ViewSettings,
     AdvancedCropOptions,
@@ -75,14 +75,14 @@ export const CropifyApp: React.FC = () => {
     };
 
     return (
-        <>
+        <div className={images && images.length > 0 ? "h-screen flex flex-col overflow-hidden" : "min-h-screen flex flex-col"}>
             <Header images={images} onClearImages={clearImages} />
             {images && images.length > 0 ? (
-                <div className="grid grid-cols-12 gap-6">
+                <div className="flex-1 grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-6 p-4 lg:p-6 overflow-hidden">
                     {/* 左侧：预览和裁剪区域 */}
-                    <div className="col-span-12 lg:col-span-8 space-y-6">
-                        {/* 预览系统 */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <div className="lg:col-span-4 flex flex-col space-y-4 lg:space-y-6 overflow-hidden">
+                        {/* 预览系统 - 限制高度 */}
+                        <div className="h-96 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                             <PreviewSystem
                                 selectedImage={selectedImage}
                                 cropParams={cropParams}
@@ -94,16 +94,17 @@ export const CropifyApp: React.FC = () => {
                             />
                         </div>
 
-                        {/* 裁剪对比 */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-                            <CropComparison selectedImage={selectedImage} cropParams={cropParams} />
+                        {/* 裁剪演示 */}
+                        <div className="flex-shrink-0">
+                            <CropDemo selectedImage={selectedImage} cropParams={cropParams} />
                         </div>
                     </div>
 
                     {/* 右侧：控制面板和工具栏 */}
-                    <div className="col-span-12 lg:col-span-4 space-y-6">
-                        {/* 图片列表和导入管理 */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <div className="lg:col-span-1 flex flex-col overflow-hidden">
+                        <div className="flex-1 overflow-y-auto space-y-3 lg:space-y-4">
+                            {/* 图片列表和导入管理 */}
+                            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                             <div className="p-4 border-b border-gray-200">
                                 <h2 className="text-lg font-medium text-gray-900">图片管理</h2>
                             </div>
@@ -181,20 +182,25 @@ export const CropifyApp: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
             ) : (
-                <EmptyState
-                    images={images}
-                    isUploading={isUploading}
-                    errors={errors}
-                    selectedImageId={selectedImageId}
-                    addImages={addImages}
-                    removeImage={removeImage}
-                    clearImages={clearImages}
-                    clearErrors={clearErrors}
-                    dismissError={dismissError}
-                    onSelectImage={selectImage}
-                />
+                <div className="flex-1 overflow-y-auto">
+                    <div className="min-h-full flex items-center justify-center p-4 lg:p-6">
+                        <EmptyState
+                            images={images}
+                            isUploading={isUploading}
+                            errors={errors}
+                            selectedImageId={selectedImageId}
+                            addImages={addImages}
+                            removeImage={removeImage}
+                            clearImages={clearImages}
+                            clearErrors={clearErrors}
+                            dismissError={dismissError}
+                            onSelectImage={selectImage}
+                        />
+                    </div>
+                </div>
             )}
-        </>
+        </div>
     );
 };
