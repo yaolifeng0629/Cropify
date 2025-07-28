@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { ImageFile } from '@/types';
 
 interface HeaderProps {
-    images?: any[];
+    images?: ImageFile[];
     onClearImages: () => void;
 }
 

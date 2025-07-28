@@ -2,13 +2,14 @@
 
 import React from 'react';
 import { ImageImportManager } from '@/components/modules';
+import { ImageFile, AppError } from '@/types';
 
 interface EmptyStateProps {
-    images: any[];
+    images: ImageFile[];
     isUploading: boolean;
-    errors: any[];
+    errors: AppError[];
     selectedImageId: string | null;
-    addImages: (files: File[]) => void;
+    addImages: (files: File[]) => Promise<void>;
     removeImage: (id: string) => void;
     clearImages: () => void;
     clearErrors: () => void;

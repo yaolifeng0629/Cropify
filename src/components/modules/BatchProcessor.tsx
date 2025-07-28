@@ -77,7 +77,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
           </div>
           <ProgressBar
             value={progress}
-            color={getStatusColor() as any}
+            color={getStatusColor() as 'blue' | 'green' | 'red' | 'yellow'}
             showPercentage={true}
           />
           <div className="mt-2 text-center">
@@ -126,8 +126,8 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
             <div className="flex justify-between">
               <span>质量设置:</span>
               <span>
-                {outputSettings.format === 'png' 
-                  ? `级别 ${outputSettings.quality}` 
+                {outputSettings.format === 'png'
+                  ? `级别 ${outputSettings.quality}`
                   : `${outputSettings.quality}%`
                 }
               </span>
@@ -179,7 +179,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
                 暂停处理
               </Button>
             )}
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -190,7 +190,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
               {isProcessing ? '停止' : '重置'}
             </Button>
           </div>
-          
+
           {hasErrors && (
             <Button
               variant="outline"
@@ -252,7 +252,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
                               </div>
                             )}
                           </div>
-                          
+
                           <div className="flex items-center gap-2">
                             {task.status === ProcessStatus.PROCESSING && (
                               <div className="text-xs text-blue-600">
@@ -274,7 +274,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
                             </div>
                           </div>
                         </div>
-                        
+
                         {task.status === ProcessStatus.PROCESSING && (
                           <div className="mt-2">
                             <ProgressBar

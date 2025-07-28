@@ -22,6 +22,7 @@ import {
     ExportSystem,
 } from '@/components/modules';
 import { ExportUtils } from '@/utils';
+import { ProcessTask } from '@/types';
 import { Header } from './Header';
 import { EmptyState } from './EmptyState';
 
@@ -57,7 +58,7 @@ export const CropifyApp: React.FC = () => {
     }, [selectedImage, resetCropParams]);
 
     // 导出处理函数
-    const handleSingleDownload = (task: any) => {
+    const handleSingleDownload = (task: ProcessTask) => {
         if (task.processedBlob) {
             const image = images.find(img => img.id === task.imageId);
             const filename = ExportUtils.generateFileName(task, 0, outputSettings, image?.name);
@@ -65,11 +66,11 @@ export const CropifyApp: React.FC = () => {
         }
     };
 
-    const handleBatchDownload = async (tasks: any[]) => {
+    const handleBatchDownload = async (tasks: ProcessTask[]) => {
         await ExportUtils.batchDownload(tasks, outputSettings);
     };
 
-    const handleZipDownload = async (tasks: any[]) => {
+    const handleZipDownload = async (tasks: ProcessTask[]) => {
         await ExportUtils.downloadAsZip(tasks, outputSettings);
     };
 

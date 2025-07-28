@@ -1,4 +1,9 @@
 import React from 'react';
+import { Button as ShadcnButton } from './button';
+import { Card as ShadcnCard, CardHeader, CardTitle, CardContent } from './card';
+import { Progress as ShadcnProgress } from './progress';
+import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
@@ -8,7 +13,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * 通用按钮组件
+ * 通用按钮组件 - 基于 shadcn/ui Button 的兼容层
  */
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
@@ -19,39 +24,33 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
-  const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500',
-    ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
-    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+  // 映射变体到 shadcn/ui 变体
+  const variantMap = {
+    primary: 'default' as const,
+    secondary: 'secondary' as const,
+    outline: 'outline' as const,
+    ghost: 'ghost' as const,
+    danger: 'destructive' as const,
   };
-  
-  const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base',
+
+  // 映射尺寸到 shadcn/ui 尺寸
+  const sizeMap = {
+    sm: 'sm' as const,
+    md: 'default' as const,
+    lg: 'lg' as const,
   };
-  
-  const isDisabled = disabled || loading;
-  const disabledClasses = isDisabled ? 'opacity-50 cursor-not-allowed' : '';
-  
+
   return (
-    <button
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className}`}
-      disabled={isDisabled}
+    <ShadcnButton
+      variant={variantMap[variant]}
+      size={sizeMap[size]}
+      disabled={disabled || loading}
+      className={className}
       {...props}
     >
-      {loading && (
-        <svg className="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-      )}
+      {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       {children}
-    </button>
+    </ShadcnButton>
   );
 };
 
@@ -63,7 +62,7 @@ interface CardProps {
 }
 
 /**
- * 通用卡片组件
+ * 通用卡片组件 - 基于 shadcn/ui Card 的兼容层
  */
 export const Card: React.FC<CardProps> = ({
   children,
@@ -72,23 +71,23 @@ export const Card: React.FC<CardProps> = ({
   padding = 'md',
 }) => {
   const paddingClasses = {
-    none: '',
+    none: 'p-0',
     sm: 'p-4',
     md: 'p-6',
     lg: 'p-8',
   };
-  
+
   return (
-    <div className={`bg-white rounded-lg border border-gray-200 shadow-sm ${className}`}>
+    <ShadcnCard className={cn('bg-white', className)}>
       {title && (
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900">{title}</h3>
-        </div>
+        <CardHeader className="border-b">
+          <CardTitle className="text-lg font-medium text-gray-900">{title}</CardTitle>
+        </CardHeader>
       )}
-      <div className={paddingClasses[padding]}>
+      <CardContent className={cn(paddingClasses[padding], title ? 'pt-6' : '')}>
         {children}
-      </div>
-    </div>
+      </CardContent>
+    </ShadcnCard>
   );
 };
 
@@ -100,7 +99,7 @@ interface ProgressBarProps {
 }
 
 /**
- * 进度条组件
+ * 进度条组件 - 基于 shadcn/ui Progress 的兼容层
  */
 export const ProgressBar: React.FC<ProgressBarProps> = ({
   value,
@@ -109,27 +108,26 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   color = 'blue',
 }) => {
   const clampedValue = Math.min(Math.max(value, 0), 100);
-  
+
+  // 颜色映射到 CSS 变量
   const colorClasses = {
-    blue: 'bg-blue-600',
-    green: 'bg-green-600',
-    red: 'bg-red-600',
-    yellow: 'bg-yellow-600',
+    blue: '[&>div]:bg-blue-600',
+    green: '[&>div]:bg-green-600',
+    red: '[&>div]:bg-red-600',
+    yellow: '[&>div]:bg-yellow-600',
   };
-  
+
   return (
-    <div className={`w-full ${className}`}>
-      <div className="flex justify-between items-center mb-1">
-        {showPercentage && (
+    <div className={cn('w-full', className)}>
+      {showPercentage && (
+        <div className="flex justify-between items-center mb-1">
           <span className="text-sm font-medium text-gray-700">{clampedValue.toFixed(0)}%</span>
-        )}
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2">
-        <div
-          className={`h-2 rounded-full transition-all duration-300 ${colorClasses[color]}`}
-          style={{ width: `${clampedValue}%` }}
-        ></div>
-      </div>
+        </div>
+      )}
+      <ShadcnProgress
+        value={clampedValue}
+        className={cn('h-2', colorClasses[color])}
+      />
     </div>
   );
 };
