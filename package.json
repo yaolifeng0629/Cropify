@@ -2,6 +2,7 @@
   "name": "cropify",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.13.1",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
