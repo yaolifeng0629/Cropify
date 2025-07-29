@@ -62,17 +62,17 @@ export const CropifyApp: React.FC = () => {
 
 
     return (
-        <div className={images && images.length > 0 ? "h-screen flex flex-col overflow-hidden" : "min-h-screen flex flex-col"}>
+        <div className="min-h-screen flex flex-col">
             <Header images={images} onClearImages={clearImages} />
             {images && images.length > 0 ? (
-                <div className="flex-1 flex overflow-hidden">
+                <div className="flex-1 flex">
                     {/* 左侧面板 */}
                     <div className={`bg-white border-r border-gray-200 transition-all duration-300 ${
                         leftPanelCollapsed ? 'w-0' : 'w-100'
                     } overflow-hidden flex-shrink-0`}>
-                        <div className="h-full flex flex-col">
+                        <div className="flex flex-col">
                             {/* 左侧面板头部 */}
-                            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                            <div className="flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
                                 <h2 className="text-lg font-medium text-gray-900">图片管理</h2>
                                 <button
                                     onClick={() => setLeftPanelCollapsed(!leftPanelCollapsed)}
@@ -84,7 +84,7 @@ export const CropifyApp: React.FC = () => {
                             </div>
 
                             {/* 左侧面板内容 */}
-                            <div className="flex-1 overflow-y-auto p-4 space-y-6">
+                            <div className="p-4 space-y-6">
                                 {/* 图片导入管理 */}
                                 <div>
                                     <ImageImportManager
@@ -121,10 +121,10 @@ export const CropifyApp: React.FC = () => {
                     )}
 
                     {/* 中间主内容区域 */}
-                    <div className="flex-1 flex flex-col overflow-hidden">
-                        <div className="flex-1 p-4 lg:p-6 space-y-4 lg:space-y-6 overflow-hidden">
+                    <div className="flex-1 flex flex-col">
+                        <div className="p-4 lg:p-6 space-y-4 lg:space-y-6">
                             {/* 预览系统 */}
-                            <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                            <div className="bg-white rounded-lg shadow-sm border border-gray-200 min-h-[600px]">
                                 <PreviewSystem
                                     selectedImage={selectedImage}
                                     cropParams={cropParams}
@@ -160,9 +160,9 @@ export const CropifyApp: React.FC = () => {
                     <div className={`bg-white border-l border-gray-200 transition-all duration-300 ${
                         rightPanelCollapsed ? 'w-0' : 'w-100'
                     } overflow-hidden flex-shrink-0`}>
-                        <div className="h-full flex flex-col">
+                        <div className="flex flex-col">
                             {/* 右侧面板头部 */}
-                            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                            <div className="flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white z-10">
                                 <h2 className="text-lg font-medium text-gray-900">工具面板</h2>
                                 <button
                                     onClick={() => setRightPanelCollapsed(!rightPanelCollapsed)}
@@ -174,7 +174,7 @@ export const CropifyApp: React.FC = () => {
                             </div>
 
                             {/* 右侧面板内容 */}
-                            <div className="flex-1 overflow-y-auto space-y-4 p-4">
+                            <div className="space-y-4 p-4">
                                 {/* 裁剪控制面板 */}
                                 <CropControlPanel
                                     selectedImage={selectedImage}
@@ -225,7 +225,7 @@ export const CropifyApp: React.FC = () => {
                     </div>
                 </div>
             ) : (
-                <div className="flex-1 overflow-y-auto">
+                <div className="flex-1">
                     <div className="min-h-full flex items-center justify-center p-4 lg:p-6">
                         <EmptyState
                             images={images}
