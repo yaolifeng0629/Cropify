@@ -41,20 +41,6 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
     }
   };
 
-  // 格式推荐说明
-  const getFormatRecommendation = (format: string) => {
-    switch (format) {
-      case 'jpg':
-        return '适合照片，文件较小，但会有轻微质量损失';
-      case 'png':
-        return '适合图标、截图，无损压缩，支持透明背景';
-      case 'webp':
-        return '新型格式，压缩效果最好，但兼容性稍差';
-      default:
-        return '';
-    }
-  };
-
   return (
     <Card title="输出" className="bg-white">
       <div className="space-y-3">
@@ -80,11 +66,6 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
                 <span className="text-sm font-medium">{format.label}</span>
               </button>
             ))}
-          </div>
-
-          {/* 格式说明 */}
-          <div className="mt-2 p-2 bg-gray-50 rounded text-xs text-gray-600">
-            {getFormatRecommendation(outputSettings.format)}
           </div>
         </div>
 
@@ -254,54 +235,6 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               <span>预估文件大小:</span>
               <span className="font-medium">~{getEstimatedSize()}KB</span>
             </div>
-          </div>
-        </div>
-
-        {/* 推荐设置 */}
-        <div className="pt-4 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">推荐设置</h4>
-          <div className="grid grid-cols-1 gap-2">
-            <button
-              onClick={() => onSettingsChange({
-                format: 'jpg',
-                quality: 85,
-                maintainOriginalName: true,
-                filenamePrefix: '',
-                filenameSuffix: '',
-              })}
-              className="p-2 text-left border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
-            >
-              <div className="text-sm font-medium text-gray-900">照片优化</div>
-              <div className="text-xs text-gray-500">JPG格式，85%质量，适合照片</div>
-            </button>
-
-            <button
-              onClick={() => onSettingsChange({
-                format: 'png',
-                quality: 6,
-                maintainOriginalName: true,
-                filenamePrefix: '',
-                filenameSuffix: '',
-              })}
-              className="p-2 text-left border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
-            >
-              <div className="text-sm font-medium text-gray-900">图标截图</div>
-              <div className="text-xs text-gray-500">PNG格式，平衡压缩，保持透明</div>
-            </button>
-
-            <button
-              onClick={() => onSettingsChange({
-                format: 'webp',
-                quality: 80,
-                maintainOriginalName: true,
-                filenamePrefix: '',
-                filenameSuffix: '',
-              })}
-              className="p-2 text-left border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
-            >
-              <div className="text-sm font-medium text-gray-900">web优化</div>
-              <div className="text-xs text-gray-500">WebP格式，80%质量，最小文件</div>
-            </button>
           </div>
         </div>
       </div>

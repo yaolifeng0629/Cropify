@@ -138,25 +138,10 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
               </div>
             </div>
           )}
-
-          {/* 网格说明 */}
-          {showGrid && (
-            <div className="mt-3 p-2 bg-gray-50 rounded text-xs text-gray-600">
-              <div className="flex items-center gap-1 mb-1">
-                <span>💡</span>
-                <span className="font-medium">构图辅助</span>
-              </div>
-              {gridType === '九宫格' ? (
-                <p>九宫格构图法：将重要元素放在交叉点上，创造视觉平衡。</p>
-              ) : (
-                <p>黄金比例构图：基于1:1.618的比例，创造自然和谐的视觉效果。</p>
-              )}
-            </div>
-          )}
         </div>
 
         {/* 快速操作 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-4">
           <h4 className="text-sm font-medium text-gray-700 mb-3">快速操作</h4>
           <div className="grid grid-cols-2 gap-2">
             <Button
@@ -177,29 +162,6 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
             >
               重置视图
             </Button>
-          </div>
-        </div>
-
-        {/* 键盘快捷键提示 */}
-        <div className="pt-4 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">快捷键</h4>
-          <div className="text-xs text-gray-500 space-y-1">
-            <div className="flex justify-between">
-              <span>放大:</span>
-              <span>Ctrl + +</span>
-            </div>
-            <div className="flex justify-between">
-              <span>缩小:</span>
-              <span>Ctrl + -</span>
-            </div>
-            <div className="flex justify-between">
-              <span>适合窗口:</span>
-              <span>Ctrl + 0</span>
-            </div>
-            <div className="flex justify-between">
-              <span>切换网格:</span>
-              <span>G</span>
-            </div>
           </div>
         </div>
       </div>
