@@ -1,4 +1,5 @@
 import * as React from "react"
+import * as SeparatorPrimitive from "@radix-ui/react-separator"
 
 import { cn } from "@/lib/utils"
 
@@ -81,6 +82,16 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function CardSeparator({ className, ...props }: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
+  return (
+    <SeparatorPrimitive.Root
+      data-slot="card-separator"
+      className={cn("bg-border h-px w-full", className)}
+      {...props}
+    />
+  )
+}
+
 export {
   Card,
   CardHeader,
@@ -89,4 +100,5 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  CardSeparator,
 }

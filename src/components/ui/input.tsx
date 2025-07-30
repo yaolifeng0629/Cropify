@@ -1,8 +1,12 @@
 import * as React from "react"
+import * as LabelPrimitive from "@radix-ui/react-label"
 
 import { cn } from "@/lib/utils"
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+const Input = React.forwardRef<
+  HTMLInputElement,
+  React.ComponentProps<"input">
+>(({ className, type, ...props }, ref) => {
   return (
     <input
       type={type}
@@ -13,9 +17,99 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
         className
       )}
+      ref={ref}
       {...props}
     />
   )
+})
+Input.displayName = "Input"
+
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  React.ComponentProps<typeof LabelPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    data-slot="label"
+    className={cn(
+      "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+      className
+    )}
+    {...props}
+  />
+))
+Label.displayName = LabelPrimitive.Root.displayName
+
+interface InputGroupProps {
+  children: React.ReactNode
+  className?: string
 }
 
-export { Input }
+function InputGroup({ children, className }: InputGroupProps) {
+  return (
+    <div
+      data-slot="input-group"
+      className={cn("space-y-2", className)}
+    >
+      {children}
+    </div>
+  )
+}
+
+interface InputWithLabelProps extends React.ComponentProps<"input"> {
+  label?: string
+  labelClassName?: string
+  description?: string
+  error?: string
+  required?: boolean
+}
+
+const InputWithLabel = React.forwardRef<
+  HTMLInputElement,
+  InputWithLabelProps
+>(({ label, labelClassName, description, error, required, className, id, ...props }, ref) => {
+  const inputId = id || React.useId()
+  const descriptionId = description ? `${inputId}-description` : undefined
+  const errorId = error ? `${inputId}-error` : undefined
+
+  return (
+    <InputGroup>
+      {label && (
+        <Label htmlFor={inputId} className={labelClassName}>
+          {label}
+          {required && <span className="text-destructive ml-1">*</span>}
+        </Label>
+      )}
+      {description && (
+        <p
+          id={descriptionId}
+          className="text-sm text-muted-foreground"
+        >
+          {description}
+        </p>
+      )}
+      <Input
+        ref={ref}
+        id={inputId}
+        aria-describedby={cn(
+          descriptionId && descriptionId,
+          errorId && errorId
+        )}
+        aria-invalid={error ? "true" : undefined}
+        className={cn(error && "border-destructive", className)}
+        {...props}
+      />
+      {error && (
+        <p
+          id={errorId}
+          className="text-sm text-destructive"
+        >
+          {error}
+        </p>
+      )}
+    </InputGroup>
+  )
+})
+InputWithLabel.displayName = "InputWithLabel"
+
+export { Input, Label, InputGroup, InputWithLabel }

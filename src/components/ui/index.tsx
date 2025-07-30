@@ -1,7 +1,12 @@
 import React from 'react';
 import { Button as ShadcnButton } from './button';
-import { Card as ShadcnCard, CardHeader, CardTitle, CardContent } from './card';
+import { Card as ShadcnCard, CardHeader, CardTitle, CardContent, CardSeparator } from './card';
 import { Progress as ShadcnProgress } from './progress';
+import { Input as ShadcnInput, Label, InputGroup, InputWithLabel } from './input';
+import { Checkbox } from './checkbox';
+import { Switch } from './switch';
+import { Slider } from './slider';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Logo } from './logo';
@@ -133,5 +138,27 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   );
 };
 
-// 导出 Logo 组件
+// 导出所有 Radix UI 组件
 export { Logo };
+
+// 导出原始的 Radix UI 组件
+export {
+  ShadcnButton as RadixButton,
+  ShadcnCard as RadixCard,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardSeparator,
+  ShadcnProgress as RadixProgress,
+  ShadcnInput as Input,
+  Label,
+  InputGroup,
+  InputWithLabel,
+  Checkbox,
+  Switch,
+  Slider,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+};
