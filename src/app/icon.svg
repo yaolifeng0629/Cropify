@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景圆角矩形 -->
+  <rect x="0" y="0" width="32" height="32" rx="8" fill="url(#backgroundGradient)"/>
+
+  <!-- 外层图像框架 -->
+  <rect x="4" y="4" width="24" height="24" rx="3" stroke="white" stroke-width="1.5" fill="none"/>
+
+  <!-- 内层裁剪框 - 用虚线表示裁剪区域 -->
+  <rect x="8" y="10" width="16" height="12" stroke="white" stroke-width="1.5" stroke-dasharray="2,2" fill="none"/>
+
+  <!-- 裁剪控制点 -->
+  <circle cx="8" cy="10" r="1" fill="white"/>
+  <circle cx="24" cy="10" r="1" fill="white"/>
+  <circle cx="8" cy="22" r="1" fill="white"/>
+  <circle cx="24" cy="22" r="1" fill="white"/>
+
+  <!-- 图像内容示意 - 简化的山和太阳 -->
+  <path d="M10 18l2-2 2 2 4-4 2 2v4H10v-2z" fill="white" opacity="0.6"/>
+  <circle cx="18" cy="13" r="1" fill="white" opacity="0.6"/>
+</svg>

@@ -4,6 +4,7 @@ import { Card as ShadcnCard, CardHeader, CardTitle, CardContent } from './card';
 import { Progress as ShadcnProgress } from './progress';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Logo } from './logo';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
@@ -131,3 +132,6 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     </div>
   );
 };
+
+// 导出 Logo 组件
+export { Logo };

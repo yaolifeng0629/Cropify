@@ -226,7 +226,7 @@ export const CropifyApp: React.FC = () => {
                 </div>
             ) : (
                 <div className="flex-1">
-                    <div className="min-h-full flex items-center justify-center p-4 lg:p-6">
+                    <div className="min-h-full w-full">
                         <EmptyState
                             images={images}
                             isUploading={isUploading}
