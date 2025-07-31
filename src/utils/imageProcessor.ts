@@ -62,8 +62,11 @@ export class ImageProcessor {
       this.ctx.restore();
       this.ctx.save();
       
+      // 将百分比转换为实际像素半径
+      const actualRadius = Math.min(width, height) * borderRadius / 2;
+      
       // 创建圆角矩形裁剪路径
-      this.createRoundedRectPath(0, 0, width, height, borderRadius);
+      this.createRoundedRectPath(0, 0, width, height, actualRadius);
       this.ctx.clip();
       
       // 重新应用变换
@@ -144,8 +147,10 @@ export class ImageProcessor {
       this.ctx.restore();
       this.ctx.save();
       
-      const scaledRadius = borderRadius * scale;
-      this.createRoundedRectPath(0, 0, previewWidth, previewHeight, scaledRadius);
+      // 将百分比转换为实际像素半径
+      const actualRadius = Math.min(previewWidth, previewHeight) * borderRadius / 2;
+      
+      this.createRoundedRectPath(0, 0, previewWidth, previewHeight, actualRadius);
       this.ctx.clip();
       
       this.ctx.translate(previewWidth / 2, previewHeight / 2);

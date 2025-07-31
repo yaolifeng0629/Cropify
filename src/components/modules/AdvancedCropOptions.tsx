@@ -173,34 +173,54 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
           {/* 圆角滑块 */}
           <div className="mb-3">
             <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-              <span>圆角半径</span>
-              <span>{Math.round(cropParams.borderRadius || 0)}px</span>
+              <span>圆角程度</span>
+              <span>{Math.round((cropParams.borderRadius || 0) * 100)}%</span>
             </div>
             <input
               type="range"
               min={0}
-              max={Math.min(cropParams.width, cropParams.height) / 2}
-              step={1}
+              max={1}
+              step={0.01}
               value={cropParams.borderRadius || 0}
-              onChange={(e) => handleParamChange('borderRadius', parseInt(e.target.value))}
+              onChange={(e) => handleParamChange('borderRadius', parseFloat(e.target.value))}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             />
           </div>
 
-          {/* 精确圆角输入 */}
-          <div className="mb-3">
-            <div className="flex items-center gap-2">
-              <input
-                type="number"
-                value={Math.round(cropParams.borderRadius || 0)}
-                onChange={(e) => handleParamChange('borderRadius', parseInt(e.target.value) || 0)}
-                min={0}
-                max={Math.min(cropParams.width, cropParams.height) / 2}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="半径"
-              />
-              <span className="text-sm text-gray-500">px</span>
-            </div>
+          {/* 快速圆角预设 */}
+          <div className="grid grid-cols-4 gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleParamChange('borderRadius', 0)}
+              title="无圆角"
+            >
+              0%
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleParamChange('borderRadius', 0.25)}
+              title="轻微圆角"
+            >
+              25%
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleParamChange('borderRadius', 0.5)}
+              title="中等圆角"
+            >
+              50%
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleParamChange('borderRadius', 1)}
+              title="完全圆形"
+            >
+              100%
+            </Button>
           </div>
         </div>
       </div>

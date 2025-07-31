@@ -29,14 +29,14 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900 mb-3">视图</h3>
+      {/* <h3 className="text-sm font-medium text-gray-900 mb-3">视图</h3> */}
       <div className="space-y-3">
         {/* 缩放控制 */}
-        <div>
-          <h4 className="text-xs font-medium text-gray-700 mb-2">缩放</h4>
+        {/* <div> */}
+          {/* <h4 className="text-xs font-medium text-gray-700 mb-2">缩放</h4> */}
 
           {/* 缩放滑块 */}
-          <div className="mb-2">
+          {/* <div className="mb-2">
             <input
               type="range"
               min={ZOOM_LEVELS[0]}
@@ -46,10 +46,10 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
               onChange={(e) => onZoomChange(parseFloat(e.target.value))}
               className="w-full h-1 bg-gray-200 rounded appearance-none cursor-pointer"
             />
-          </div>
+          </div> */}
 
           {/* 当前缩放显示 */}
-          <div className="flex items-center justify-between text-xs text-gray-600 mb-2">
+          {/* <div className="flex items-center justify-between text-xs text-gray-600 mb-2">
             <span>{Math.round(zoom * 100)}%</span>
             <div className="flex items-center gap-1">
               <Button
@@ -71,10 +71,10 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
                 +
               </Button>
             </div>
-          </div>
+          </div> */}
 
           {/* 预设缩放按钮 */}
-          <div className="grid grid-cols-3 gap-1">
+          {/* <div className="grid grid-cols-3 gap-1">
             {presetZooms.map((level) => (
               <button
                 key={level}
@@ -88,12 +88,12 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
                 {Math.round(level * 100)}%
               </button>
             ))}
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         {/* 网格设置 */}
-        <div className="pt-2 border-t border-gray-200">
-          <h4 className="text-xs font-medium text-gray-700 mb-2">网格</h4>
+        <div>
+          {/* <h4 className="text-xs font-medium text-gray-700 mb-2">网格</h4> */}
 
           {/* 网格开关 */}
           <div className="flex items-center justify-between mb-2">
@@ -142,7 +142,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
         </div>
 
         {/* 快速操作 */}
-        <div className="pt-3">
+        {/* <div className="pt-3">
           <h4 className="text-sm font-medium text-gray-700 mb-3">快速操作</h4>
           <div className="grid grid-cols-2 gap-2">
             <Button
@@ -164,7 +164,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
               重置视图
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
