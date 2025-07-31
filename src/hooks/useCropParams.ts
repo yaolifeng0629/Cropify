@@ -11,6 +11,7 @@ interface UseCropParamsReturn {
   resetCropParams: (image?: ImageFile | null) => void;
   applyCropAnchor: (anchor: CropAnchor, image: ImageFile) => void;
   applyPresetSize: (presetName: string, image: ImageFile) => void;
+  applyPresetRatio: (ratioValue: number, image: ImageFile) => void;
 }
 
 /**
@@ -133,37 +134,76 @@ export function useCropParams(selectedImage?: ImageFile | null): UseCropParamsRe
     });
   }, []);
 
+  // 计算基于比例的最大化裁剪区域
+  const calculateRatioBasedCrop = useCallback((targetWidth: number, targetHeight: number, image: ImageFile) => {
+    const imageRatio = image.width / image.height;
+    const targetRatio = targetWidth / targetHeight;
+
+    let cropWidth: number, cropHeight: number, cropX: number, cropY: number;
+
+    if (Math.abs(imageRatio - targetRatio) < 0.001) {
+      // 比例完全相同，无需裁剪
+      cropWidth = image.width;
+      cropHeight = image.height;
+      cropX = 0;
+      cropY = 0;
+    } else if (imageRatio > targetRatio) {
+      // 原图比目标"更宽"，需要裁切左右两边
+      cropHeight = image.height;
+      cropWidth = image.height * targetRatio;
+      cropX = (image.width - cropWidth) / 2;
+      cropY = 0;
+    } else {
+      // 原图比目标"更高"，需要裁切上下两边
+      cropWidth = image.width;
+      cropHeight = image.width / targetRatio;
+      cropX = 0;
+      cropY = (image.height - cropHeight) / 2;
+    }
+
+    return { cropWidth, cropHeight, cropX, cropY };
+  }, []);
+
   // 应用预设尺寸
   const applyPresetSize = useCallback((presetName: string, image: ImageFile) => {
     const preset = PRESET_SIZES.find(p => p.name === presetName);
     if (!preset) return;
 
-    let newWidth = preset.width;
-    let newHeight = preset.height;
-
-    // 如果是毫米单位，转换为像素（假设72 DPI）
-    if (preset.unit === 'mm') {
-      const dpi = 72; // 默认DPI
-      newWidth = Math.round((preset.width * dpi) / 25.4);
-      newHeight = Math.round((preset.height * dpi) / 25.4);
-    }
-
-    // 确保尺寸不超过原图尺寸
-    newWidth = Math.min(newWidth, image.width);
-    newHeight = Math.min(newHeight, image.height);
-
-    // 居中裁剪
-    const newX = Math.max(0, (image.width - newWidth) / 2);
-    const newY = Math.max(0, (image.height - newHeight) / 2);
+    // 使用比例计算最大化裁剪区域
+    const { cropWidth, cropHeight, cropX, cropY } = calculateRatioBasedCrop(
+      preset.width,
+      preset.height,
+      image
+    );
 
     setCropParams(prev => ({
       ...prev,
-      width: newWidth,
-      height: newHeight,
-      x: newX,
-      y: newY,
+      width: cropWidth,
+      height: cropHeight,
+      x: cropX,
+      y: cropY,
+      maintainAspectRatio: true,
     }));
-  }, []);
+  }, [calculateRatioBasedCrop]);
+
+  // 应用预设比例
+  const applyPresetRatio = useCallback((ratioValue: number, image: ImageFile) => {
+    // 使用比例值计算最大化裁剪区域，这里用ratioValue作为宽高比
+    const { cropWidth, cropHeight, cropX, cropY } = calculateRatioBasedCrop(
+      ratioValue,
+      1,
+      image
+    );
+
+    setCropParams(prev => ({
+      ...prev,
+      width: cropWidth,
+      height: cropHeight,
+      x: cropX,
+      y: cropY,
+      maintainAspectRatio: true,
+    }));
+  }, [calculateRatioBasedCrop]);
 
   return {
     cropParams,
@@ -172,5 +212,6 @@ export function useCropParams(selectedImage?: ImageFile | null): UseCropParamsRe
     resetCropParams,
     applyCropAnchor,
     applyPresetSize,
+    applyPresetRatio,
   };
 }

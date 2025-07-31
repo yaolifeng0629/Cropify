@@ -11,6 +11,7 @@ interface CropControlPanelProps {
   onCropChange: (params: CropParams) => void;
   onApplyCropAnchor: (anchor: CropAnchor, image: ImageFile) => void;
   onApplyPresetSize: (presetName: string, image: ImageFile) => void;
+  onApplyPresetRatio: (ratioValue: number, image: ImageFile) => void;
   onReset: (image?: ImageFile | null) => void;
 }
 
@@ -23,6 +24,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
   onCropChange,
   onApplyCropAnchor,
   onApplyPresetSize,
+  onApplyPresetRatio,
   onReset,
 }) => {
   const [activeTab, setActiveTab] = useState<'manual' | 'presets'>('manual');
@@ -92,15 +94,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
       const ratioName = value.replace('ratio_', '');
       const ratio = PRESET_RATIOS.find(r => r.name === ratioName);
       if (ratio) {
-        const newHeight = cropParams.width / ratio.value;
-        const maxHeight = selectedImage.height - cropParams.y;
-        const finalHeight = Math.min(newHeight, maxHeight);
-
-        onCropChange({
-          ...cropParams,
-          height: finalHeight,
-          maintainAspectRatio: true,
-        });
+        onApplyPresetRatio(ratio.value, selectedImage);
       }
     }
   };

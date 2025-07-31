@@ -34,7 +34,7 @@ export const CropifyApp: React.FC = () => {
     const { selectedImageId, selectedImage, batchSummary, selectImage } =
         useAppState(images);
 
-    const { cropParams, setCropParams, resetCropParams, applyCropAnchor, applyPresetSize } =
+    const { cropParams, setCropParams, resetCropParams, applyCropAnchor, applyPresetSize, applyPresetRatio } =
         useCropParams(selectedImage);
 
     const { zoom, showGrid, gridType, setZoom, setShowGrid, setGridType } = useViewSettings();
@@ -194,6 +194,7 @@ export const CropifyApp: React.FC = () => {
                                         onCropChange={setCropParams}
                                         onApplyCropAnchor={applyCropAnchor}
                                         onApplyPresetSize={applyPresetSize}
+                                        onApplyPresetRatio={applyPresetRatio}
                                         onReset={resetCropParams}
                                     />
 
