@@ -70,8 +70,12 @@ export const CropifyApp: React.FC = () => {
                 isEditMode={isEditMode}
                 cropParams={cropParams}
                 outputSettings={outputSettings}
+                tasks={batchTasks}
                 isProcessing={isProcessing}
                 onStartBatch={() => startBatch(images, cropParams, outputSettings)}
+                onPauseBatch={pauseBatch}
+                onCancelBatch={cancelBatch}
+                onRetryFailed={() => retryFailed(images, cropParams, outputSettings)}
             />
             {isEditMode ? (
                 <div className="flex-1 flex h-0 overflow-hidden">
@@ -229,9 +233,6 @@ export const CropifyApp: React.FC = () => {
                                         tasks={batchTasks}
                                         isProcessing={isProcessing}
                                         onStartBatch={() => startBatch(images, cropParams, outputSettings)}
-                                        onPauseBatch={pauseBatch}
-                                        onCancelBatch={cancelBatch}
-                                        onRetryFailed={() => retryFailed(images, cropParams, outputSettings)}
                                     />
                                 </div>
                             </div>

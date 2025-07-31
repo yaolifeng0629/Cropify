@@ -251,19 +251,14 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
     setIsProcessing(false);
   }, []);
 
-  // 取消批处理
+  // 取消/重置批处理
   const cancelBatch = useCallback(() => {
     processingRef.current = false;
     abortControllerRef.current?.abort();
     setIsProcessing(false);
 
-    // 取消所有进行中的任务
-    setTasks(prev => prev.map(task => ({
-      ...task,
-      status: task.status === ProcessStatus.PROCESSING
-        ? ProcessStatus.CANCELLED
-        : task.status
-    })));
+    // 完全清空任务列表，重置到初始状态
+    setTasks([]);
   }, []);
 
   // 重试失败的任务

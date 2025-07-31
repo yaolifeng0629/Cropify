@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ImageFile, CropParams, OutputSettings } from '@/types';
+import { ImageFile, CropParams, OutputSettings, ProcessTask, ProcessStatus } from '@/types';
 import { Button, Logo } from '@/components/ui';
 
 interface HeaderProps {
@@ -11,8 +11,12 @@ interface HeaderProps {
     // 批处理相关props
     cropParams?: CropParams;
     outputSettings?: OutputSettings;
+    tasks?: ProcessTask[];
     isProcessing?: boolean;
     onStartBatch?: () => void;
+    onPauseBatch?: () => void;
+    onCancelBatch?: () => void;
+    onRetryFailed?: () => void;
 }
 
 /**
@@ -24,9 +28,24 @@ export const Header: React.FC<HeaderProps> = ({
     isEditMode = false,
     cropParams,
     outputSettings,
+    tasks = [],
     isProcessing,
-    onStartBatch
+    onStartBatch,
+    onPauseBatch,
+    onCancelBatch,
+    onRetryFailed
 }) => {
+    // 计算统计信息
+    const stats = {
+        total: images?.length || 0,
+        completed: tasks.filter(t => t.status === ProcessStatus.COMPLETED).length,
+        failed: tasks.filter(t => t.status === ProcessStatus.FAILED).length,
+        processing: tasks.filter(t => t.status === ProcessStatus.PROCESSING).length,
+        pending: tasks.filter(t => t.status === ProcessStatus.PENDING).length,
+        cancelled: tasks.filter(t => t.status === ProcessStatus.CANCELLED).length,
+    };
+
+    const hasErrors = stats.failed > 0;
     if (isEditMode) {
         // 编辑模式下的简化头部
         return (
@@ -69,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         <span className="sm:hidden">清空</span>
                                     </Button>
 
-                                     {/* 开始处理按钮 */}
+                                     {/* 批处理控制按钮 */}
                                      {onStartBatch && !isProcessing && (
                                         <Button
                                             variant="outline"
@@ -85,16 +104,65 @@ export const Header: React.FC<HeaderProps> = ({
                                         </Button>
                                     )}
 
-                                    {/* 处理中状态 */}
+                                    {/* 处理中控制按钮 */}
                                     {isProcessing && (
-                                        <div className="flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-3 py-1.5">
-                                            <div className="w-4 h-4 mr-2">
-                                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                                        <>
+                                            {onPauseBatch && (
+                                                <Button
+                                                    variant="outline"
+                                                    size="sm"
+                                                    onClick={onPauseBatch}
+                                                    className="bg-yellow-600/90 border-yellow-500/50 text-white hover:bg-yellow-700/90 hover:border-yellow-400/60 backdrop-blur-sm transition-all duration-200"
+                                                >
+                                                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
+                                                    </svg>
+                                                    <span className="hidden sm:inline">暂停</span>
+                                                </Button>
+                                            )}
+
+                                            <div className="flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                                <div className="w-4 h-4 mr-2">
+                                                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                                                </div>
+                                                <span className="text-white text-sm font-medium">
+                                                    处理中...
+                                                </span>
                                             </div>
-                                            <span className="text-white text-sm font-medium">
-                                                处理中...
-                                            </span>
-                                        </div>
+                                        </>
+                                    )}
+
+                                    {/* 停止/重置按钮 */}
+                                    {/* {onCancelBatch && (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={onCancelBatch}
+                                            disabled={stats.total === 0}
+                                            className="bg-red-600/90 border-red-500/50 text-white hover:bg-red-700/90 hover:border-red-400/60 backdrop-blur-sm transition-all duration-200 disabled:opacity-50"
+                                        >
+                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                            <span className="hidden sm:inline">{isProcessing ? '停止' : '重置'}</span>
+                                            <span className="sm:hidden">{isProcessing ? '停止' : '重置'}</span>
+                                        </Button>
+                                    )} */}
+
+                                    {/* 重试失败项目按钮 */}
+                                    {hasErrors && onRetryFailed && (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={onRetryFailed}
+                                            className="bg-orange-600/90 border-orange-500/50 text-white hover:bg-orange-700/90 hover:border-orange-400/60 backdrop-blur-sm transition-all duration-200"
+                                        >
+                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                            </svg>
+                                            <span className="hidden sm:inline">重试失败 ({stats.failed})</span>
+                                            <span className="sm:hidden">重试</span>
+                                        </Button>
                                     )}
                                 </>
                             )}
@@ -174,7 +242,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 </Button>
 
 
-                                {/* 开始处理按钮 */}
+                                {/* 批处理控制按钮 */}
                                 {onStartBatch && !isProcessing && (
                                     <Button
                                         variant="outline"
@@ -190,16 +258,65 @@ export const Header: React.FC<HeaderProps> = ({
                                     </Button>
                                 )}
 
-                                {/* 处理中状态 */}
+                                {/* 处理中控制按钮 */}
                                 {isProcessing && (
-                                    <div className="flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-3 py-1.5">
-                                        <div className="w-4 h-4 mr-2">
-                                            <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                                    <>
+                                        {onPauseBatch && (
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={onPauseBatch}
+                                                className="bg-yellow-600/90 border-yellow-500/50 text-white hover:bg-yellow-700/90 hover:border-yellow-400/60 backdrop-blur-sm transition-all duration-200"
+                                            >
+                                                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
+                                                </svg>
+                                                <span className="hidden sm:inline">暂停</span>
+                                            </Button>
+                                        )}
+
+                                        <div className="flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                            <div className="w-4 h-4 mr-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                                            </div>
+                                            <span className="text-white text-sm font-medium">
+                                                处理中...
+                                            </span>
                                         </div>
-                                        <span className="text-white text-sm font-medium">
-                                            处理中...
-                                        </span>
-                                    </div>
+                                    </>
+                                )}
+
+                                {/* 停止/重置按钮 */}
+                                {/* {onCancelBatch && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={onCancelBatch}
+                                        disabled={stats.total === 0}
+                                        className="bg-red-600/90 border-red-500/50 text-white hover:bg-red-700/90 hover:border-red-400/60 backdrop-blur-sm transition-all duration-200 disabled:opacity-50"
+                                    >
+                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                        <span className="hidden sm:inline">{isProcessing ? '停止' : '重置'}</span>
+                                        <span className="sm:hidden">{isProcessing ? '停止' : '重置'}</span>
+                                    </Button>
+                                )} */}
+
+                                {/* 重试失败项目按钮 */}
+                                {hasErrors && onRetryFailed && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={onRetryFailed}
+                                        className="bg-orange-600/90 border-orange-500/50 text-white hover:bg-orange-700/90 hover:border-orange-400/60 backdrop-blur-sm transition-all duration-200"
+                                    >
+                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                        </svg>
+                                        <span className="hidden sm:inline">重试失败 ({stats.failed})</span>
+                                        <span className="sm:hidden">重试</span>
+                                    </Button>
                                 )}
                             </>
                         )}

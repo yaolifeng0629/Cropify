@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { ImageFile, CropParams, OutputSettings, ProcessTask, ProcessStatus } from '@/types';
-import { Button, Card, ProgressBar } from '@/components/ui';
+import { Card, ProgressBar } from '@/components/ui';
 import { formatFileSize } from '@/utils';
 
 interface BatchProcessorProps {
@@ -12,9 +12,6 @@ interface BatchProcessorProps {
   tasks: ProcessTask[];
   isProcessing: boolean;
   onStartBatch: () => void;
-  onPauseBatch: () => void;
-  onCancelBatch: () => void;
-  onRetryFailed: () => void;
 }
 
 /**
@@ -27,9 +24,6 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
   tasks,
   isProcessing,
   onStartBatch,
-  onPauseBatch,
-  onCancelBatch,
-  onRetryFailed,
 }) => {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -157,42 +151,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
           </div>
         </div>
 
-        {/* 控制按钮 */}
-        <div className="pt-3 border-t border-gray-200">
-          <div className="flex gap-2">
-            {isProcessing ? (
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={onPauseBatch}
-                className="flex-1"
-              >
-                暂停处理
-              </Button>
-            ) : null}
 
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onCancelBatch}
-              disabled={stats.total === 0}
-              className="flex-1"
-            >
-              {isProcessing ? '停止' : '重置'}
-            </Button>
-          </div>
-
-          {hasErrors && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onRetryFailed}
-              className="w-full mt-2"
-            >
-              重试失败项目 ({stats.failed})
-            </Button>
-          )}
-        </div>
 
         {/* 详细信息展开/收起 */}
         <div className="pt-3 border-t border-gray-200">
