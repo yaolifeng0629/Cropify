@@ -226,14 +226,14 @@ export const CropifyApp: React.FC = () => {
                                     <div className="border-t border-gray-200"></div>
 
                                     {/* 批处理和导出 */}
-                                    <BatchProcessor
+                                    {/* <BatchProcessor
                                         images={images}
                                         cropParams={cropParams}
                                         outputSettings={outputSettings}
                                         tasks={batchTasks}
                                         isProcessing={isProcessing}
                                         onStartBatch={() => startBatch(images, cropParams, outputSettings)}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </div>
