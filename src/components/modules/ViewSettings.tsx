@@ -28,7 +28,8 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
   const presetZooms = [0.25, 0.5, 0.75, 1, 1.5, 2];
 
   return (
-    <Card title="视图" className="bg-white">
+    <div>
+      <h3 className="text-sm font-medium text-gray-900 mb-3">视图</h3>
       <div className="space-y-3">
         {/* 缩放控制 */}
         <div>
@@ -141,7 +142,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
         </div>
 
         {/* 快速操作 */}
-        <div className="pt-4">
+        <div className="pt-3">
           <h4 className="text-sm font-medium text-gray-700 mb-3">快速操作</h4>
           <div className="grid grid-cols-2 gap-2">
             <Button
@@ -165,6 +166,6 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };

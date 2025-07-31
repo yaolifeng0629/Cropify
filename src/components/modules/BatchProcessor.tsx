@@ -65,8 +65,9 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
   };
 
   return (
-    <Card title="批处理工作流" className="bg-white">
-      <div className="space-y-6">
+    <div>
+      <h3 className="text-sm font-medium text-gray-900 mb-3">批处理工作流</h3>
+      <div className="space-y-4">
         {/* 整体进度 */}
         <div>
           <div className="flex items-center justify-between mb-2">
@@ -112,7 +113,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
         </div>
 
         {/* 当前处理设置 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-2">处理设置</h4>
           <div className="text-xs text-gray-600 space-y-1">
             <div className="flex justify-between">
@@ -157,19 +158,9 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
         </div>
 
         {/* 控制按钮 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <div className="flex gap-2">
-            {!isProcessing ? (
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={onStartBatch}
-                disabled={stats.total === 0}
-                className="flex-1"
-              >
-                {stats.completed > 0 ? '继续处理' : '开始批处理'}
-              </Button>
-            ) : (
+            {isProcessing ? (
               <Button
                 variant="secondary"
                 size="sm"
@@ -178,7 +169,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
               >
                 暂停处理
               </Button>
-            )}
+            ) : null}
 
             <Button
               variant="outline"
@@ -204,7 +195,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
         </div>
 
         {/* 详细信息展开/收起 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <button
             onClick={() => setShowDetails(!showDetails)}
             className="w-full flex items-center justify-between text-sm text-gray-600 hover:text-gray-900"
@@ -295,7 +286,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
 
         {/* 性能提示 */}
         {stats.total > 10 && (
-          <div className="pt-4 border-t border-gray-200">
+          <div className="pt-3 border-t border-gray-200">
             <div className="p-3 bg-yellow-50 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-yellow-600">⚡</span>
@@ -310,6 +301,6 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
           </div>
         )}
       </div>
-    </Card>
+    </div>
   );
 };

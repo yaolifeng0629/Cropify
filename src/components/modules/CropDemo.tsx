@@ -79,17 +79,17 @@ export const CropDemo: React.FC<CropDemoProps> = ({
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+    <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
       {/* 标题 */}
-      <div className="px-3 py-2 border-b border-gray-200">
+      <div className="flex-shrink-0 px-3 py-2 border-b border-gray-200">
         <h3 className="text-sm font-medium text-gray-900">裁剪预览</h3>
       </div>
 
       {/* 预览内容 */}
-      <div className="p-3">
+      <div className="flex-1 p-3 flex flex-col">
         {/* 裁剪结果展示 */}
-        <div className="mb-3">
-          <div className="aspect-video bg-gray-50 rounded-lg border border-gray-200 overflow-hidden relative max-w-sm mx-auto h-32">
+        <div className="flex-1 mb-3">
+          <div className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden relative h-full max-h-30 flex items-center justify-center">
             {isGenerating ? (
               <div className="w-full h-full flex items-center justify-center">
                 <div className="flex items-center space-x-2 text-gray-500">
@@ -117,7 +117,7 @@ export const CropDemo: React.FC<CropDemoProps> = ({
         </div>
 
         {/* 裁剪信息 */}
-        <div className="grid grid-cols-4 gap-2 text-xs">
+        <div className="flex-shrink-0 grid grid-cols-4 gap-2 text-xs">
           <div className="bg-gray-50 rounded p-2 text-center">
             <div className="text-gray-500 mb-1">尺寸</div>
             <div className="font-medium text-gray-900">

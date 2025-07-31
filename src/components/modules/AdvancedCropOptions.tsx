@@ -52,8 +52,9 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
   };
 
   return (
-    <Card title="高级裁剪选项" className="bg-white">
-      <div className="space-y-6">
+    <div>
+      <h3 className="text-sm font-medium text-gray-900 mb-3">高级裁剪选项</h3>
+      <div className="space-y-4">
         {/* 旋转控制 */}
         <div>
           <h4 className="text-sm font-medium text-gray-700 mb-3">旋转</h4>
@@ -129,7 +130,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         </div>
 
         {/* 翻转控制 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">翻转</h4>
 
           <div className="grid grid-cols-2 gap-3">
@@ -166,7 +167,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         </div>
 
         {/* 圆角设置 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">圆角</h4>
 
           {/* 圆角滑块 */}
@@ -203,6 +204,6 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };

@@ -42,7 +42,7 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
       // 只在没有聚焦输入框时处理
       const activeElement = document.activeElement;
       if (activeElement && (
-        activeElement.tagName === 'INPUT' || 
+        activeElement.tagName === 'INPUT' ||
         activeElement.tagName === 'TEXTAREA' ||
         (activeElement as HTMLElement).contentEditable === 'true'
       )) {
@@ -51,7 +51,7 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
 
       const items = Array.from(e.clipboardData?.items || []);
       const files: File[] = [];
-      
+
       for (const item of items) {
         if (item.kind === 'file' && item.type.startsWith('image/')) {
           const file = item.getAsFile();
@@ -60,7 +60,7 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
           }
         }
       }
-      
+
       if (files.length > 0) {
         e.preventDefault();
         await addImages(files);
@@ -74,33 +74,33 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
   }, [addImages]);
 
   // 处理错误关闭 - 移除这个函数，直接使用 dismissError
-  
+
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col h-full space-y-4">
       {/* 文件上传区域 */}
-      <div className="relative">
+      <div className="relative flex-shrink-0">
         <FileDropZone
           onFilesSelected={addImages}
           maxFiles={APP_CONFIG.MAX_BATCH_SIZE}
           disabled={isUploading}
         />
-        
+
         {/* 上传中状态指示 */}
         {isUploading && (
           <div className="absolute inset-0 bg-white bg-opacity-80 rounded-lg flex items-center justify-center">
             <div className="flex items-center gap-3 text-blue-600">
               <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                <circle 
-                  className="opacity-25" 
-                  cx="12" 
-                  cy="12" 
-                  r="10" 
-                  stroke="currentColor" 
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
                   strokeWidth="4"
                 ></circle>
-                <path 
-                  className="opacity-75" 
-                  fill="currentColor" 
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
@@ -112,34 +112,40 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
 
       {/* 错误信息显示 */}
       {errors.length > 0 && (
-        <ErrorDisplay
-          errors={errors}
-          onClear={clearErrors}
-          onDismiss={dismissError}
-        />
+        <div className="flex-shrink-0">
+          <ErrorDisplay
+            errors={errors}
+            onClear={clearErrors}
+            onDismiss={dismissError}
+          />
+        </div>
       )}
 
       {/* 图片列表 */}
-      <ImageList
-        images={images}
-        selectedImageId={selectedImageId}
-        onRemove={removeImage}
-        onClear={clearImages}
-        onSelect={onSelectImage}
-      />
+      <div className="flex-1 min-h-0">
+        <ImageList
+          images={images}
+          selectedImageId={selectedImageId}
+          onRemove={removeImage}
+          onClear={clearImages}
+          onSelect={onSelectImage}
+        />
+      </div>
 
       {/* 使用提示 */}
       {images.length === 0 && !isUploading && (
-        <div className="text-center py-8 text-gray-500">
-          <div className="max-w-md mx-auto space-y-2">
-            <h3 className="font-medium text-gray-900">开始使用 Cropify</h3>
-            <p className="text-sm">
-              选择或拖拽图片文件到上方区域开始批量裁剪
-            </p>
-            <div className="text-xs space-y-1 text-gray-400">
-              <p>💡 支持同时处理最多 {APP_CONFIG.MAX_BATCH_SIZE} 张图片</p>
-              <p>💡 可使用 Ctrl+V 直接粘贴剪贴板中的图片</p>
-              <p>💡 所有处理都在本地完成，保护您的隐私</p>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center text-gray-500">
+            <div className="max-w-md mx-auto space-y-2">
+              <h3 className="font-medium text-gray-900">开始使用 Cropify</h3>
+              <p className="text-sm">
+                选择或拖拽图片文件到上方区域开始批量裁剪
+              </p>
+              <div className="text-xs space-y-1 text-gray-400">
+                <p>💡 支持同时处理最多 {APP_CONFIG.MAX_BATCH_SIZE} 张图片</p>
+                <p>💡 可使用 Ctrl+V 直接粘贴剪贴板中的图片</p>
+                <p>💡 所有处理都在本地完成，保护您的隐私</p>
+              </div>
             </div>
           </div>
         </div>

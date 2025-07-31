@@ -23,7 +23,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
   const [isProcessing, setIsProcessing] = useState(false);
   const processingRef = useRef(false);
   const abortControllerRef = useRef<AbortController | null>(null);
-  
+
   // 添加错误
   const addError = useCallback((error: AppError) => {
     onError(error);
@@ -31,7 +31,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
 
   // 更新任务状态
   const updateTask = useCallback((taskId: string, updates: Partial<ProcessTask>) => {
-    setTasks(prev => prev.map(task => 
+    setTasks(prev => prev.map(task =>
       task.id === taskId ? { ...task, ...updates } : task
     ));
   }, []);
@@ -52,15 +52,15 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
       }
 
       // 更新状态为处理中
-      updateTask(task.id, { 
+      updateTask(task.id, {
         status: ProcessStatus.PROCESSING,
-        progress: 0 
+        progress: 0
       });
 
       // 创建图片元素
       const img = new Image();
       img.crossOrigin = 'anonymous';
-      
+
       const imagePromise = new Promise<HTMLImageElement>((resolve, reject) => {
         img.onload = () => resolve(img);
         img.onerror = () => reject(new Error('图片加载失败'));
@@ -80,7 +80,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
 
       // 创建图片处理器
       const processor = new ImageProcessor();
-      
+
       // 更新进度：开始处理
       updateTask(task.id, { progress: 50 });
 
@@ -123,7 +123,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
         error: error instanceof Error ? error.message : '处理失败',
         progress: 0,
       });
-      
+
       addError({
         id: generateId(),
         type: 'processing',
@@ -154,7 +154,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
         ctx.drawImage(img, 0, 0);
 
         const mimeType = `image/${settings.format === 'jpg' ? 'jpeg' : settings.format}`;
-        const quality = settings.format === 'png' 
+        const quality = settings.format === 'png'
           ? undefined // PNG不支持质量参数
           : settings.quality / 100;
 
@@ -189,7 +189,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
       const newTasks: ProcessTask[] = images.map(image => {
         // 查找现有任务
         const existingTask = tasks.find(t => t.imageId === image.id);
-        
+
         if (existingTask && existingTask.status === ProcessStatus.COMPLETED) {
           // 如果已完成且参数未变化，保持完成状态
           return existingTask;
@@ -209,7 +209,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
       setTasks(newTasks);
 
       // 获取需要处理的任务
-      const pendingTasks = newTasks.filter(task => 
+      const pendingTasks = newTasks.filter(task =>
         task.status === ProcessStatus.PENDING || task.status === ProcessStatus.FAILED
       );
 
@@ -223,7 +223,7 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
         if (!image) continue;
 
         await processImage(image, task, cropParams, outputSettings, abortControllerRef.current.signal);
-        
+
         // 添加小延迟，避免UI阻塞
         await new Promise(resolve => setTimeout(resolve, 50));
       }
@@ -260,8 +260,8 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
     // 取消所有进行中的任务
     setTasks(prev => prev.map(task => ({
       ...task,
-      status: task.status === ProcessStatus.PROCESSING 
-        ? ProcessStatus.CANCELLED 
+      status: task.status === ProcessStatus.PROCESSING
+        ? ProcessStatus.CANCELLED
         : task.status
     })));
   }, []);
@@ -277,8 +277,8 @@ export function useBatchProcessor(onError: (error: AppError) => void): UseBatchP
     // 重置失败的任务状态
     setTasks(prev => prev.map(task => ({
       ...task,
-      status: task.status === ProcessStatus.FAILED 
-        ? ProcessStatus.PENDING 
+      status: task.status === ProcessStatus.FAILED
+        ? ProcessStatus.PENDING
         : task.status,
       error: task.status === ProcessStatus.FAILED ? undefined : task.error,
       progress: task.status === ProcessStatus.FAILED ? 0 : task.progress,

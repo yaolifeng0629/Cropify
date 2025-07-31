@@ -30,9 +30,9 @@ export const ImageList: React.FC<ImageListProps> = ({
   const totalSize = images.reduce((sum, img) => sum + img.size, 0);
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+    <div className="flex flex-col h-full">
       {/* 头部信息 */}
-      <div className="px-3 py-2 border-b border-gray-200 flex items-center justify-between">
+      <div className="px-0 py-2 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-2">
           <h3 className="text-xs font-medium text-gray-900">
             图片 ({images.length})
@@ -54,7 +54,7 @@ export const ImageList: React.FC<ImageListProps> = ({
       </div>
 
       {/* 图片列表 */}
-      <div className="max-h-48 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto min-h-0">
         <div className="divide-y divide-gray-100">
           {images.map((image) => {
             const isSelected = selectedImageId === image.id;
@@ -79,8 +79,8 @@ export const ImageList: React.FC<ImageListProps> = ({
                 {/* 图片信息 */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-medium text-gray-900 truncate" title={image.name}>
-                      {image.name.length > 12 ? image.name.substring(0, 12) + '...' : image.name}
+                    <h4 className="text-xs font-medium text-gray-900 truncate w-[90%] text-ellipsis" title={image.name}>
+                      {image.name}
                     </h4>
                     {isSelected && (
                       <div className="flex-shrink-0 w-3 h-3 bg-blue-500 text-white rounded-full flex items-center justify-center">

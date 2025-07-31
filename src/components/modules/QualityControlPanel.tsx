@@ -42,7 +42,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
   };
 
   return (
-    <Card title="输出" className="bg-white">
+    <div>
+      <h3 className="text-sm font-medium text-gray-900 mb-3">输出</h3>
       <div className="space-y-3">
         {/* 输出格式选择 */}
         <div>
@@ -70,7 +71,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         </div>
 
         {/* 质量设置 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">
             {outputSettings.format === 'png' ? '压缩级别' : '输出质量'}
           </h4>
@@ -171,7 +172,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         </div>
 
         {/* 文件命名设置 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">文件命名</h4>
 
           {/* 保持原文件名 */}
@@ -215,7 +216,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         </div>
 
         {/* 预估信息 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-2">输出预估</h4>
           <div className="text-xs text-gray-600 space-y-1">
             <div className="flex justify-between">
@@ -238,6 +239,6 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };

@@ -107,17 +107,19 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
 
   if (!selectedImage) {
     return (
-      <Card title="裁剪设置" className="bg-white">
+      <div>
+        <h3 className="text-sm font-medium text-gray-900 mb-3">裁剪设置</h3>
         <div className="text-center py-4 text-gray-500 text-sm">
           <p>请选择图片</p>
         </div>
-      </Card>
+      </div>
     );
   }
 
   return (
-    <Card title="裁剪设置" className="bg-white">
-      <div className="space-y-4">
+    <div>
+      <h3 className="text-sm font-medium text-gray-900 mb-3">裁剪设置</h3>
+      <div className="space-y-3">
         {/* 选项卡导航 */}
         <div className="flex space-x-1 bg-gray-100 rounded p-0.5">
           {[
@@ -286,7 +288,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
         )}
 
         {/* 裁剪基准点 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">裁剪基准点</h4>
           <div className="grid grid-cols-3 gap-2">
             {cropAnchors.map((anchor) => (
@@ -304,7 +306,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
         </div>
 
         {/* 操作按钮 */}
-        <div className="pt-4 border-t border-gray-200 flex gap-2">
+        <div className="pt-3 border-t border-gray-200 flex gap-2">
           <Button
             variant="outline"
             size="sm"
@@ -327,7 +329,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
         </div>
 
         {/* 当前参数信息 */}
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-2">当前参数</h4>
           <div className="text-xs text-gray-600 space-y-1">
             <div className="flex justify-between">
@@ -347,6 +349,6 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };

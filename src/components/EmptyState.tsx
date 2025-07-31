@@ -4,6 +4,7 @@ import React from 'react';
 import { ImageImportManager } from '@/components/modules';
 import { ImageFile, AppError } from '@/types';
 import { Button } from '@/components/ui';
+import { Footer } from './Footer';
 
 interface EmptyStateProps {
     images: ImageFile[];
@@ -34,8 +35,9 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
     onSelectImage,
 }) => {
     return (
-        <div className="w-full min-h-[80vh] bg-gradient-to-br from-blue-50 via-white to-purple-50 flex justify-center py-8">
-            <div className="w-full max-w-[85%] space-y-16">
+        <div className="min-h-screen flex flex-col">
+            <div className="flex-1 w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 flex justify-center py-8">
+                <div className="w-full max-w-[85%] space-y-16">
                 {/* Hero Section */}
                 <div className="relative overflow-hidden w-full">
                     {/* 背景装饰 */}
@@ -249,7 +251,9 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
+            <Footer />
         </div>
     );
 };
