@@ -23,6 +23,8 @@ import {
 import { Header } from './Header';
 import { EmptyState } from './EmptyState';
 import { ChevronLeft, ChevronRight, PanelLeftClose, PanelRightClose } from 'lucide-react';
+import { ExportUtils } from '@/utils/exportUtils';
+import { ProcessTask } from '@/types';
 
 /**
  * Cropify 主应用组件
@@ -62,6 +64,26 @@ export const CropifyApp: React.FC = () => {
     // 判断是否为编辑模式
     const isEditMode = images && images.length > 0;
 
+    // 导出相关函数
+    const handleSingleDownload = (task: ProcessTask) => {
+        if (!task.processedBlob) return;
+
+        // 找到对应的原始图片名称
+        const originalImage = images.find(img => img.id === task.imageId);
+        const originalName = originalImage?.file.name || `image_${task.imageId}`;
+
+        const filename = ExportUtils.generateFileName(task, 0, outputSettings, originalName);
+        ExportUtils.downloadFile(task.processedBlob, filename);
+    };
+
+    const handleBatchDownload = async (tasks: ProcessTask[]) => {
+        await ExportUtils.batchDownload(tasks, outputSettings);
+    };
+
+    const handleZipDownload = async (tasks: ProcessTask[]) => {
+        await ExportUtils.downloadAsZip(tasks, outputSettings);
+    };
+
     return (
         <div className={isEditMode ? "h-screen flex flex-col overflow-hidden pb-6" : "min-h-screen flex flex-col pb-6"}>
             <Header
@@ -76,6 +98,9 @@ export const CropifyApp: React.FC = () => {
                 onPauseBatch={pauseBatch}
                 onCancelBatch={cancelBatch}
                 onRetryFailed={() => retryFailed(images, cropParams, outputSettings)}
+                onSingleDownload={handleSingleDownload}
+                onBatchDownload={handleBatchDownload}
+                onZipDownload={handleZipDownload}
             />
             {isEditMode ? (
                 <div className="flex-1 flex h-0 overflow-hidden">

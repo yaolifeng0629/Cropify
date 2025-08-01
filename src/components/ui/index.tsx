@@ -7,7 +7,7 @@ import { Checkbox } from './checkbox';
 import { Switch } from './switch';
 import { Slider } from './slider';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
-import { Loader2 } from 'lucide-react';
+import { Loader2, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Logo } from './logo';
 
@@ -97,6 +97,90 @@ export const Card: React.FC<CardProps> = ({
   );
 };
 
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+/**
+ * 通用模态框组件
+ */
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  className = '',
+  size = 'md',
+}) => {
+  if (!isOpen) return null;
+
+  const sizeClasses = {
+    sm: 'max-w-md',
+    md: 'max-w-lg',
+    lg: 'max-w-2xl',
+    xl: 'max-w-4xl',
+  };
+
+  // 处理ESC键关闭
+  React.useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* 背景遮罩 */}
+      <div
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* 模态框内容 */}
+      <div className={cn(
+        'relative bg-white rounded-lg shadow-xl w-full mx-4 max-h-[90vh] overflow-hidden',
+        sizeClasses[size],
+        className
+      )}>
+        {/* 头部 */}
+        {title && (
+          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+            <button
+              onClick={onClose}
+              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
+          </div>
+        )}
+
+        {/* 内容区域 */}
+        <div className="overflow-y-auto max-h-[calc(90vh-80px)]">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 interface ProgressBarProps {
   value: number; // 0-100
   showPercentage?: boolean;
@@ -139,7 +223,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 };
 
 // 导出所有 Radix UI 组件
-export { Logo };
+export { Logo, Modal };
 
 // 导出原始的 Radix UI 组件
 export {

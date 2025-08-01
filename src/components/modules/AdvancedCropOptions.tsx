@@ -167,11 +167,11 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         </div>
 
         {/* 圆角设置 */}
-        <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">圆角</h4>
+        {/* <div className="pt-3 border-t border-gray-200">
+          <h4 className="text-sm font-medium text-gray-700 mb-3">圆角</h4> */}
 
           {/* 圆角滑块 */}
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
               <span>圆角程度</span>
               <span>{Math.round((cropParams.borderRadius || 0) * 100)}%</span>
@@ -185,10 +185,10 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               onChange={(e) => handleParamChange('borderRadius', parseFloat(e.target.value))}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             />
-          </div>
+          </div> */}
 
           {/* 快速圆角预设 */}
-          <div className="grid grid-cols-4 gap-2">
+          {/* <div className="grid grid-cols-4 gap-2">
             <Button
               variant="outline"
               size="sm"
@@ -221,8 +221,8 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
             >
               100%
             </Button>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     </div>
   );

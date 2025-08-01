@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageFile, CropParams, OutputSettings, ProcessTask, ProcessStatus } from '@/types';
 import { Button, Logo } from '@/components/ui';
+import { ExportModal } from '@/components/modules';
 
 interface HeaderProps {
     images?: ImageFile[];
@@ -17,6 +18,10 @@ interface HeaderProps {
     onPauseBatch?: () => void;
     onCancelBatch?: () => void;
     onRetryFailed?: () => void;
+    // 导出相关props
+    onSingleDownload?: (task: ProcessTask) => void;
+    onBatchDownload?: (tasks: ProcessTask[]) => void;
+    onZipDownload?: (tasks: ProcessTask[]) => void;
 }
 
 /**
@@ -33,8 +38,12 @@ export const Header: React.FC<HeaderProps> = ({
     onStartBatch,
     onPauseBatch,
     onCancelBatch,
-    onRetryFailed
+    onRetryFailed,
+    onSingleDownload,
+    onBatchDownload,
+    onZipDownload
 }) => {
+    const [isExportModalOpen, setIsExportModalOpen] = useState(false);
     // 计算统计信息
     const stats = {
         total: images?.length || 0,
@@ -164,11 +173,40 @@ export const Header: React.FC<HeaderProps> = ({
                                             <span className="sm:hidden">重试</span>
                                         </Button>
                                     )}
+
+                                    {/* 导出按钮 */}
+                                    {stats.completed > 0 && onSingleDownload && onBatchDownload && onZipDownload && (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => setIsExportModalOpen(true)}
+                                            className="bg-purple-600/90 border-purple-500/50 text-white hover:bg-purple-700/90 hover:border-purple-400/60 backdrop-blur-sm transition-all duration-200"
+                                        >
+                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            <span className="hidden sm:inline">导出 ({stats.completed})</span>
+                                            <span className="sm:hidden">导出</span>
+                                        </Button>
+                                    )}
                                 </>
                             )}
                         </div>
                     </div>
                 </div>
+
+                {/* 导出模态框 */}
+                {onSingleDownload && onBatchDownload && onZipDownload && outputSettings && (
+                    <ExportModal
+                        isOpen={isExportModalOpen}
+                        onClose={() => setIsExportModalOpen(false)}
+                        tasks={tasks}
+                        outputSettings={outputSettings}
+                        onSingleDownload={onSingleDownload}
+                        onBatchDownload={onBatchDownload}
+                        onZipDownload={onZipDownload}
+                    />
+                )}
             </header>
         );
     }
@@ -318,12 +356,41 @@ export const Header: React.FC<HeaderProps> = ({
                                         <span className="sm:hidden">重试</span>
                                     </Button>
                                 )}
+
+                                {/* 导出按钮 */}
+                                {stats.completed > 0 && onSingleDownload && onBatchDownload && onZipDownload && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => setIsExportModalOpen(true)}
+                                        className="bg-purple-600/90 border-purple-500/50 text-white hover:bg-purple-700/90 hover:border-purple-400/60 backdrop-blur-sm transition-all duration-200"
+                                    >
+                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        <span className="hidden sm:inline">导出 ({stats.completed})</span>
+                                        <span className="sm:hidden">导出</span>
+                                    </Button>
+                                )}
                             </>
                         )}
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* 导出模态框 */}
+            {onSingleDownload && onBatchDownload && onZipDownload && outputSettings && (
+                <ExportModal
+                    isOpen={isExportModalOpen}
+                    onClose={() => setIsExportModalOpen(false)}
+                    tasks={tasks}
+                    outputSettings={outputSettings}
+                    onSingleDownload={onSingleDownload}
+                    onBatchDownload={onBatchDownload}
+                    onZipDownload={onZipDownload}
+                />
+            )}
         </header>
     );
 };

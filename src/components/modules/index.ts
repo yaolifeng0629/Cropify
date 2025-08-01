@@ -21,3 +21,4 @@ export { QualityControlPanel } from './QualityControlPanel';
 // 批处理和导出相关组件
 export { BatchProcessor } from './BatchProcessor';
 export { ExportSystem } from './ExportSystem';
+export { ExportModal } from './ExportModal';
