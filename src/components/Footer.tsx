@@ -102,7 +102,16 @@ export const Footer: React.FC = () => {
                     <div className="w-full px-6 sm:px-8 lg:px-12 py-6">
                         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
                             <div className="text-slate-400 text-sm">
-                                © {currentYear} Cropify. 保留所有权利。
+                                Made with ❤️{' '}
+                                <a
+                                    href="https://yaolifeng.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 hover:text-blue-300 hover:underline transition-colors"
+                                >
+                                    yaolifeng
+                                </a>
+                                {' '} | © {currentYear} Cropify. 保留所有权利。
                             </div>
 
                             <div className="flex items-center space-x-6">
@@ -113,15 +122,15 @@ export const Footer: React.FC = () => {
                                     </svg>
                                 </a>
 
-                                <a href="#email" className="text-slate-400 hover:text-white transition-colors duration-200">
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <a href="https://yaolifeng.com" className="text-slate-400 hover:text-white transition-colors duration-200">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </a>
 
-                                <div className="text-slate-500 text-xs">
+                                <a href='https://yaolifeng.com' className="text-slate-500 text-xs">
                                     v1.0.0
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

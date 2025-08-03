@@ -251,7 +251,7 @@ export default function AboutPage() {
                                 </svg>
                             </div>
                             <h4 className="font-medium text-gray-900 mb-1">邮箱支持</h4>
-                            <p className="text-sm text-gray-600">support@cropify.com</p>
+                            <p className="text-sm text-gray-600">yaolifeng666@gmail.com</p>
                         </div>
                         <div>
                             <div className="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mx-auto mb-3">

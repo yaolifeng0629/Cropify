@@ -241,7 +241,7 @@ export default function FAQPage() {
                                 意见反馈
                             </Link>
                             <a
-                                href="mailto:support@cropify.com"
+                                href="mailto:yaolifeng666@gmail.com"
                                 className="inline-flex items-center px-4 py-2 bg-white text-blue-600 text-sm font-medium rounded-lg border border-blue-600 hover:bg-blue-50 transition-colors"
                             >
                                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

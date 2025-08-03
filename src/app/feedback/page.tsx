@@ -153,7 +153,7 @@ export default function FeedbackPage() {
                                     </div>
                                     <div>
                                         <p className="font-medium text-gray-900">邮箱</p>
-                                        <p className="text-sm text-gray-600">support@cropify.com</p>
+                                        <p className="text-sm text-gray-600">yaolifeng666@gmail.com</p>
                                     </div>
                                 </div>
                             </div>

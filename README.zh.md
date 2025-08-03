@@ -1,9 +1,10 @@
 <div align="center">
 
-<!-- Header Banner -->
-<img src="https://via.placeholder.com/800x200/4F46E5/FFFFFF?text=CROPIFY" alt="Cropify Banner" width="100%" style="max-width: 800px; border-radius: 12px; margin-bottom: 20px;">
-
 # 🎨 Cropify
+
+<!-- Header Banner -->
+<img src="./title.png" alt="Cropify Banner" width="100%" style="max-width: 800px; border-radius: 12px; margin-bottom: 20px;">
+
 ## 专业批量图片裁剪工具
 
 <p align="center">
@@ -45,12 +46,12 @@
 </p>
 
 <!-- Stats -->
-<p align="center">
+<!-- <p align="center">
   <img src="https://img.shields.io/badge/⭐_GitHub_Stars-0-yellow?style=social&logo=github" alt="GitHub Stars">
   <img src="https://img.shields.io/badge/🍴_Forks-0-blue?style=social&logo=github" alt="GitHub Forks">
   <img src="https://img.shields.io/badge/👀_Watchers-0-green?style=social&logo=github" alt="GitHub Watchers">
   <img src="https://img.shields.io/badge/📦_Downloads-0-red?style=social&logo=npm" alt="NPM Downloads">
-</p>
+</p> -->
 
 <!-- Quick Start CTA -->
 <p align="center">
@@ -65,24 +66,24 @@
 <table align="center">
   <tr>
     <td align="center" width="50%">
-      <img src="https://via.placeholder.com/400x300/F3F4F6/6B7280?text=空状态界面" alt="Empty State" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <img src="/1.png" alt="Empty State" style="border-radius: 8px; border: 1px solid #E5E7EB;">
       <br>
       <sub><b>🎯 直观的空状态引导界面</b></sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://via.placeholder.com/400x300/EFF6FF/3B82F6?text=批量处理界面" alt="Batch Processing" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <img src="/2.png" alt="Batch Processing" style="border-radius: 8px; border: 1px solid #E5E7EB;">
       <br>
       <sub><b>⚡ 强大的批量处理工作流</b></sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <img src="https://via.placeholder.com/400x300/F0FDF4/16A34A?text=实时预览" alt="Real-time Preview" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <img src="3.png" alt="Real-time Preview" style="border-radius: 8px; border: 1px solid #E5E7EB;">
       <br>
       <sub><b>👁️ 实时预览和精确控制</b></sub>
     </td>
     <td align="center" width="50%">
-      <img src="https://via.placeholder.com/400x300/FEF3C7/F59E0B?text=导出系统" alt="Export System" style="border-radius: 8px; border: 1px solid #E5E7EB;">
+      <img src="4.png" alt="Export System" style="border-radius: 8px; border: 1px solid #E5E7EB;">
       <br>
       <sub><b>📦 灵活的导出和下载选项</b></sub>
     </td>
@@ -266,83 +267,6 @@ Cropify 作为一个综合性的客户端图像处理解决方案，专注于**�
 
 </div>
 
-### 🛠️ 安装步骤
-
-<table>
-  <tr>
-    <td width="50%">
-
-#### 1️⃣ 克隆仓库
-```bash
-git clone https://github.com/yourusername/cropify.git
-cd cropify
-```
-
-#### 2️⃣ 安装依赖
-```bash
-# 使用 npm
-npm install
-
-# 使用 yarn
-yarn install
-
-# 使用 pnpm
-pnpm install
-```
-
-    </td>
-    <td width="50%">
-
-#### 3️⃣ 启动开发服务器
-```bash
-# 使用 npm
-npm run dev
-
-# 使用 yarn
-yarn dev
-
-# 使用 pnpm
-pnpm dev
-```
-
-#### 4️⃣ 打开浏览器
-🌐 访问 [http://localhost:3000](http://localhost:3000)
-
-    </td>
-  </tr>
-</table>
-
-### 🏭 生产环境部署
-
-<div align="center">
-
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <img src="https://img.shields.io/badge/1._构建-npm_run_build-blue?style=for-the-badge" alt="Build">
-    </td>
-    <td align="center" width="33%">
-      <img src="https://img.shields.io/badge/2._启动-npm_start-green?style=for-the-badge" alt="Start">
-    </td>
-    <td align="center" width="33%">
-      <img src="https://img.shields.io/badge/3._部署-Vercel/Netlify-purple?style=for-the-badge" alt="Deploy">
-    </td>
-  </tr>
-</table>
-
-</div>
-
-```bash
-# 构建生产版本
-npm run build
-
-# 启动生产服务器
-npm start
-
-# 或者部署到 Vercel (推荐)
-npx vercel --prod
-```
-
 ## 📖 使用指南
 
 ### 基本工作流程
@@ -454,67 +378,20 @@ NEXT_PUBLIC_MAX_FILE_SIZE=10
 
 ## 📞 支持
 
-- 📧 邮箱：support@cropify.com
+- 📧 邮箱：yaolifeng666@gmail.com
 - 🐛 [报告问题](https://github.com/yourusername/cropify/issues)
 - 💡 [功能建议](https://github.com/yourusername/cropify/discussions)
 - 📖 [文档](https://cropify.github.io/docs)
-
-## 🔮 路线图
-
-- [ ] WebAssembly 集成以实现更快处理
-- [ ] 高级滤镜和效果
-- [ ] 云存储集成
-- [ ] 团队协作功能
-- [ ] 开发者 API
-- [ ] 移动应用版本
-
 ---
 
 <div align="center">
 
-## 🤝 加入我们的社区
-
-<p>
-  <a href="https://github.com/yourusername/cropify/discussions">
-    <img src="https://img.shields.io/badge/💬_讨论-GitHub_Discussions-blue?style=for-the-badge&logo=github" alt="Discussions">
-  </a>
-  <a href="https://discord.gg/cropify">
-    <img src="https://img.shields.io/badge/💬_聊天-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
-  </a>
-  <a href="https://twitter.com/cropify_app">
-    <img src="https://img.shields.io/badge/🐦_关注-Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter">
-  </a>
-</p>
-
-### 📊 项目统计
-
-<img src="https://github-readme-stats.vercel.app/api?username=yourusername&repo=cropify&show_icons=true&theme=default" alt="GitHub Stats" width="400">
-
 ### 🌟 Star 历史
 
-<img src="https://api.star-history.com/svg?repos=yourusername/cropify&type=Date" alt="Star History" width="500">
+<img src="https://api.star-history.com/svg?repos=yaolifeng0629/cropify&type=Date" alt="Star History" width="500">
 
----
 
-<br>
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Made_with-❤️-red?style=for-the-badge" alt="Made with Love">
-    </td>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Powered_by-Next.js-black?style=for-the-badge&logo=next.js" alt="Powered by Next.js">
-    </td>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Built_for-开发者-blue?style=for-the-badge&logo=code" alt="Built for Developers">
-    </td>
-  </tr>
-</table>
-
-<br>
-
-**🎨 由 Cropify 团队用 ❤️ 制作**
+**🎨 由 <a href="https://yaolifeng.com">Cropify</a> 团队用 ❤️ 制作**
 
 <sub>© 2024 Cropify. 保留所有权利。</sub>
 
