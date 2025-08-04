@@ -215,7 +215,7 @@ export default function AboutPage() {
                         </div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">开源项目</h3>
                         <p className="text-gray-600 mb-4">
-                            Cropify 是一个完全开源的项目，遵循 MIT 许可证。我们欢迎社区贡献者参与开发。
+                            Cropify 是一个完全开源的项目。我们欢迎社区贡献者参与开发。
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <a

@@ -14,7 +14,6 @@
 <!-- Badges -->
 <p align="center">
   <img src="https://img.shields.io/badge/Cropify-v0.1.0-brightgreen?style=for-the-badge&logo=image&logoColor=white" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License">
   <img src="https://img.shields.io/badge/Next.js-15.4.2-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
   <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React">
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
@@ -364,10 +363,6 @@ NEXT_PUBLIC_MAX_FILE_SIZE=10
 5. 提交更改：`git commit -m 'Add amazing feature'`
 6. 推送到分支：`git push origin feature/amazing-feature`
 7. 开启 Pull Request
-
-## 📄 许可证
-
-本项目使用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
 ## 🙏 致谢
 

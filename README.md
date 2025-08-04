@@ -14,7 +14,6 @@
 <!-- Badges -->
 <p align="center">
   <img src="https://img.shields.io/badge/Cropify-v0.1.0-brightgreen?style=for-the-badge&logo=image&logoColor=white" alt="Version">
-  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License">
   <img src="https://img.shields.io/badge/Next.js-15.4.2-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js">
   <img src="https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React">
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
@@ -396,10 +395,6 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 5. Commit changes: `git commit -m 'Add amazing feature'`
 6. Push to branch: `git push origin feature/amazing-feature`
 7. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
