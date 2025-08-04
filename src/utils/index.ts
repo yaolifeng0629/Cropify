@@ -109,6 +109,7 @@ export function clamp(value: number, min: number, max: number): number {
  * @param delay 延迟时间（毫秒）
  * @returns 节流后的函数
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function throttle<T extends (...args: any[]) => any>(
   func: T,
   delay: number
@@ -138,6 +139,7 @@ export function throttle<T extends (...args: any[]) => any>(
  * @param delay 延迟时间（毫秒）
  * @returns 防抖后的函数
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   delay: number

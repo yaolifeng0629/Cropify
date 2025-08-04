@@ -123,7 +123,7 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
                 {GRID_TYPES.map((grid) => (
                   <button
                     key={grid.value}
-                    onClick={() => onGridTypeChange(grid.value as any)}
+                    onClick={() => onGridTypeChange(grid.value as '九宫格' | '黄金比例')}
                     className={`flex items-center justify-between p-2 text-sm border rounded-lg transition-colors ${
                       gridType === grid.value
                         ? 'border-blue-500 bg-blue-50 text-blue-700'

@@ -17,7 +17,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
   onSettingsChange,
 }) => {
   // 处理设置变化
-  const handleSettingChange = (field: keyof OutputSettings, value: any) => {
+  const handleSettingChange = (field: keyof OutputSettings, value: string | number | boolean) => {
     onSettingsChange({
       ...outputSettings,
       [field]: value,
@@ -56,7 +56,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             ].map((format) => (
               <button
                 key={format.value}
-                onClick={() => handleSettingChange('format', format.value as any)}
+                onClick={() => handleSettingChange('format', format.value as 'jpg' | 'png' | 'webp')}
                 className={`flex flex-col items-center p-3 border rounded-lg transition-colors ${
                   outputSettings.format === format.value
                     ? 'border-blue-500 bg-blue-50 text-blue-700'

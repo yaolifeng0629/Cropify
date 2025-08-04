@@ -85,7 +85,7 @@ export const CropifyApp: React.FC = () => {
     };
 
     return (
-        <div className={isEditMode ? "h-screen flex flex-col overflow-hidden pb-6" : "min-h-screen flex flex-col pb-6"}>
+        <div className={isEditMode ? "h-screen flex flex-col overflow-hidden pb-6" : "min-h-screen flex flex-col"}>
             <Header
                 images={images}
                 onClearImages={clearImages}

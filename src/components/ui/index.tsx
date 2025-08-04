@@ -117,8 +117,6 @@ export const Modal: React.FC<ModalProps> = ({
   className = '',
   size = 'md',
 }) => {
-  if (!isOpen) return null;
-
   const sizeClasses = {
     sm: 'max-w-md',
     md: 'max-w-lg',
@@ -144,6 +142,8 @@ export const Modal: React.FC<ModalProps> = ({
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -223,7 +223,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 };
 
 // 导出所有 Radix UI 组件
-export { Logo, Modal };
+export { Logo };
 
 // 导出原始的 Radix UI 组件
 export {

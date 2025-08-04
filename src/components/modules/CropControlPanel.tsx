@@ -122,7 +122,7 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
           ].map((tab) => (
             <button
               key={tab.key}
-              onClick={() => setActiveTab(tab.key as any)}
+              onClick={() => setActiveTab(tab.key as 'manual' | 'presets')}
               className={`flex-1 px-2 py-1 text-xs font-medium rounded transition-colors ${
                 activeTab === tab.key
                   ? 'bg-white text-blue-600 shadow-sm'

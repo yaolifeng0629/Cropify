@@ -60,7 +60,7 @@ export default function UserGuidePage() {
                                 <p className="text-gray-600 mb-3">支持多种导入方式：</p>
                                 <ul className="space-y-2 text-sm text-gray-600 ml-4">
                                     <li className="flex items-center"><span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span>拖拽图片文件到上传区域</li>
-                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span>点击"选择文件"按钮浏览文件</li>
+                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span>点击&ldquo;选择文件&rdquo;按钮浏览文件</li>
                                     <li className="flex items-center"><span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span>使用 Ctrl+V (或 Cmd+V) 粘贴剪贴板图片</li>
                                 </ul>
                                 <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -102,7 +102,7 @@ export default function UserGuidePage() {
                             <div>
                                 <h4 className="font-medium text-gray-900 mb-2">批量处理</h4>
                                 <ul className="space-y-2 text-sm text-gray-600 ml-4">
-                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></span>点击"开始批处理"应用当前设置到所有图片</li>
+                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></span>点击&ldquo;开始批处理&rdquo;应用当前设置到所有图片</li>
                                     <li className="flex items-center"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></span>实时监控处理进度</li>
                                     <li className="flex items-center"><span className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-2"></span>随时暂停或取消处理</li>
                                 </ul>
