@@ -102,9 +102,9 @@ export const Footer: React.FC = () => {
                     <div className="w-full px-6 sm:px-8 lg:px-12 py-6">
                         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
                             <div className="text-slate-400 text-sm">
-                                Made with ❤️{' '}
+                                为爱发电 ❤️{' '}
                                 <a
-                                    href="https://yaolifeng.com"
+                                    href="https://yaolifeng.com/sponsor.html"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-blue-400 hover:text-blue-300 hover:underline transition-colors"

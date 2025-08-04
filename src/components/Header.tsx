@@ -69,6 +69,18 @@ export const Header: React.FC<HeaderProps> = ({
                             className="flex-shrink-0"
                         />
 
+                        <div className="text-white text-sm">
+                            为爱发电 ❤️{' '}
+                            <a
+                                href="https://yaolifeng.com/sponsor.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white underline hover:text-blue-300 hover:underline transition-colors"
+                            >
+                                yaolifeng
+                            </a>
+                        </div>
+
                         {/* 右侧：状态信息和操作 */}
                         <div className="flex items-center space-x-4">
                             {images && images.length > 0 && (

@@ -55,7 +55,7 @@
 
 <!-- Quick Start CTA -->
 <p align="center">
-  <a href="#🚀-快速开始">
+  <a href="https://cropifypro.vercel.app/">
     <img src="https://img.shields.io/badge/🚀_立即开始-开始使用_Cropify-success?style=for-the-badge&logo=rocket&logoColor=white" alt="Get Started">
   </a>
 </p>
