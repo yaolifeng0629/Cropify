@@ -127,7 +127,7 @@ export default function FAQPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="site-page min-h-screen bg-gray-50">
             {/* 页面头部 */}
             <div className="bg-white shadow-sm border-b">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -149,7 +149,7 @@ export default function FAQPage() {
                 {/* 简介 */}
                 <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
                     <div className="flex items-center space-x-3 mb-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center">
+                        <div className="w-10 h-10 bg-[#b45c16] rounded-lg flex items-center justify-center">
                             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -170,7 +170,7 @@ export default function FAQPage() {
                 {faqs.map((category, categoryIndex) => (
                     <div key={categoryIndex} className="mb-8">
                         <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b">
+                            <div className="bg-[#eef6f3] px-6 py-4 border-b">
                                 <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                                     <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full mr-3">
                                         {category.category}
@@ -205,7 +205,7 @@ export default function FAQPage() {
                                             </button>
                                             {isOpen && (
                                                 <div className="px-6 pb-4">
-                                                    <div className="text-gray-600 leading-relaxed pl-4 border-l-2 border-blue-200">
+                                                    <div className="text-blue-900 leading-relaxed px-4 py-3 rounded-md border border-blue-200 bg-blue-50">
                                                         {faq.answer}
                                                     </div>
                                                 </div>
@@ -219,7 +219,7 @@ export default function FAQPage() {
                 ))}
 
                 {/* 联系我们 */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-6">
+                <div className="bg-[#eef6f3] rounded-lg border border-[#cfe3dc] p-6">
                     <div className="text-center">
                         <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

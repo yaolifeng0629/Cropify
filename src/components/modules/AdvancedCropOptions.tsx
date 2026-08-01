@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { FlipHorizontal2, FlipVertical2, RotateCcw, RotateCw } from 'lucide-react';
 import { CropParams } from '@/types';
 import { Button, Card } from '@/components/ui';
 
@@ -100,7 +101,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               onClick={() => quickRotate(90)}
               title="顺时针旋转90°"
             >
-              <span className="text-lg">↻</span>
+              <RotateCw className="w-4 h-4" aria-hidden="true" />
             </Button>
             <Button
               variant="outline"
@@ -108,7 +109,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               onClick={() => quickRotate(-90)}
               title="逆时针旋转90°"
             >
-              <span className="text-lg">↺</span>
+              <RotateCcw className="w-4 h-4" aria-hidden="true" />
             </Button>
             <Button
               variant="outline"
@@ -144,7 +145,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               }`}
             >
               <div className="text-center">
-                <div className="text-lg mb-1">⟷</div>
+                <FlipHorizontal2 className="w-4 h-4 mx-auto mb-1" aria-hidden="true" />
                 <div className="text-xs">水平翻转</div>
               </div>
             </button>
@@ -159,7 +160,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               }`}
             >
               <div className="text-center">
-                <div className="text-lg mb-1">⥁</div>
+                <FlipVertical2 className="w-4 h-4 mx-auto mb-1" aria-hidden="true" />
                 <div className="text-xs">垂直翻转</div>
               </div>
             </button>

@@ -42,20 +42,17 @@ export const Logo: React.FC<LogoProps> = ({
             case 'white':
                 return {
                     container: 'bg-white text-blue-600',
-                    glow: 'bg-white',
                     text: 'text-white'
                 };
             case 'dark':
                 return {
                     container: 'bg-gray-900 text-white',
-                    glow: 'bg-gray-900',
                     text: 'text-gray-900'
                 };
             default:
                 return {
-                    container: 'bg-gradient-to-br from-blue-500 to-purple-600 text-white',
-                    glow: 'bg-gradient-to-br from-blue-500 to-purple-600',
-                    text: 'text-blue-600'
+                    container: 'bg-[#00695c] text-white',
+                    text: 'text-[#0f3d36]'
                 };
         }
     };
@@ -67,7 +64,7 @@ export const Logo: React.FC<LogoProps> = ({
             {/* Logo Icon */}
             <div className="relative">
                 <div className={cn(
-                    "rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105",
+                    "rounded-lg flex items-center justify-center shadow-sm transition-colors duration-200",
                     sizeClasses[size],
                     variantClasses.container
                 )}>
@@ -118,12 +115,6 @@ export const Logo: React.FC<LogoProps> = ({
                     </svg>
                 </div>
 
-                {/* 发光效果 */}
-                <div className={cn(
-                    "absolute inset-0 rounded-xl blur-sm opacity-20 transition-opacity duration-300",
-                    sizeClasses[size],
-                    variantClasses.glow
-                )}></div>
             </div>
 
             {/* 品牌文字 */}

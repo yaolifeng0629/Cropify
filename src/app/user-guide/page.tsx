@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Lightbulb, LockKeyhole, Zap } from 'lucide-react';
 
 /**
  * 使用指南页面
  */
 export default function UserGuidePage() {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="site-page min-h-screen bg-gray-50">
             {/* 页面头部 */}
             <div className="bg-white shadow-sm border-b">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -30,7 +31,7 @@ export default function UserGuidePage() {
                 {/* 简介 */}
                 <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
                     <div className="flex items-center space-x-3 mb-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <div className="w-10 h-10 bg-[#1d4f91] rounded-lg flex items-center justify-center">
                             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
@@ -90,9 +91,9 @@ export default function UserGuidePage() {
                             <div>
                                 <h4 className="font-medium text-gray-900 mb-2">质量设置</h4>
                                 <ul className="space-y-2 text-sm text-gray-600 ml-4">
-                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>选择输出格式：JPG（通用）、PNG（无损）、WebP（高效）</li>
-                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>调整压缩质量获得最佳文件大小</li>
-                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>实时预览估算的输出大小</li>
+                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-amber-400 rounded-full mr-2"></span>选择输出格式：JPG（通用）、PNG（无损）、WebP（高效）</li>
+                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-amber-400 rounded-full mr-2"></span>调整压缩质量获得最佳文件大小</li>
+                                    <li className="flex items-center"><span className="w-1.5 h-1.5 bg-amber-400 rounded-full mr-2"></span>实时预览估算的输出大小</li>
                                 </ul>
                             </div>
                         </div>
@@ -126,7 +127,7 @@ export default function UserGuidePage() {
                 {/* 高级功能 */}
                 <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <span className="bg-purple-100 text-purple-800 text-sm font-medium px-2.5 py-0.5 rounded-full mr-3">高级功能</span>
+                        <span className="bg-amber-100 text-amber-800 text-sm font-medium px-2.5 py-0.5 rounded-full mr-3">高级功能</span>
                         专业级控制
                     </h3>
                     <div className="grid md:grid-cols-2 gap-6">
@@ -197,21 +198,27 @@ export default function UserGuidePage() {
                     </h3>
                     <div className="space-y-4">
                         <div className="flex items-start space-x-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-semibold">💡</div>
+                            <div className="flex-shrink-0 w-6 h-6 bg-green-100 text-green-700 rounded-full flex items-center justify-center">
+                                <Lightbulb className="w-3.5 h-3.5" aria-hidden="true" />
+                            </div>
                             <div>
                                 <h4 className="font-medium text-gray-900">最佳质量设置</h4>
                                 <p className="text-sm text-gray-600">JPG 质量 85-95% 可在文件大小和质量间取得最佳平衡</p>
                             </div>
                         </div>
                         <div className="flex items-start space-x-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">🚀</div>
+                            <div className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center">
+                                <Zap className="w-3.5 h-3.5" aria-hidden="true" />
+                            </div>
                             <div>
                                 <h4 className="font-medium text-gray-900">批量处理技巧</h4>
                                 <p className="text-sm text-gray-600">对于大批量图片，建议分批处理以确保浏览器稳定性</p>
                             </div>
                         </div>
                         <div className="flex items-start space-x-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-sm font-semibold">🔒</div>
+                            <div className="flex-shrink-0 w-6 h-6 bg-[#e5f3ef] text-[#00695c] rounded-full flex items-center justify-center">
+                                <LockKeyhole className="w-3.5 h-3.5" aria-hidden="true" />
+                            </div>
                             <div>
                                 <h4 className="font-medium text-gray-900">隐私保护</h4>
                                 <p className="text-sm text-gray-600">所有处理都在本地完成，您的图片永不上传到服务器</p>

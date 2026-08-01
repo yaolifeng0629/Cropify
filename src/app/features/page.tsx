@@ -7,8 +7,7 @@ export default function FeaturesPage() {
     const features = [
         {
             category: "图片管理",
-            icon: "🖼️",
-            color: "from-blue-500 to-blue-600",
+            color: "bg-[#1d4f91]",
             items: [
                 {
                     title: "多种导入方式",
@@ -29,8 +28,7 @@ export default function FeaturesPage() {
         },
         {
             category: "高级裁剪",
-            icon: "✂️",
-            color: "from-green-500 to-green-600",
+            color: "bg-[#00695c]",
             items: [
                 {
                     title: "智能预设尺寸",
@@ -51,8 +49,7 @@ export default function FeaturesPage() {
         },
         {
             category: "用户体验",
-            icon: "🎨",
-            color: "from-purple-500 to-purple-600",
+            color: "bg-[#b45c16]",
             items: [
                 {
                     title: "实时预览",
@@ -73,8 +70,7 @@ export default function FeaturesPage() {
         },
         {
             category: "质量控制",
-            icon: "⚙️",
-            color: "from-orange-500 to-orange-600",
+            color: "bg-amber-600",
             items: [
                 {
                     title: "智能压缩",
@@ -95,8 +91,7 @@ export default function FeaturesPage() {
         },
         {
             category: "导出系统",
-            icon: "📦",
-            color: "from-red-500 to-red-600",
+            color: "bg-rose-600",
             items: [
                 {
                     title: "灵活下载",
@@ -117,8 +112,7 @@ export default function FeaturesPage() {
         },
         {
             category: "隐私安全",
-            icon: "🔒",
-            color: "from-emerald-500 to-emerald-600",
+            color: "bg-emerald-700",
             items: [
                 {
                     title: "100% 本地处理",
@@ -140,7 +134,7 @@ export default function FeaturesPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="site-page min-h-screen bg-gray-50">
             {/* 页面头部 */}
             <div className="bg-white shadow-sm border-b">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -162,7 +156,7 @@ export default function FeaturesPage() {
                 {/* 简介 */}
                 <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
                     <div className="text-center">
-                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <div className="w-16 h-16 bg-[#00695c] rounded-xl flex items-center justify-center mx-auto mb-4">
                             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
@@ -180,9 +174,8 @@ export default function FeaturesPage() {
                     {features.map((category, categoryIndex) => (
                         <div key={categoryIndex} className="bg-white rounded-lg shadow-sm border overflow-hidden">
                             {/* 分类头部 */}
-                            <div className={`bg-gradient-to-r ${category.color} px-6 py-4`}>
-                                <div className="flex items-center space-x-3">
-                                    <span className="text-2xl">{category.icon}</span>
+                            <div className={`${category.color} px-6 py-4`}>
+                                <div className="flex items-center">
                                     <h3 className="text-xl font-bold text-white">{category.category}</h3>
                                 </div>
                             </div>
@@ -234,7 +227,7 @@ export default function FeaturesPage() {
                             <p className="text-sm text-gray-600">后台批量处理</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-[#fff0df] text-[#b45c16] rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
@@ -255,7 +248,7 @@ export default function FeaturesPage() {
                 </div>
 
                 {/* 立即体验 */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-8 mt-8">
+                <div className="bg-[#eef6f3] rounded-lg border border-[#cfe3dc] p-8 mt-8">
                     <div className="text-center">
                         <h3 className="text-xl font-semibold text-gray-900 mb-4">立即体验这些强大功能</h3>
                         <p className="text-gray-600 mb-6">

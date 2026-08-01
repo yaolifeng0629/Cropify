@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Archive, Download } from 'lucide-react';
 import { ProcessTask, ProcessStatus, OutputSettings } from '@/types';
 import { Button, Card } from '@/components/ui';
 import { formatFileSize, generateId } from '@/utils';
@@ -107,7 +108,7 @@ export const ExportSystem: React.FC<ExportSystemProps> = ({
               loading={isGeneratingZip}
               className="w-full"
             >
-              <span className="mr-2">📦</span>
+              <Archive className="w-4 h-4 mr-2" aria-hidden="true" />
               {isGeneratingZip ? '正在打包...' : `ZIP 打包下载 (${completedTasks.length} 张)`}
             </Button>
 
@@ -118,7 +119,7 @@ export const ExportSystem: React.FC<ExportSystemProps> = ({
               onClick={() => onBatchDownload(completedTasks)}
               className="w-full"
             >
-              <span className="mr-2">📥</span>
+              <Download className="w-4 h-4 mr-2" aria-hidden="true" />
               逐个下载全部
             </Button>
           </div>
@@ -178,7 +179,7 @@ export const ExportSystem: React.FC<ExportSystemProps> = ({
                   onClick={() => onSingleDownload(task)}
                   className="ml-2"
                 >
-                  <span className="mr-1">⬇</span>
+                  <Download className="w-4 h-4 mr-1" aria-hidden="true" />
                   下载
                 </Button>
               </div>
@@ -189,8 +190,7 @@ export const ExportSystem: React.FC<ExportSystemProps> = ({
         {/* 使用提示 */}
         <div className="pt-4 border-t border-gray-200">
           <div className="p-3 bg-blue-50 rounded-lg">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-blue-600">💡</span>
+            <div className="flex items-center mb-2">
               <span className="text-sm font-medium text-blue-800">导出提示</span>
             </div>
             <div className="text-xs text-blue-700 space-y-1">

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { AlertTriangle } from 'lucide-react';
 import { AppError } from '@/types';
 import { Button } from '@/components/ui';
 
@@ -22,20 +23,6 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
     return null;
   }
 
-  const getErrorIcon = (type: AppError['type']) => {
-    switch (type) {
-      case 'upload':
-        return '📁';
-      case 'processing':
-        return '⚙️';
-      case 'export':
-        return '💾';
-      case 'system':
-      default:
-        return '⚠️';
-    }
-  };
-
   const getErrorColor = (type: AppError['type']) => {
     switch (type) {
       case 'upload':
@@ -43,7 +30,7 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
       case 'processing':
         return 'bg-orange-50 border-orange-200 text-orange-800';
       case 'export':
-        return 'bg-purple-50 border-purple-200 text-purple-800';
+        return 'bg-rose-50 border-rose-200 text-rose-800';
       case 'system':
       default:
         return 'bg-red-50 border-red-200 text-red-800';
@@ -55,7 +42,7 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
       {/* 头部 */}
       <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-red-500">⚠️</span>
+          <AlertTriangle className="w-5 h-5 text-red-600" aria-hidden="true" />
           <h3 className="text-lg font-medium text-gray-900">
             错误信息 ({errors.length})
           </h3>
@@ -80,7 +67,6 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <span>{getErrorIcon(error.type)}</span>
                   <span className="text-sm font-medium">
                     {error.message}
                   </span>

@@ -301,25 +301,25 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --radius: 0.5rem;
+  --background: oklch(0.975 0.006 185);
+  --foreground: oklch(0.22 0.018 165);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.22 0.018 165);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.22 0.018 165);
+  --primary: oklch(0.46 0.1 174);
+  --primary-foreground: oklch(0.99 0.002 185);
+  --secondary: oklch(0.94 0.018 172);
+  --secondary-foreground: oklch(0.28 0.03 165);
+  --muted: oklch(0.955 0.008 185);
+  --muted-foreground: oklch(0.47 0.025 175);
+  --accent: oklch(0.93 0.026 178);
+  --accent-foreground: oklch(0.26 0.04 170);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.885 0.014 180);
+  --input: oklch(0.87 0.014 180);
+  --ring: oklch(0.5 0.1 174);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -375,5 +375,44 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: oklch(0.83 0.07 175);
+    color: oklch(0.2 0.02 165);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .crop-handle,
+  .edge-arrow,
+  .center-point {
+    animation: none;
+    transition: none;
+  }
+}
+
+.site-page {
+  background: #f4f7f6;
+}
+
+.site-page > div:first-child {
+  border-color: #d7e4df;
+  box-shadow: none;
+}
+
+.site-page [class*="rounded-2xl"] {
+  border-radius: var(--radius);
+}
+
+@media (max-width: 640px) {
+  .site-page [class*="px-8"] {
+    padding-inline: 1.25rem;
   }
 }

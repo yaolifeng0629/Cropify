@@ -5,30 +5,26 @@ import Link from 'next/link';
 
 export default function AboutPage() {
     const stats = [
-        { label: '支持格式', value: '6+', icon: '🖼️' },
-        { label: '批量处理', value: '100', icon: '⚡' },
-        { label: '本地处理', value: '100%', icon: '🔒' },
-        { label: '开源免费', value: '✓', icon: '💝' }
+        { label: '支持格式', value: '6+' },
+        { label: '批量处理', value: '100' },
+        { label: '本地处理', value: '100%' },
+        { label: '开源免费', value: '开放' }
     ];
 
     const values = [
         {
-            icon: '🔐',
             title: '隐私优先',
             description: '我们坚信数据隐私是基本权利。所有图片处理都在您的设备本地完成，永不上传到服务器。'
         },
         {
-            icon: '🚀',
             title: '技术创新',
             description: '采用最新的Web技术，提供接近原生应用的性能体验，同时保持跨平台兼容性。'
         },
         {
-            icon: '🎯',
             title: '用户体验',
             description: '简洁直观的界面设计，专业级的功能配置，让每个用户都能轻松上手。'
         },
         {
-            icon: '🌐',
             title: '开放透明',
             description: '开源代码，社区驱动，接受所有人的审查和贡献，持续改进产品质量。'
         }
@@ -58,7 +54,7 @@ export default function AboutPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="site-page min-h-screen bg-gray-50">
             {/* 页面头部 */}
             <div className="bg-white shadow-sm border-b">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -80,7 +76,7 @@ export default function AboutPage() {
                 {/* 项目介绍 */}
                 <div className="bg-white rounded-lg shadow-sm border p-8 mb-8">
                     <div className="text-center mb-8">
-                        <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <div className="w-20 h-20 bg-[#00695c] rounded-xl flex items-center justify-center mx-auto mb-6">
                             <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
@@ -103,8 +99,7 @@ export default function AboutPage() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {stats.map((stat, index) => (
                             <div key={index} className="text-center">
-                                <div className="text-2xl mb-2">{stat.icon}</div>
-                                <div className="text-2xl font-bold text-blue-600 mb-1">{stat.value}</div>
+                                <div className="text-2xl font-bold text-[#00695c] mb-1">{stat.value}</div>
                                 <div className="text-sm text-gray-600">{stat.label}</div>
                             </div>
                         ))}
@@ -116,8 +111,7 @@ export default function AboutPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">核心价值观</h3>
                     <div className="grid md:grid-cols-2 gap-6">
                         {values.map((value, index) => (
-                            <div key={index} className="flex items-start space-x-4">
-                                <div className="text-3xl flex-shrink-0">{value.icon}</div>
+                            <div key={index} className="flex items-start">
                                 <div>
                                     <h4 className="font-semibold text-gray-900 mb-2">{value.title}</h4>
                                     <p className="text-gray-600 text-sm leading-relaxed">{value.description}</p>
@@ -180,7 +174,7 @@ export default function AboutPage() {
                                     <span>响应式设计</span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                    <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
                                     <span>现代化组件</span>
                                 </div>
                             </div>
@@ -206,7 +200,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* 开源信息 */}
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200 p-6 mb-8">
+                <div className="bg-[#eef6f3] rounded-lg border border-[#cfe3dc] p-6 mb-8">
                     <div className="text-center">
                         <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -265,7 +259,7 @@ export default function AboutPage() {
                             </Link>
                         </div>
                         <div>
-                            <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-[#fff0df] text-[#b45c16] rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>

@@ -131,9 +131,6 @@ export const ViewSettings: React.FC<ViewSettingsProps> = ({
                     }`}
                   >
                     <span>{grid.name}</span>
-                    {gridType === grid.value && (
-                      <span className="text-blue-500">✓</span>
-                    )}
                   </button>
                 ))}
               </div>

@@ -180,12 +180,12 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
                     return (
                       <div
                         key={task.id}
-                        className={`p-3 rounded border-l-4 ${
-                          task.status === ProcessStatus.COMPLETED ? 'border-green-500 bg-green-50' :
-                          task.status === ProcessStatus.FAILED ? 'border-red-500 bg-red-50' :
-                          task.status === ProcessStatus.PROCESSING ? 'border-blue-500 bg-blue-50' :
-                          task.status === ProcessStatus.CANCELLED ? 'border-gray-500 bg-gray-50' :
-                          'border-yellow-500 bg-yellow-50'
+                        className={`p-3 rounded-md border ${
+                          task.status === ProcessStatus.COMPLETED ? 'border-emerald-200 bg-emerald-50' :
+                          task.status === ProcessStatus.FAILED ? 'border-rose-200 bg-rose-50' :
+                          task.status === ProcessStatus.PROCESSING ? 'border-blue-200 bg-blue-50' :
+                          task.status === ProcessStatus.CANCELLED ? 'border-slate-200 bg-slate-50' :
+                          'border-amber-200 bg-amber-50'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -247,8 +247,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
         {stats.total > 10 && (
           <div className="pt-3 border-t border-gray-200">
             <div className="p-3 bg-yellow-50 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-yellow-600">⚡</span>
+              <div className="flex items-center mb-1">
                 <span className="text-sm font-medium text-yellow-800">性能提示</span>
               </div>
               <div className="text-xs text-yellow-700">

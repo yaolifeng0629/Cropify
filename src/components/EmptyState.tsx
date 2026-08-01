@@ -36,22 +36,17 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 }) => {
     return (
         <div className="min-h-screen flex flex-col">
-            <div className="flex-1 w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 flex justify-center py-8">
-                <div className="w-full max-w-[85%] space-y-16">
+            <div className="flex-1 w-full bg-[#f4f7f6] flex justify-center py-8 sm:py-12">
+                <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
                 {/* Hero Section */}
                 <div className="relative overflow-hidden w-full">
-                    {/* 背景装饰 */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
-                    <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-100/20 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-purple-100/20 to-transparent"></div>
-
-                    <div className="relative w-full px-6 sm:px-8 lg:px-12 pt-16 pb-24">
+                    <div className="relative w-full px-2 sm:px-8 lg:px-12 pt-10 sm:pt-16 pb-16 sm:pb-20">
                         <div className="text-center">
                             {/* 主标题 */}
                             <div className="mb-6">
                                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                                     智能图片裁剪
-                                    <span className="ml-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mt-2">
+                                    <span className="ml-2 sm:ml-4 text-[#00695c] mt-2">
                                         一键批量处理
                                     </span>
                                 </h1>
@@ -64,7 +59,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 
                             {/* 主要操作区域 */}
                             <div className="max-w-4xl mx-auto">
-                                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden p-2">
+                                <div className="bg-white rounded-xl border border-[#d7e4df] overflow-hidden p-2 sm:p-3">
                                     <ImageImportManager
                                         images={images}
                                         isUploading={isUploading}
@@ -90,7 +85,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                                         <span>本地处理更安全</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                                         <span>多格式导出</span>
                                     </div>
                                 </div>
@@ -100,7 +95,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                 </div>
 
                 {/* 功能特性区域 */}
-                <div className="relative bg-white py-16 w-full rounded-3xl shadow-lg">
+                <div className="relative bg-white py-12 sm:py-16 w-full border-y border-[#dce8e4]">
                     <div className="w-full px-6 sm:px-8 lg:px-12">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl font-bold text-gray-900 mb-4">为什么选择 Cropify</h2>
@@ -112,12 +107,11 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                         {/* 功能卡片网格 */}
                         <div className="grid md:grid-cols-3 gap-8 mb-16">
                             {/* 智能批量导入 */}
-                            <div className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-2xl"></div>
+                            <div className="group bg-white rounded-xl p-8 border border-[#dce8e4] hover:border-[#83b9ae] transition-colors duration-200">
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-14 h-14 bg-[#e5f3ef] rounded-xl flex items-center justify-center mb-6 transition-colors duration-200 group-hover:bg-[#d3ebe4]">
                                         <svg
-                                            className="w-8 h-8 text-blue-600"
+                                            className="w-7 h-7 text-[#00695c]"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -138,12 +132,11 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                             </div>
 
                             {/* 精准裁剪控制 */}
-                            <div className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-t-2xl"></div>
+                            <div className="group bg-white rounded-xl p-8 border border-[#dce8e4] hover:border-[#83b9ae] transition-colors duration-200">
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-14 h-14 bg-[#e7eff8] rounded-xl flex items-center justify-center mb-6 transition-colors duration-200 group-hover:bg-[#d9e7f4]">
                                         <svg
-                                            className="w-8 h-8 text-green-600"
+                                            className="w-7 h-7 text-[#1d4f91]"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -164,12 +157,11 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                             </div>
 
                             {/* 高效批量导出 */}
-                            <div className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-600 rounded-t-2xl"></div>
+                            <div className="group bg-white rounded-xl p-8 border border-[#dce8e4] hover:border-[#83b9ae] transition-colors duration-200">
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <div className="w-14 h-14 bg-[#fff0df] rounded-xl flex items-center justify-center mb-6 transition-colors duration-200 group-hover:bg-[#ffe6ca]">
                                         <svg
-                                            className="w-8 h-8 text-purple-600"
+                                            className="w-7 h-7 text-[#b45c16]"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -191,7 +183,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                         </div>
 
                         {/* 开始使用区域 */}
-                        <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-12 border border-blue-100">
+                        <div className="text-center bg-[#eef6f3] rounded-xl p-8 sm:p-12 border border-[#cfe3dc]">
                             <div className="max-w-5xl mx-auto">
                                 <h3 className="text-2xl font-bold text-gray-900 mb-4">准备好开始了吗？</h3>
                                 <p className="text-lg text-gray-600 mb-8">
@@ -201,19 +193,19 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
                                 {/* 操作步骤 */}
                                 <div className="grid md:grid-cols-3 gap-6 mb-10">
                                     <div className="flex flex-col items-center">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
+                                        <div className="w-12 h-12 bg-[#00695c] rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
                                             1
                                         </div>
                                         <p className="text-sm font-medium text-gray-700">上传图片</p>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
+                                        <div className="w-12 h-12 bg-[#1d4f91] rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
                                             2
                                         </div>
                                         <p className="text-sm font-medium text-gray-700">调整裁剪</p>
                                     </div>
                                     <div className="flex flex-col items-center">
-                                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
+                                        <div className="w-12 h-12 bg-[#b45c16] rounded-full flex items-center justify-center text-white font-bold text-lg mb-3">
                                             3
                                         </div>
                                         <p className="text-sm font-medium text-gray-700">批量导出</p>
@@ -222,7 +214,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 
                                 <Button
                                     size="lg"
-                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                                    className="bg-[#00695c] hover:bg-[#005147] text-white px-8 py-3 text-lg font-medium rounded-lg shadow-sm transition-colors duration-200"
                                     onClick={() => {
                                         const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
                                         fileInput?.click();

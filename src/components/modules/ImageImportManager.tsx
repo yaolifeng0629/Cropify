@@ -142,9 +142,9 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
                 选择或拖拽图片文件到上方区域开始批量裁剪
               </p>
               <div className="text-xs space-y-1 text-gray-400">
-                <p>💡 支持同时处理最多 {APP_CONFIG.MAX_BATCH_SIZE} 张图片</p>
-                <p>💡 可使用 Ctrl+V 直接粘贴剪贴板中的图片</p>
-                <p>💡 所有处理都在本地完成，保护您的隐私</p>
+                <p>最多可同时处理 {APP_CONFIG.MAX_BATCH_SIZE} 张图片</p>
+                <p>可使用 Ctrl+V 直接粘贴剪贴板中的图片</p>
+                <p>所有处理都在本地完成，保护您的隐私</p>
               </div>
             </div>
           </div>

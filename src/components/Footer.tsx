@@ -10,8 +10,8 @@ export const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white w-full flex justify-center">
-            <div className="w-full max-w-[85%]">
+        <footer className="bg-[#14221f] text-white w-full">
+            <div className="w-full max-w-7xl mx-auto">
                 {/* 主要内容区域 */}
                 <div className="w-full px-6 sm:px-8 lg:px-12 py-12 lg:py-16">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
                             <div className="mb-4">
                                 <Logo
                                     size="md"
-                                    variant="default"
+                                    variant="white"
                                     showText={true}
                                     className="flex-shrink-0"
                                 />
@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
                                 </li>
                                 <li>
                                     <a href="#format-support" className="text-slate-300 hover:text-white transition-colors duration-200 flex items-center">
-                                        <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3"></span>
+                                        <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mr-3"></span>
                                         多格式支持
                                     </a>
                                 </li>
@@ -98,11 +98,11 @@ export const Footer: React.FC = () => {
                 </div>
 
                 {/* 版权信息 */}
-                <div className="border-t border-slate-700 bg-slate-900/50">
+                <div className="border-t border-white/10">
                     <div className="w-full px-6 sm:px-8 lg:px-12 py-6">
                         <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
                             <div className="text-slate-400 text-sm">
-                                为爱发电 ❤️{' '}
+                                由开源维护{' '}
                                 <a
                                     href="https://yaolifeng.com/sponsor.html"
                                     target="_blank"

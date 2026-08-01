@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Archive, Download } from 'lucide-react';
 import { ProcessTask, ProcessStatus, OutputSettings } from '@/types';
 import { Button, Modal } from '@/components/ui';
 import { formatFileSize } from '@/utils';
@@ -96,9 +97,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             <div className="text-lg font-bold text-blue-600">{formatFileSize(totalSize)}</div>
             <div className="text-sm text-blue-600 font-medium">总大小</div>
           </div>
-          <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
-            <div className="text-lg font-bold text-purple-600">{outputSettings.format.toUpperCase()}</div>
-            <div className="text-sm text-purple-600 font-medium">格式</div>
+          <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="text-lg font-bold text-blue-700">{outputSettings.format.toUpperCase()}</div>
+            <div className="text-sm text-blue-700 font-medium">格式</div>
           </div>
         </div>
 
@@ -115,7 +116,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
               loading={isGeneratingZip}
               className="w-full h-12"
             >
-              <span className="mr-2 text-lg">📦</span>
+              <Archive className="w-5 h-5 mr-2" aria-hidden="true" />
               <div className="text-left">
                 <div className="font-medium">
                   {isGeneratingZip ? '正在打包...' : 'ZIP 打包下载'}
@@ -133,7 +134,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
               onClick={() => onBatchDownload(completedTasks)}
               className="w-full h-12"
             >
-              <span className="mr-2 text-lg">📥</span>
+              <Download className="w-5 h-5 mr-2" aria-hidden="true" />
               <div className="text-left">
                 <div className="font-medium">逐个下载</div>
                 <div className="text-xs text-gray-500">
@@ -174,7 +175,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
                   onClick={() => onSingleDownload(task)}
                   className="ml-3 flex-shrink-0"
                 >
-                  <span className="mr-1">⬇</span>
+                  <Download className="w-4 h-4 mr-1" aria-hidden="true" />
                   下载
                 </Button>
               </div>
@@ -184,8 +185,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
         {/* 使用提示 */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-blue-600 text-lg">💡</span>
+          <div className="flex items-center mb-3">
             <span className="text-sm font-semibold text-blue-800">导出提示</span>
           </div>
           <div className="text-xs text-blue-700 space-y-1 leading-relaxed">
@@ -211,7 +211,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             disabled={isGeneratingZip}
             loading={isGeneratingZip}
           >
-            <span className="mr-2">📦</span>
+            <Archive className="w-4 h-4 mr-2" aria-hidden="true" />
             {isGeneratingZip ? '正在打包...' : '快速打包下载'}
           </Button>
         </div>

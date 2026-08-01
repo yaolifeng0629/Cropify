@@ -58,9 +58,9 @@ export const Header: React.FC<HeaderProps> = ({
     if (isEditMode) {
         // 编辑模式下的简化头部
         return (
-            <header className="bg-gradient-to-r from-blue-600 to-purple-700 shadow-sm flex-shrink-0">
-                <div className="px-6 py-3">
-                    <div className="flex items-center justify-between">
+            <header className="bg-[#14221f] border-b border-white/10 flex-shrink-0">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
                         {/* 左侧：Logo 和应用名称 */}
                         <Logo
                             size="sm"
@@ -69,8 +69,8 @@ export const Header: React.FC<HeaderProps> = ({
                             className="flex-shrink-0"
                         />
 
-                        <div className="text-white text-sm">
-                            为爱发电 ❤️{' '}
+                        <div className="hidden lg:block text-white text-sm">
+                            由开源维护{' '}
                             <a
                                 href="https://yaolifeng.com/sponsor.html"
                                 target="_blank"
@@ -82,15 +82,15 @@ export const Header: React.FC<HeaderProps> = ({
                         </div>
 
                         {/* 右侧：状态信息和操作 */}
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center flex-wrap justify-end gap-2">
                             {images && images.length > 0 && (
                                 <>
                                     {/* 图片计数器 */}
-                                    <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
                                         <svg className="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
-                                        <span className="text-white text-sm font-medium">
+                                        <span className="text-white text-sm font-medium whitespace-nowrap">
                                             {images.length} 张图片
                                         </span>
                                     </div>
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={onClearImages}
-                                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-200"
+                                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -115,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             variant="outline"
                                             size="sm"
                                             onClick={onStartBatch}
-                                            className="bg-green-600/90 border-green-500/50 text-white hover:bg-green-700/90 hover:border-green-400/60 backdrop-blur-sm transition-all duration-200"
+                                            className="bg-emerald-600 border-emerald-500 text-white hover:bg-emerald-700 hover:border-emerald-400 transition-colors duration-200"
                                         >
                                             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-6V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8z" />
@@ -133,7 +133,7 @@ export const Header: React.FC<HeaderProps> = ({
                                                     variant="outline"
                                                     size="sm"
                                                     onClick={onPauseBatch}
-                                                    className="bg-yellow-600/90 border-yellow-500/50 text-white hover:bg-yellow-700/90 hover:border-yellow-400/60 backdrop-blur-sm transition-all duration-200"
+                                                    className="bg-amber-500 border-amber-400 text-[#1f2b29] hover:bg-amber-400 hover:border-amber-300 transition-colors duration-200"
                                                 >
                                                     <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
                                                 </Button>
                                             )}
 
-                                            <div className="flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                            <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
                                                 <div className="w-4 h-4 mr-2">
                                                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
                                                 </div>
@@ -176,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             variant="outline"
                                             size="sm"
                                             onClick={onRetryFailed}
-                                            className="bg-orange-600/90 border-orange-500/50 text-white hover:bg-orange-700/90 hover:border-orange-400/60 backdrop-blur-sm transition-all duration-200"
+                                            className="bg-rose-600 border-rose-500 text-white hover:bg-rose-700 hover:border-rose-400 transition-colors duration-200"
                                         >
                                             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -192,7 +192,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             variant="outline"
                                             size="sm"
                                             onClick={() => setIsExportModalOpen(true)}
-                                            className="bg-purple-600/90 border-purple-500/50 text-white hover:bg-purple-700/90 hover:border-purple-400/60 backdrop-blur-sm transition-all duration-200"
+                                            className="bg-[#1d4f91] border-[#2f6bb9] text-white hover:bg-[#173f73] hover:border-[#5489ca] transition-colors duration-200"
                                         >
                                             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -225,18 +225,8 @@ export const Header: React.FC<HeaderProps> = ({
 
     // 默认模式下的完整头部（用于空状态页面）
     return (
-        <header className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700 shadow-lg w-full flex justify-center">
-            {/* 背景装饰 */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 to-purple-600/90"></div>
-            <div className="absolute inset-0 opacity-20">
-                <div className="w-full h-full bg-repeat bg-[length:20px_20px]"
-                     style={{
-                         backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M0 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E")`
-                     }}>
-                </div>
-            </div>
-
-            <div className="relative w-full max-w-[85%] px-6 sm:px-8 lg:px-12 py-4">
+        <header className="bg-[#14221f] border-b border-white/10 w-full">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div className="flex items-center justify-between">
                     {/* 左侧：Logo 和应用名称 */}
                     <Logo
@@ -267,7 +257,7 @@ export const Header: React.FC<HeaderProps> = ({
                             <>
                                 {/* 图片计数器 */}
                                 <div className="flex items-center space-x-2">
-                                    <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                    <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
                                         <svg className="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
@@ -282,7 +272,7 @@ export const Header: React.FC<HeaderProps> = ({
                                     variant="outline"
                                     size="sm"
                                     onClick={onClearImages}
-                                    className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 backdrop-blur-sm transition-all duration-200"
+                                    className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-colors duration-200"
                                 >
                                     <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -298,7 +288,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={onStartBatch}
-                                        className="bg-green-600/90 border-green-500/50 text-white hover:bg-green-700/90 hover:border-green-400/60 backdrop-blur-sm transition-all duration-200"
+                                        className="bg-emerald-600 border-emerald-500 text-white hover:bg-emerald-700 hover:border-emerald-400 transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-6V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8z" />
@@ -316,7 +306,7 @@ export const Header: React.FC<HeaderProps> = ({
                                                 variant="outline"
                                                 size="sm"
                                                 onClick={onPauseBatch}
-                                                className="bg-yellow-600/90 border-yellow-500/50 text-white hover:bg-yellow-700/90 hover:border-yellow-400/60 backdrop-blur-sm transition-all duration-200"
+                                                className="bg-amber-500 border-amber-400 text-[#1f2b29] hover:bg-amber-400 hover:border-amber-300 transition-colors duration-200"
                                             >
                                                 <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
@@ -325,7 +315,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             </Button>
                                         )}
 
-                                        <div className="flex items-center bg-blue-600/10 backdrop-blur-sm rounded-full px-3 py-1.5">
+                                        <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
                                             <div className="w-4 h-4 mr-2">
                                                 <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
                                             </div>
@@ -359,7 +349,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={onRetryFailed}
-                                        className="bg-orange-600/90 border-orange-500/50 text-white hover:bg-orange-700/90 hover:border-orange-400/60 backdrop-blur-sm transition-all duration-200"
+                                            className="bg-rose-600 border-rose-500 text-white hover:bg-rose-700 hover:border-rose-400 transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -375,7 +365,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={() => setIsExportModalOpen(true)}
-                                        className="bg-purple-600/90 border-purple-500/50 text-white hover:bg-purple-700/90 hover:border-purple-400/60 backdrop-blur-sm transition-all duration-200"
+                                            className="bg-[#1d4f91] border-[#2f6bb9] text-white hover:bg-[#173f73] hover:border-[#5489ca] transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

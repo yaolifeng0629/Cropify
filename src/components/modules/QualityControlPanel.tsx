@@ -16,6 +16,13 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
   outputSettings,
   onSettingsChange,
 }) => {
+  const qualityOptionClasses = {
+    default: 'text-slate-600 hover:bg-slate-100',
+    low: 'bg-rose-600 text-white',
+    balanced: 'bg-amber-400 text-[#1f2b29]',
+    high: 'bg-emerald-600 text-white',
+  };
+
   // 处理设置变化
   const handleSettingChange = (field: keyof OutputSettings, value: string | number | boolean) => {
     onSettingsChange({
@@ -50,20 +57,19 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
           <h4 className="text-sm font-medium text-gray-700 mb-3">输出格式</h4>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { value: 'jpg', label: 'JPG', icon: '📷' },
-              { value: 'png', label: 'PNG', icon: '🖼️' },
-              { value: 'webp', label: 'WebP', icon: '🚀' },
+              { value: 'jpg', label: 'JPG' },
+              { value: 'png', label: 'PNG' },
+              { value: 'webp', label: 'WebP' },
             ].map((format) => (
               <button
                 key={format.value}
                 onClick={() => handleSettingChange('format', format.value as 'jpg' | 'png' | 'webp')}
-                className={`flex flex-col items-center p-3 border rounded-lg transition-colors ${
+                className={`flex items-center justify-center min-h-11 p-3 border rounded-lg transition-colors ${
                   outputSettings.format === format.value
                     ? 'border-blue-500 bg-blue-50 text-blue-700'
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <span className="text-lg mb-1">{format.icon}</span>
                 <span className="text-sm font-medium">{format.label}</span>
               </button>
             ))}
@@ -105,9 +111,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className={outputSettings.format === 'png' ? 'hidden' : ''}>
               <button
                 onClick={() => handleSettingChange('quality', 60)}
-                className={`w-full p-1 rounded ${
-                  outputSettings.quality <= 60 ? 'bg-red-100 text-red-700' : 'text-gray-500'
-                }`}
+                className={`w-full p-1 rounded ${outputSettings.quality <= 60 ? qualityOptionClasses.low : qualityOptionClasses.default}`}
               >
                 低质量
               </button>
@@ -115,11 +119,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className={outputSettings.format === 'png' ? 'hidden' : ''}>
               <button
                 onClick={() => handleSettingChange('quality', 85)}
-                className={`w-full p-1 rounded ${
-                  outputSettings.quality > 60 && outputSettings.quality <= 90
-                    ? 'bg-yellow-100 text-yellow-700'
-                    : 'text-gray-500'
-                }`}
+                className={`w-full p-1 rounded ${outputSettings.quality > 60 && outputSettings.quality <= 90 ? qualityOptionClasses.balanced : qualityOptionClasses.default}`}
               >
                 平衡
               </button>
@@ -127,9 +127,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className={outputSettings.format === 'png' ? 'hidden' : ''}>
               <button
                 onClick={() => handleSettingChange('quality', 95)}
-                className={`w-full p-1 rounded ${
-                  outputSettings.quality > 90 ? 'bg-green-100 text-green-700' : 'text-gray-500'
-                }`}
+                className={`w-full p-1 rounded ${outputSettings.quality > 90 ? qualityOptionClasses.high : qualityOptionClasses.default}`}
               >
                 高质量
               </button>
@@ -139,9 +137,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className={outputSettings.format !== 'png' ? 'hidden' : ''}>
               <button
                 onClick={() => handleSettingChange('quality', 0)}
-                className={`w-full p-1 rounded ${
-                  outputSettings.quality <= 3 ? 'bg-green-100 text-green-700' : 'text-gray-500'
-                }`}
+                className={`w-full p-1 rounded ${outputSettings.quality <= 3 ? qualityOptionClasses.high : qualityOptionClasses.default}`}
               >
                 快速
               </button>
@@ -149,11 +145,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className={outputSettings.format !== 'png' ? 'hidden' : ''}>
               <button
                 onClick={() => handleSettingChange('quality', 6)}
-                className={`w-full p-1 rounded ${
-                  outputSettings.quality > 3 && outputSettings.quality <= 6
-                    ? 'bg-yellow-100 text-yellow-700'
-                    : 'text-gray-500'
-                }`}
+                className={`w-full p-1 rounded ${outputSettings.quality > 3 && outputSettings.quality <= 6 ? qualityOptionClasses.balanced : qualityOptionClasses.default}`}
               >
                 平衡
               </button>
@@ -161,9 +153,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
             <div className={outputSettings.format !== 'png' ? 'hidden' : ''}>
               <button
                 onClick={() => handleSettingChange('quality', 9)}
-                className={`w-full p-1 rounded ${
-                  outputSettings.quality > 6 ? 'bg-red-100 text-red-700' : 'text-gray-500'
-                }`}
+                className={`w-full p-1 rounded ${outputSettings.quality > 6 ? qualityOptionClasses.low : qualityOptionClasses.default}`}
               >
                 最佳
               </button>

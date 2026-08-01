@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Crosshair, MoveDownLeft, MoveDownRight, MoveUpLeft, MoveUpRight } from 'lucide-react';
 import { ImageFile, CropParams, CropAnchor } from '@/types';
 import { PRESET_SIZES, PRESET_RATIOS } from '@/constants';
 import { Button, Card } from '@/components/ui';
@@ -40,15 +41,15 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
 
   // 裁剪基准点选项
   const cropAnchors = [
-    { value: CropAnchor.TOP_LEFT, label: '左上', icon: '↖' },
-    { value: CropAnchor.TOP_CENTER, label: '上中', icon: '↑' },
-    { value: CropAnchor.TOP_RIGHT, label: '右上', icon: '↗' },
-    { value: CropAnchor.MIDDLE_LEFT, label: '左中', icon: '←' },
-    { value: CropAnchor.MIDDLE_CENTER, label: '居中', icon: '●' },
-    { value: CropAnchor.MIDDLE_RIGHT, label: '右中', icon: '→' },
-    { value: CropAnchor.BOTTOM_LEFT, label: '左下', icon: '↙' },
-    { value: CropAnchor.BOTTOM_CENTER, label: '下中', icon: '↓' },
-    { value: CropAnchor.BOTTOM_RIGHT, label: '右下', icon: '↘' },
+    { value: CropAnchor.TOP_LEFT, label: '左上', Icon: MoveUpLeft },
+    { value: CropAnchor.TOP_CENTER, label: '上中', Icon: ArrowUp },
+    { value: CropAnchor.TOP_RIGHT, label: '右上', Icon: MoveUpRight },
+    { value: CropAnchor.MIDDLE_LEFT, label: '左中', Icon: ArrowLeft },
+    { value: CropAnchor.MIDDLE_CENTER, label: '居中', Icon: Crosshair },
+    { value: CropAnchor.MIDDLE_RIGHT, label: '右中', Icon: ArrowRight },
+    { value: CropAnchor.BOTTOM_LEFT, label: '左下', Icon: MoveDownLeft },
+    { value: CropAnchor.BOTTOM_CENTER, label: '下中', Icon: ArrowDown },
+    { value: CropAnchor.BOTTOM_RIGHT, label: '右下', Icon: MoveDownRight },
   ];
 
   // 按类别分组的预设尺寸
@@ -285,17 +286,21 @@ export const CropControlPanel: React.FC<CropControlPanelProps> = ({
         <div className="pt-3 border-t border-gray-200">
           <h4 className="text-sm font-medium text-gray-700 mb-3">裁剪基准点</h4>
           <div className="grid grid-cols-3 gap-2">
-            {cropAnchors.map((anchor) => (
-              <button
+            {cropAnchors.map((anchor) => {
+              const AnchorIcon = anchor.Icon;
+
+              return (
+                <button
                 key={anchor.value}
                 onClick={() => onApplyCropAnchor(anchor.value, selectedImage)}
                 className="flex flex-col items-center justify-center p-2 text-xs border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
                 title={anchor.label}
               >
-                <span className="text-lg mb-1">{anchor.icon}</span>
+                <AnchorIcon className="w-4 h-4 mb-1" aria-hidden="true" />
                 <span className="text-gray-600">{anchor.label}</span>
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
 

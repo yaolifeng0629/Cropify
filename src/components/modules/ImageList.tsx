@@ -61,8 +61,8 @@ export const ImageList: React.FC<ImageListProps> = ({
             return (
               <div
                 key={image.id}
-                className={`group flex items-center gap-2 p-2 cursor-pointer transition-colors hover:bg-gray-50 ${
-                  isSelected ? 'bg-blue-50 border-l-2 border-blue-500' : ''
+                className={`group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-50 ${
+                  isSelected ? 'bg-blue-50 ring-1 ring-inset ring-blue-500' : ''
                 }`}
                 onClick={() => onSelect?.(image.id)}
               >

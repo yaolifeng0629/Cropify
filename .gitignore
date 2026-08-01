@@ -42,3 +42,8 @@ next-env.d.ts
 
 .claude
 CLAUDE.md
+.agents
+.codex
+.impeccable
+.playwright*
+

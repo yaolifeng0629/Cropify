@@ -85,7 +85,7 @@ export const CropifyApp: React.FC = () => {
     };
 
     return (
-        <div className={isEditMode ? "h-screen flex flex-col overflow-hidden pb-6" : "min-h-screen flex flex-col"}>
+        <div className={isEditMode ? "min-h-screen md:h-screen flex flex-col overflow-x-hidden md:overflow-hidden md:pb-6" : "min-h-screen flex flex-col"}>
             <Header
                 images={images}
                 onClearImages={clearImages}
@@ -103,18 +103,18 @@ export const CropifyApp: React.FC = () => {
                 onZipDownload={handleZipDownload}
             />
             {isEditMode ? (
-                <div className="flex-1 flex h-0 overflow-hidden">
+                <div className="flex flex-col md:flex-row flex-1 md:h-0 overflow-visible md:overflow-hidden">
                     {/* 左侧面板 */}
-                    <div className={`bg-white border-r border-gray-200 transition-all duration-300 ${
-                        leftPanelCollapsed ? 'w-0' : 'w-86'
-                    } overflow-hidden flex-shrink-0`}>
+                    <div className={`bg-white border-b md:border-b-0 md:border-r border-gray-200 transition-all duration-300 ${
+                        leftPanelCollapsed ? 'h-0 md:h-auto md:w-0' : 'w-full md:w-86'
+                    } overflow-hidden md:flex-shrink-0`}>
                         <div className="flex flex-col h-full">
                             {/* 左侧面板头部 */}
                             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white z-10 flex-shrink-0">
                                 <h2 className="text-lg font-medium text-gray-900">图片管理</h2>
                                 <button
                                     onClick={() => setLeftPanelCollapsed(!leftPanelCollapsed)}
-                                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                                    className="hidden md:inline-flex p-1 hover:bg-gray-100 rounded transition-colors"
                                     title="收起左侧面板"
                                 >
                                     <PanelLeftClose className="w-4 h-4 text-gray-500" />
@@ -145,7 +145,7 @@ export const CropifyApp: React.FC = () => {
 
                     {/* 左侧面板收起时的展开按钮 */}
                     {leftPanelCollapsed && (
-                        <div className="flex-shrink-0 w-8 bg-gray-50 border-r border-gray-200 flex items-center justify-center">
+                        <div className="hidden md:flex flex-shrink-0 w-8 bg-gray-50 border-r border-gray-200 items-center justify-center">
                             <button
                                 onClick={() => setLeftPanelCollapsed(false)}
                                 className="p-1 hover:bg-gray-200 rounded transition-colors"
@@ -157,10 +157,10 @@ export const CropifyApp: React.FC = () => {
                     )}
 
                     {/* 中间主内容区域 */}
-                    <div className="flex-1 flex flex-col overflow-hidden">
-                        <div className="flex-1 flex flex-col p-4 lg:p-6 gap-4 overflow-hidden">
+                    <div className="flex-1 min-w-0 flex flex-col overflow-visible md:overflow-hidden">
+                        <div className="flex-1 flex flex-col p-4 lg:p-6 gap-4 overflow-visible md:overflow-hidden">
                             {/* 预览系统 */}
-                            <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden min-h-0">
+                            <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden min-h-[320px] md:min-h-0">
                                 <PreviewSystem
                                     selectedImage={selectedImage}
                                     cropParams={cropParams}
@@ -181,7 +181,7 @@ export const CropifyApp: React.FC = () => {
 
                     {/* 右侧面板收起时的展开按钮 */}
                     {rightPanelCollapsed && (
-                        <div className="flex-shrink-0 w-8 bg-gray-50 border-l border-gray-200 flex items-center justify-center">
+                        <div className="hidden md:flex flex-shrink-0 w-8 bg-gray-50 border-l border-gray-200 items-center justify-center">
                             <button
                                 onClick={() => setRightPanelCollapsed(false)}
                                 className="p-1 hover:bg-gray-200 rounded transition-colors"
@@ -193,16 +193,16 @@ export const CropifyApp: React.FC = () => {
                     )}
 
                     {/* 右侧面板 */}
-                    <div className={`bg-white border-l border-gray-200 transition-all duration-300 ${
-                        rightPanelCollapsed ? 'w-0' : 'w-96'
-                    } overflow-hidden flex-shrink-0`}>
+                    <div className={`bg-white border-t md:border-t-0 md:border-l border-gray-200 transition-all duration-300 ${
+                        rightPanelCollapsed ? 'h-0 md:h-auto md:w-0' : 'w-full md:w-96'
+                    } overflow-hidden md:flex-shrink-0`}>
                         <div className="flex flex-col h-full">
                             {/* 右侧面板头部 */}
                             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white z-10 flex-shrink-0">
                                 <h2 className="text-lg font-medium text-gray-900">工具面板</h2>
                                 <button
                                     onClick={() => setRightPanelCollapsed(!rightPanelCollapsed)}
-                                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                                    className="hidden md:inline-flex p-1 hover:bg-gray-100 rounded transition-colors"
                                     title="收起右侧面板"
                                 >
                                     <PanelRightClose className="w-4 h-4 text-gray-500" />
