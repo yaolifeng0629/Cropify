@@ -32,12 +32,12 @@ export const ImageList: React.FC<ImageListProps> = ({
   return (
     <div className="flex flex-col h-full">
       {/* 头部信息 */}
-      <div className="px-0 py-2 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
+      <div className="px-0 py-2 border-b border-line flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-2">
-          <h3 className="text-xs font-medium text-gray-900">
+          <h3 className="text-xs font-medium text-ink">
             图片 ({images.length}) 张
           </h3>
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-ink-muted">
             {formatFileSize(totalSize)}
           </span>
         </div>
@@ -55,19 +55,19 @@ export const ImageList: React.FC<ImageListProps> = ({
 
       {/* 图片列表 */}
       <div className="flex-1 overflow-y-auto min-h-0">
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-line">
           {images.map((image) => {
             const isSelected = selectedImageId === image.id;
             return (
               <div
                 key={image.id}
-                className={`group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-50 ${
-                  isSelected ? 'bg-blue-50 ring-1 ring-inset ring-blue-500' : ''
+                className={`group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-wash ${
+                  isSelected ? 'bg-crop-tint ring-1 ring-inset ring-crop' : ''
                 }`}
                 onClick={() => onSelect?.(image.id)}
               >
                 {/* 小缩略图 */}
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded overflow-hidden">
+                <div className="flex-shrink-0 w-8 h-8 bg-wash rounded overflow-hidden">
                   <img
                     src={image.url}
                     alt={image.name}
@@ -79,11 +79,11 @@ export const ImageList: React.FC<ImageListProps> = ({
                 {/* 图片信息 */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-medium text-gray-900 truncate w-[90%] text-ellipsis" title={image.name}>
+                    <h4 className="text-xs font-medium text-ink truncate w-[90%] text-ellipsis" title={image.name}>
                       {image.name}
                     </h4>
                     {isSelected && (
-                      <div className="flex-shrink-0 w-3 h-3 bg-blue-500 text-white rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-3 h-3 bg-crop text-white rounded-full flex items-center justify-center">
                         <svg className="w-2 h-2" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
@@ -92,7 +92,7 @@ export const ImageList: React.FC<ImageListProps> = ({
                   </div>
 
                   <div className="flex items-center justify-between mt-0.5">
-                    <div className="text-xs text-gray-500 truncate">
+                    <div className="text-xs text-ink-muted truncate">
                       {image.width}×{image.height} • {formatFileSize(image.size)}
                     </div>
 
@@ -102,7 +102,7 @@ export const ImageList: React.FC<ImageListProps> = ({
                         e.stopPropagation();
                         onRemove(image.id);
                       }}
-                      className="flex-shrink-0 w-4 h-4 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                      className="flex-shrink-0 w-4 h-4 text-ink-faint hover:text-destructive transition-colors opacity-0 group-hover:opacity-100"
                       title="删除图片"
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -7,7 +7,7 @@ export default function FeaturesPage() {
     const features = [
         {
             category: "图片管理",
-            color: "bg-[#1d4f91]",
+            color: "bg-surface-tint",
             items: [
                 {
                     title: "多种导入方式",
@@ -28,7 +28,7 @@ export default function FeaturesPage() {
         },
         {
             category: "高级裁剪",
-            color: "bg-[#00695c]",
+            color: "bg-surface-tint",
             items: [
                 {
                     title: "智能预设尺寸",
@@ -49,7 +49,7 @@ export default function FeaturesPage() {
         },
         {
             category: "用户体验",
-            color: "bg-[#b45c16]",
+            color: "bg-surface-tint",
             items: [
                 {
                     title: "实时预览",
@@ -70,7 +70,7 @@ export default function FeaturesPage() {
         },
         {
             category: "质量控制",
-            color: "bg-amber-600",
+            color: "bg-surface-tint",
             items: [
                 {
                     title: "智能压缩",
@@ -91,7 +91,7 @@ export default function FeaturesPage() {
         },
         {
             category: "导出系统",
-            color: "bg-rose-600",
+            color: "bg-surface-tint",
             items: [
                 {
                     title: "灵活下载",
@@ -112,7 +112,7 @@ export default function FeaturesPage() {
         },
         {
             category: "隐私安全",
-            color: "bg-emerald-700",
+            color: "bg-surface-tint",
             items: [
                 {
                     title: "100% 本地处理",
@@ -134,35 +134,35 @@ export default function FeaturesPage() {
     ];
 
     return (
-        <div className="site-page min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-canvas">
             {/* 页面头部 */}
-            <div className="bg-white shadow-sm border-b">
+            <div className="bg-white border-b border-line">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
-                        <Link href="/" className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                        <Link href="/" className="flex items-center space-x-2 text-info hover:text-info-hover transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                             <span>返回首页</span>
                         </Link>
-                        <h1 className="text-2xl font-bold text-gray-900">功能特性</h1>
+                        <h1 className="text-2xl font-bold text-ink">功能特性</h1>
                         <div className="w-20"></div>
                     </div>
                 </div>
             </div>
 
             {/* 主要内容 */}
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {/* 简介 */}
-                <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+                <div className="bg-white rounded-lg border border-line p-6 mb-16">
                     <div className="text-center">
-                        <div className="w-16 h-16 bg-[#00695c] rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <div className="w-16 h-16 bg-brand rounded-lg flex items-center justify-center mx-auto mb-4">
                             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">强大的图片处理能力</h2>
-                        <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        <h2 className="text-2xl font-bold text-ink mb-4">强大的图片处理能力</h2>
+                        <p className="text-ink-muted max-w-3xl mx-auto leading-relaxed">
                             Cropify 提供专业级的图片裁剪功能，结合现代化的用户界面和完全的隐私保护。
                             无论是个人用户还是专业设计师，都能在这里找到满足需求的工具。
                         </p>
@@ -170,13 +170,13 @@ export default function FeaturesPage() {
                 </div>
 
                 {/* 功能分类展示 */}
-                <div className="space-y-8">
+                <div className="space-y-16">
                     {features.map((category, categoryIndex) => (
-                        <div key={categoryIndex} className="bg-white rounded-lg shadow-sm border overflow-hidden">
+                        <div key={categoryIndex} className="bg-white rounded-lg border border-line overflow-hidden">
                             {/* 分类头部 */}
-                            <div className={`${category.color} px-6 py-4`}>
+                            <div className={`${category.color} px-6 py-4 border-b border-line`}>
                                 <div className="flex items-center">
-                                    <h3 className="text-xl font-bold text-white">{category.category}</h3>
+                                    <h3 className="text-xl font-bold text-ink">{category.category}</h3>
                                 </div>
                             </div>
 
@@ -185,14 +185,14 @@ export default function FeaturesPage() {
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {category.items.map((item, itemIndex) => (
                                         <div key={itemIndex} className="group">
-                                            <div className="p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200">
-                                                <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                                            <div className="p-4 rounded-lg border border-line hover:border-brand-bright transition-colors duration-200">
+                                                <h4 className="font-semibold text-ink mb-2 group-hover:text-brand transition-colors">
                                                     {item.title}
                                                 </h4>
-                                                <p className="text-sm text-gray-600 mb-3">
+                                                <p className="text-sm text-ink-muted mb-3">
                                                     {item.description}
                                                 </p>
-                                                <p className="text-xs text-gray-500 leading-relaxed">
+                                                <p className="text-xs text-ink-muted leading-relaxed">
                                                     {item.detail}
                                                 </p>
                                             </div>
@@ -205,59 +205,59 @@ export default function FeaturesPage() {
                 </div>
 
                 {/* 技术优势 */}
-                <div className="bg-white rounded-lg shadow-sm border p-6 mt-8">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">技术优势</h3>
+                <div className="bg-white rounded-lg border border-line p-6 mt-16">
+                    <h3 className="text-lg font-semibold text-ink mb-6 text-center">技术优势</h3>
                     <div className="grid md:grid-cols-4 gap-6">
                         <div className="text-center">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-info-tint text-info rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
                             </div>
-                            <h4 className="font-medium text-gray-900 mb-2">Canvas API</h4>
-                            <p className="text-sm text-gray-600">硬件加速的图像处理</p>
+                            <h4 className="font-medium text-ink mb-2">Canvas API</h4>
+                            <p className="text-sm text-ink-muted">硬件加速的图像处理</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-brand-tint text-brand rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
-                            <h4 className="font-medium text-gray-900 mb-2">Web Workers</h4>
-                            <p className="text-sm text-gray-600">后台批量处理</p>
+                            <h4 className="font-medium text-ink mb-2">Web Workers</h4>
+                            <p className="text-sm text-ink-muted">后台批量处理</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-12 h-12 bg-[#fff0df] text-[#b45c16] rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-copper-tint text-copper rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
                             </div>
-                            <h4 className="font-medium text-gray-900 mb-2">Memory Safe</h4>
-                            <p className="text-sm text-gray-600">智能内存管理</p>
+                            <h4 className="font-medium text-ink mb-2">Memory Safe</h4>
+                            <p className="text-sm text-ink-muted">智能内存管理</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-wash text-ink-muted rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                 </svg>
                             </div>
-                            <h4 className="font-medium text-gray-900 mb-2">开源透明</h4>
-                            <p className="text-sm text-gray-600">代码完全开放</p>
+                            <h4 className="font-medium text-ink mb-2">开源透明</h4>
+                            <p className="text-sm text-ink-muted">代码完全开放</p>
                         </div>
                     </div>
                 </div>
 
                 {/* 立即体验 */}
-                <div className="bg-[#eef6f3] rounded-lg border border-[#cfe3dc] p-8 mt-8">
+                <div className="bg-surface-tint rounded-lg border border-line-strong p-8 mt-16">
                     <div className="text-center">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">立即体验这些强大功能</h3>
-                        <p className="text-gray-600 mb-6">
+                        <h3 className="text-xl font-semibold text-ink mb-4">立即体验这些强大功能</h3>
+                        <p className="text-ink-muted mb-6">
                             无需注册，无需下载，在浏览器中即可享受专业级的图片处理体验
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
                                 href="/"
-                                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                                className="inline-flex items-center px-6 py-3 bg-brand text-white text-sm font-medium rounded-lg hover:bg-brand-hover transition-colors"
                             >
                                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1M12 12l.01.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -266,7 +266,7 @@ export default function FeaturesPage() {
                             </Link>
                             <Link
                                 href="/user-guide"
-                                className="inline-flex items-center px-6 py-3 bg-white text-blue-600 text-sm font-medium rounded-lg border border-blue-600 hover:bg-blue-50 transition-colors"
+                                className="inline-flex items-center px-6 py-3 bg-white text-brand text-sm font-medium rounded-lg border border-brand hover:bg-brand-tint transition-colors"
                             >
                                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />

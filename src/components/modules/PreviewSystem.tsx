@@ -427,9 +427,9 @@ export const PreviewSystem: React.FC<PreviewSystemProps> = ({
 
   if (!selectedImage) {
     return (
-      <div className="h-full flex items-center justify-center bg-white rounded-lg border border-gray-200 shadow-sm">
-        <div className="text-gray-500 text-center">
-          <div className="mx-auto w-16 h-16 text-gray-400 mb-4">
+      <div className="h-full flex items-center justify-center bg-white rounded-lg border border-line">
+        <div className="text-ink-muted text-center">
+          <div className="mx-auto w-16 h-16 text-ink-faint mb-4">
             <svg fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
             </svg>
@@ -443,10 +443,10 @@ export const PreviewSystem: React.FC<PreviewSystemProps> = ({
   const { width: displayWidth, height: displayHeight } = getDisplaySize();
 
   return (
-    <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 shadow-sm">
+    <div className="h-full flex flex-col bg-white rounded-lg border border-line">
       {/* 工具栏 */}
-      <div className="flex-shrink-0 px-3 py-2 border-b border-gray-200 flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-900">实时预览</h3>
+      <div className="flex-shrink-0 px-3 py-2 border-b border-line flex items-center justify-between">
+        <h3 className="text-sm font-medium text-ink">实时预览</h3>
 
         {/* 缩放控制 */}
         <div className="flex items-center gap-1">
@@ -459,7 +459,7 @@ export const PreviewSystem: React.FC<PreviewSystemProps> = ({
           >
             -
           </Button>
-          <span className="text-xs text-gray-600 min-w-12 text-center">
+          <span className="text-xs text-ink-muted min-w-12 text-center">
             {Math.round(zoom * 100)}%
           </span>
           <Button
@@ -477,7 +477,7 @@ export const PreviewSystem: React.FC<PreviewSystemProps> = ({
       {/* 预览区域 */}
       <div
         ref={containerRef}
-        className="flex-1 relative p-2 bg-gray-50 overflow-auto min-h-0"
+        className="flex-1 relative p-2 bg-canvas overflow-auto min-h-0"
       >
         <div className="relative mx-auto image-container" style={{ width: displayWidth, height: displayHeight }}>
           {/* 原图 */}

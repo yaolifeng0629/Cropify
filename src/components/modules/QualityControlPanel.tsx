@@ -17,10 +17,10 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
   onSettingsChange,
 }) => {
   const qualityOptionClasses = {
-    default: 'text-slate-600 hover:bg-slate-100',
-    low: 'bg-rose-600 text-white',
-    balanced: 'bg-amber-400 text-[#1f2b29]',
-    high: 'bg-emerald-600 text-white',
+    default: 'text-ink-muted hover:bg-wash',
+    low: 'bg-destructive text-white',
+    balanced: 'bg-copper text-white',
+    high: 'bg-brand text-white',
   };
 
   // 处理设置变化
@@ -50,11 +50,11 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900 mb-3">输出</h3>
+      <h3 className="text-sm font-medium text-ink mb-3">输出</h3>
       <div className="space-y-3">
         {/* 输出格式选择 */}
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-3">输出格式</h4>
+          <h4 className="text-sm font-medium text-ink mb-3">输出格式</h4>
           <div className="grid grid-cols-3 gap-2">
             {[
               { value: 'jpg', label: 'JPG' },
@@ -66,8 +66,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
                 onClick={() => handleSettingChange('format', format.value as 'jpg' | 'png' | 'webp')}
                 className={`flex items-center justify-center min-h-11 p-3 border rounded-lg transition-colors ${
                   outputSettings.format === format.value
-                    ? 'border-blue-500 bg-blue-50 text-blue-700'
-                    : 'border-gray-300 hover:border-gray-400'
+                    ? 'border-crop bg-crop-tint text-crop-hover'
+                    : 'border-line-strong hover:border-ink-faint'
                 }`}
               >
                 <span className="text-sm font-medium">{format.label}</span>
@@ -77,14 +77,14 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         </div>
 
         {/* 质量设置 */}
-        <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">
+        <div className="pt-3 border-t border-line">
+          <h4 className="text-sm font-medium text-ink mb-3">
             {outputSettings.format === 'png' ? '压缩级别' : '输出质量'}
           </h4>
 
           {/* 质量滑块 */}
           <div className="mb-3">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+            <div className="flex items-center justify-between text-sm text-ink-muted mb-2">
               <span>
                 {outputSettings.format === 'png' ? '压缩级别' : '质量'}
               </span>
@@ -102,7 +102,7 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
               step={1}
               value={outputSettings.quality}
               onChange={(e) => handleSettingChange('quality', parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full h-2 bg-wash rounded-lg appearance-none cursor-pointer"
             />
           </div>
 
@@ -162,8 +162,8 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         </div>
 
         {/* 文件命名设置 */}
-        <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">文件命名</h4>
+        <div className="pt-3 border-t border-line">
+          <h4 className="text-sm font-medium text-ink mb-3">文件命名</h4>
 
           {/* 保持原文件名 */}
           <div className="space-y-3">
@@ -172,32 +172,32 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
                 type="checkbox"
                 checked={outputSettings.maintainOriginalName || false}
                 onChange={(e) => handleSettingChange('maintainOriginalName', e.target.checked)}
-                className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="mr-2 h-4 w-4 accent-brand border-input rounded"
               />
-              <span className="text-sm text-gray-700">保持原文件名</span>
+              <span className="text-sm text-ink">保持原文件名</span>
             </label>
 
             {/* 前缀和后缀 */}
             {!outputSettings.maintainOriginalName && (
               <div className="space-y-2">
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">文件名前缀</label>
+                  <label className="block text-xs text-ink-muted mb-1">文件名前缀</label>
                   <input
                     type="text"
                     value={outputSettings.filenamePrefix || ''}
                     onChange={(e) => handleSettingChange('filenamePrefix', e.target.value)}
                     placeholder="例如: cropped_"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">文件名后缀</label>
+                  <label className="block text-xs text-ink-muted mb-1">文件名后缀</label>
                   <input
                     type="text"
                     value={outputSettings.filenameSuffix || ''}
                     onChange={(e) => handleSettingChange('filenameSuffix', e.target.value)}
                     placeholder="例如: _small"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-transparent"
                   />
                 </div>
               </div>
@@ -206,9 +206,9 @@ export const QualityControlPanel: React.FC<QualityControlPanelProps> = ({
         </div>
 
         {/* 预估信息 */}
-        <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">输出预估</h4>
-          <div className="text-xs text-gray-600 space-y-1">
+        <div className="pt-3 border-t border-line">
+          <h4 className="text-sm font-medium text-ink mb-2">输出预估</h4>
+          <div className="text-xs text-ink-muted space-y-1">
             <div className="flex justify-between">
               <span>输出格式:</span>
               <span className="font-medium">{outputSettings.format.toUpperCase()}</span>

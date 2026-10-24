@@ -88,7 +88,7 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
         {/* 上传中状态指示 */}
         {isUploading && (
           <div className="absolute inset-0 bg-white bg-opacity-80 rounded-lg flex items-center justify-center">
-            <div className="flex items-center gap-3 text-blue-600">
+            <div className="flex items-center gap-3 text-info">
               <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                 <circle
                   className="opacity-25"
@@ -135,13 +135,13 @@ export const ImageImportManager: React.FC<ImageImportManagerProps> = ({
       {/* 使用提示 */}
       {images.length === 0 && !isUploading && (
         <div className="flex-1 flex items-center justify-center">
-          <div className="text-center text-gray-500">
+          <div className="text-center text-ink-muted">
             <div className="max-w-md mx-auto space-y-2">
-              <h3 className="font-medium text-gray-900">开始使用 Cropify</h3>
+              <h3 className="font-medium text-ink">开始使用 Cropify</h3>
               <p className="text-sm">
                 选择或拖拽图片文件到上方区域开始批量裁剪
               </p>
-              <div className="text-xs space-y-1 text-gray-400">
+              <div className="text-xs space-y-1 text-ink-faint">
                 <p>最多可同时处理 {APP_CONFIG.MAX_BATCH_SIZE} 张图片</p>
                 <p>可使用 Ctrl+V 直接粘贴剪贴板中的图片</p>
                 <p>所有处理都在本地完成，保护您的隐私</p>

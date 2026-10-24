@@ -1,0 +1,18 @@
+<svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cropify 品牌标识（横向）：批量图卡 + 裁剪框标记 + 字标 -->
+  <g>
+    <rect x="4" y="4" width="32" height="32" rx="7" fill="#00695c"/>
+    <path d="M11 5.5h18" stroke="#3fcab2" stroke-width="1" opacity="0.35"/>
+    <rect x="15" y="9.5" width="14.5" height="14.5" rx="3" fill="#ffffff" opacity="0.32"/>
+    <rect x="10.5" y="15.5" width="16.5" height="15" rx="3" fill="#ffffff"/>
+    <path d="M13.5 30h11" stroke="#00695c" stroke-width="1" opacity="0.14"/>
+    <g stroke="#00695c" stroke-width="1.5" stroke-linecap="round" fill="none">
+      <path d="M16.4 18.4H14V20.8"/>
+      <path d="M21.6 18.4H24V20.8"/>
+      <path d="M16.4 27.4H14V25"/>
+      <path d="M21.6 27.4H24V25"/>
+    </g>
+    <circle cx="19" cy="22.9" r="1" fill="#00695c"/>
+  </g>
+  <text x="46" y="27.5" font-family="Geist, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="-0.4" fill="#14221f">Cropify</text>
+</svg>

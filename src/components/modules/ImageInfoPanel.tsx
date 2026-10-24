@@ -23,42 +23,42 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
       <Card title="批处理概览" className="bg-white">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">
+            <div className="text-2xl font-bold text-info">
               {batchSummary.totalCount}
             </div>
-            <div className="text-sm text-gray-500">总数量</div>
+            <div className="text-sm text-ink-muted">总数量</div>
           </div>
 
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-brand">
               {batchSummary.completedCount}
             </div>
-            <div className="text-sm text-gray-500">已处理</div>
+            <div className="text-sm text-ink-muted">已处理</div>
           </div>
 
           <div className="text-center">
-            <div className="text-2xl font-bold text-yellow-600">
+            <div className="text-2xl font-bold text-copper">
               {batchSummary.pendingCount + batchSummary.processingCount}
             </div>
-            <div className="text-sm text-gray-500">待处理</div>
+            <div className="text-sm text-ink-muted">待处理</div>
           </div>
 
           <div className="text-center">
-            <div className="text-2xl font-bold text-red-600">
+            <div className="text-2xl font-bold text-destructive">
               {batchSummary.failedCount}
             </div>
-            <div className="text-sm text-gray-500">失败</div>
+            <div className="text-sm text-ink-muted">失败</div>
           </div>
         </div>
 
         {/* 总文件大小和预估时间 */}
-        <div className="mt-6 pt-4 border-t border-gray-200">
+        <div className="mt-6 pt-4 border-t border-line">
           <div className="flex justify-between items-center text-sm">
-            <div className="text-gray-600">
+            <div className="text-ink-muted">
               总文件大小: <span className="font-medium">{formatFileSize(batchSummary.totalSize)}</span>
             </div>
             {batchSummary.estimatedTime && batchSummary.estimatedTime > 0 && (
-              <div className="text-gray-600">
+              <div className="text-ink-muted">
                 预估完成时间: <span className="font-medium">{Math.ceil(batchSummary.estimatedTime / 60)} 分钟</span>
               </div>
             )}
@@ -68,13 +68,13 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
         {/* 进度条 */}
         {batchSummary.totalCount > 0 && (
           <div className="mt-4">
-            <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
+            <div className="flex justify-between items-center text-sm text-ink-muted mb-2">
               <span>整体进度</span>
               <span>{Math.round((batchSummary.completedCount / batchSummary.totalCount) * 100)}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-wash rounded-full h-2">
               <div
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                className="bg-brand h-2 rounded-full transition-all duration-300"
                 style={{
                   width: `${(batchSummary.completedCount / batchSummary.totalCount) * 100}%`
                 }}
@@ -90,8 +90,8 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
           <div className="space-y-6">
             {/* 图片预览 */}
             <div className="space-y-3">
-              <h4 className="font-medium text-gray-900 text-base">预览图</h4>
-              <div className="w-full max-w-xs mx-auto aspect-square bg-gray-50 rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+              <h4 className="font-medium text-ink text-base">预览图</h4>
+              <div className="w-full max-w-xs mx-auto aspect-square bg-canvas rounded-lg border border-line overflow-hidden">
                 <img
                   src={selectedImage.url}
                   alt={selectedImage.name}
@@ -102,14 +102,14 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
 
             {/* 图片属性信息 */}
             <div className="space-y-4">
-              <h4 className="font-medium text-gray-900 text-base border-b border-gray-100 pb-2">基础信息</h4>
+              <h4 className="font-medium text-ink text-base border-b border-line pb-2">基础信息</h4>
 
               <div className="space-y-4">
                 {/* 文件名称 - 单独一行显示 */}
                 <div className="space-y-1">
-                  <span className="text-sm text-gray-500 font-medium">文件名称:</span>
-                  <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                    <span className="text-sm font-medium text-gray-900 break-all" title={selectedImage.name}>
+                  <span className="text-sm text-ink-muted font-medium">文件名称:</span>
+                  <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                    <span className="text-sm font-medium text-ink break-all" title={selectedImage.name}>
                       {selectedImage.name}
                     </span>
                   </div>
@@ -117,55 +117,55 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
 
                 {/* 其他信息使用网格布局 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                    <div className="text-xs text-gray-500 mb-1">图片尺寸</div>
-                    <div className="text-sm font-medium text-gray-900">
+                  <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                    <div className="text-xs text-ink-muted mb-1">图片尺寸</div>
+                    <div className="text-sm font-medium text-ink">
                       {selectedImage.width} × {selectedImage.height} px
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                    <div className="text-xs text-gray-500 mb-1">文件大小</div>
-                    <div className="text-sm font-medium text-gray-900">
+                  <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                    <div className="text-xs text-ink-muted mb-1">文件大小</div>
+                    <div className="text-sm font-medium text-ink">
                       {formatFileSize(selectedImage.size)}
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                    <div className="text-xs text-gray-500 mb-1">图片格式</div>
-                    <div className="text-sm font-medium text-gray-900">
+                  <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                    <div className="text-xs text-ink-muted mb-1">图片格式</div>
+                    <div className="text-sm font-medium text-ink">
                       {selectedImage.type.split('/')[1]?.toUpperCase()}
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                    <div className="text-xs text-gray-500 mb-1">宽高比</div>
-                    <div className="text-sm font-medium text-gray-900">
+                  <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                    <div className="text-xs text-ink-muted mb-1">宽高比</div>
+                    <div className="text-sm font-medium text-ink">
                       {(selectedImage.width / selectedImage.height).toFixed(2)} : 1
                     </div>
                   </div>
 
                   {selectedImage.dpi && (
-                    <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                      <div className="text-xs text-gray-500 mb-1">分辨率</div>
-                      <div className="text-sm font-medium text-gray-900">
+                    <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                      <div className="text-xs text-ink-muted mb-1">分辨率</div>
+                      <div className="text-sm font-medium text-ink">
                         {selectedImage.dpi} DPI
                       </div>
                     </div>
                   )}
 
                   {selectedImage.colorMode && (
-                    <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                      <div className="text-xs text-gray-500 mb-1">色彩模式</div>
-                      <div className="text-sm font-medium text-gray-900">
+                    <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                      <div className="text-xs text-ink-muted mb-1">色彩模式</div>
+                      <div className="text-sm font-medium text-ink">
                         {selectedImage.colorMode}
                       </div>
                     </div>
                   )}
 
-                  <div className="bg-gray-50 rounded-md px-3 py-2 border">
-                    <div className="text-xs text-gray-500 mb-1">最后修改</div>
-                    <div className="text-sm font-medium text-gray-900">
+                  <div className="bg-canvas rounded-md px-3 py-2 border border-line">
+                    <div className="text-xs text-ink-muted mb-1">最后修改</div>
+                    <div className="text-sm font-medium text-ink">
                       {new Date(selectedImage.lastModified).toLocaleDateString('zh-CN')}
                     </div>
                   </div>
@@ -176,8 +176,8 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
         </Card>
       ) : (
         <Card title="图片详细信息" className="bg-white">
-          <div className="text-center py-12 text-gray-500">
-            <div className="mx-auto w-20 h-20 text-gray-300 mb-6">
+          <div className="text-center py-12 text-ink-muted">
+            <div className="mx-auto w-20 h-20 text-ink-faint mb-6">
               <svg fill="currentColor" viewBox="0 0 24 24" className="w-full h-full">
                 <path
                   fillRule="evenodd"
@@ -187,8 +187,8 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
               </svg>
             </div>
             <div className="space-y-2">
-              <p className="text-base font-medium text-gray-600">暂无选中图片</p>
-              <p className="text-sm text-gray-400">请从左侧列表中选择一张图片查看详细信息</p>
+              <p className="text-base font-medium text-ink-muted">暂无选中图片</p>
+              <p className="text-sm text-ink-faint">请从左侧列表中选择一张图片查看详细信息</p>
             </div>
           </div>
         </Card>

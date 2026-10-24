@@ -87,7 +87,7 @@ export const Card: React.FC<CardProps> = ({
     <ShadcnCard className={cn('bg-white', className)}>
       {title && (
         <CardHeader className="border-b">
-          <CardTitle className="text-lg font-medium text-gray-900">{title}</CardTitle>
+          <CardTitle className="text-lg font-medium text-ink">{title}</CardTitle>
         </CardHeader>
       )}
       <CardContent className={cn(paddingClasses[padding], title ? 'pt-6' : '')}>
@@ -149,7 +149,7 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* 背景遮罩 */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/50"
         onClick={onClose}
       />
 
@@ -161,13 +161,13 @@ export const Modal: React.FC<ModalProps> = ({
       )}>
         {/* 头部 */}
         {title && (
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+          <div className="flex items-center justify-between p-6 border-b border-line">
+            <h2 className="text-lg font-semibold text-ink">{title}</h2>
             <button
               onClick={onClose}
-              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-1 hover:bg-muted rounded-full transition-colors"
             >
-              <X className="w-5 h-5 text-gray-500" />
+              <X className="w-5 h-5 text-ink-muted" />
             </button>
           </div>
         )}
@@ -199,19 +199,19 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 }) => {
   const clampedValue = Math.min(Math.max(value, 0), 100);
 
-  // 颜色映射到 CSS 变量
+  // 颜色映射到 DESIGN.md 令牌：信息=蓝、正向进展=青、错误=红、注意=铜
   const colorClasses = {
-    blue: '[&>div]:bg-blue-600',
-    green: '[&>div]:bg-green-600',
-    red: '[&>div]:bg-red-600',
-    yellow: '[&>div]:bg-yellow-600',
+    blue: '[&>div]:bg-info',
+    green: '[&>div]:bg-brand',
+    red: '[&>div]:bg-destructive',
+    yellow: '[&>div]:bg-copper',
   };
 
   return (
     <div className={cn('w-full', className)}>
       {showPercentage && (
         <div className="flex justify-between items-center mb-1">
-          <span className="text-sm font-medium text-gray-700">{clampedValue.toFixed(0)}%</span>
+          <span className="text-sm font-medium text-ink">{clampedValue.toFixed(0)}%</span>
         </div>
       )}
       <ShadcnProgress

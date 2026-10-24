@@ -60,13 +60,13 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900 mb-3">批处理工作流</h3>
+      <h3 className="text-sm font-medium text-ink mb-3">批处理工作流</h3>
       <div className="space-y-4">
         {/* 整体进度 */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700">整体进度</span>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm font-medium text-ink">整体进度</span>
+            <span className="text-sm text-ink-muted">
               {stats.completed}/{stats.total} 完成
             </span>
           </div>
@@ -77,9 +77,9 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
           />
           <div className="mt-2 text-center">
             <span className={`text-sm font-medium ${
-              isCompleted ? 'text-green-600' :
-              hasErrors ? 'text-red-600' :
-              isProcessing ? 'text-blue-600' : 'text-gray-600'
+              isCompleted ? 'text-brand' :
+              hasErrors ? 'text-destructive' :
+              isProcessing ? 'text-info' : 'text-ink-muted'
             }`}>
               {getProcessingStatus()}
             </span>
@@ -88,28 +88,28 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
 
         {/* 统计信息 */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="text-center p-3 bg-green-50 rounded-lg">
-            <div className="text-2xl font-bold text-green-600">{stats.completed}</div>
-            <div className="text-xs text-green-600">已完成</div>
+          <div className="text-center p-3 bg-brand-tint rounded-lg">
+            <div className="text-2xl font-bold text-brand">{stats.completed}</div>
+            <div className="text-xs text-brand">已完成</div>
           </div>
-          <div className="text-center p-3 bg-blue-50 rounded-lg">
-            <div className="text-2xl font-bold text-blue-600">{stats.processing}</div>
-            <div className="text-xs text-blue-600">处理中</div>
+          <div className="text-center p-3 bg-info-tint rounded-lg">
+            <div className="text-2xl font-bold text-info">{stats.processing}</div>
+            <div className="text-xs text-info">处理中</div>
           </div>
-          <div className="text-center p-3 bg-yellow-50 rounded-lg">
-            <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
-            <div className="text-xs text-yellow-600">等待中</div>
+          <div className="text-center p-3 bg-copper-tint rounded-lg">
+            <div className="text-2xl font-bold text-copper">{stats.pending}</div>
+            <div className="text-xs text-copper">等待中</div>
           </div>
-          <div className="text-center p-3 bg-red-50 rounded-lg">
-            <div className="text-2xl font-bold text-red-600">{stats.failed}</div>
-            <div className="text-xs text-red-600">失败</div>
+          <div className="text-center p-3 bg-error-tint rounded-lg">
+            <div className="text-2xl font-bold text-destructive">{stats.failed}</div>
+            <div className="text-xs text-destructive">失败</div>
           </div>
         </div>
 
         {/* 当前处理设置 */}
-        <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-2">处理设置</h4>
-          <div className="text-xs text-gray-600 space-y-1">
+        <div className="pt-3 border-t border-line">
+          <h4 className="text-sm font-medium text-ink mb-2">处理设置</h4>
+          <div className="text-xs text-ink-muted space-y-1">
             <div className="flex justify-between">
               <span>裁剪尺寸:</span>
               <span>{Math.round(cropParams.width)} × {Math.round(cropParams.height)}px</span>
@@ -154,10 +154,10 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
 
 
         {/* 详细信息展开/收起 */}
-        <div className="pt-3 border-t border-gray-200">
+        <div className="pt-3 border-t border-line">
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="w-full flex items-center justify-between text-sm text-gray-600 hover:text-gray-900"
+            className="w-full flex items-center justify-between text-sm text-ink-muted hover:text-ink"
           >
             <span>任务详情</span>
             <span className={`transform transition-transform ${showDetails ? 'rotate-180' : ''}`}>
@@ -169,7 +169,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
             <div className="mt-4 max-h-60 overflow-y-auto">
               <div className="space-y-2">
                 {tasks.length === 0 ? (
-                  <div className="text-center text-gray-500 py-4">
+                  <div className="text-center text-ink-muted py-4">
                     <p>暂无处理任务</p>
                   </div>
                 ) : (
@@ -181,23 +181,23 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
                       <div
                         key={task.id}
                         className={`p-3 rounded-md border ${
-                          task.status === ProcessStatus.COMPLETED ? 'border-emerald-200 bg-emerald-50' :
-                          task.status === ProcessStatus.FAILED ? 'border-rose-200 bg-rose-50' :
-                          task.status === ProcessStatus.PROCESSING ? 'border-blue-200 bg-blue-50' :
-                          task.status === ProcessStatus.CANCELLED ? 'border-slate-200 bg-slate-50' :
-                          'border-amber-200 bg-amber-50'
+                          task.status === ProcessStatus.COMPLETED ? 'border-brand/25 bg-brand-tint' :
+                          task.status === ProcessStatus.FAILED ? 'border-destructive/25 bg-error-tint' :
+                          task.status === ProcessStatus.PROCESSING ? 'border-crop/25 bg-crop-tint' :
+                          task.status === ProcessStatus.CANCELLED ? 'border-line bg-wash' :
+                          'border-copper/25 bg-copper-tint'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex-1 min-w-0">
-                            <div className="text-sm font-medium text-gray-900 truncate">
+                            <div className="text-sm font-medium text-ink truncate">
                               {image.name}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-ink-muted">
                               {formatFileSize(image.size)} • {image.width} × {image.height}
                             </div>
                             {task.error && (
-                              <div className="text-xs text-red-600 mt-1">
+                              <div className="text-xs text-destructive mt-1">
                                 错误: {task.error}
                               </div>
                             )}
@@ -205,16 +205,16 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
 
                           <div className="flex items-center gap-2">
                             {task.status === ProcessStatus.PROCESSING && (
-                              <div className="text-xs text-blue-600">
+                              <div className="text-xs text-crop">
                                 {Math.round(task.progress)}%
                               </div>
                             )}
                             <div className={`text-xs px-2 py-1 rounded ${
-                              task.status === ProcessStatus.COMPLETED ? 'bg-green-100 text-green-800' :
-                              task.status === ProcessStatus.FAILED ? 'bg-red-100 text-red-800' :
-                              task.status === ProcessStatus.PROCESSING ? 'bg-blue-100 text-blue-800' :
-                              task.status === ProcessStatus.CANCELLED ? 'bg-gray-100 text-gray-800' :
-                              'bg-yellow-100 text-yellow-800'
+                              task.status === ProcessStatus.COMPLETED ? 'bg-brand-tint text-brand' :
+                              task.status === ProcessStatus.FAILED ? 'bg-error-tint text-destructive' :
+                              task.status === ProcessStatus.PROCESSING ? 'bg-crop-tint text-crop-hover' :
+                              task.status === ProcessStatus.CANCELLED ? 'bg-wash text-ink-muted' :
+                              'bg-copper-tint text-copper'
                             }`}>
                               {task.status === ProcessStatus.COMPLETED ? '完成' :
                                task.status === ProcessStatus.FAILED ? '失败' :
@@ -245,12 +245,12 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
 
         {/* 性能提示 */}
         {stats.total > 10 && (
-          <div className="pt-3 border-t border-gray-200">
-            <div className="p-3 bg-yellow-50 rounded-lg">
+          <div className="pt-3 border-t border-line">
+            <div className="p-3 bg-copper-tint rounded-lg">
               <div className="flex items-center mb-1">
-                <span className="text-sm font-medium text-yellow-800">性能提示</span>
+                <span className="text-sm font-medium text-copper">性能提示</span>
               </div>
-              <div className="text-xs text-yellow-700">
+              <div className="text-xs text-copper">
                 <p>• 大批量处理时建议降低输出质量以提升速度</p>
                 <p>• 处理过程中请避免切换到其他应用程序</p>
                 <p>• 如遇到内存不足，可分批次处理</p>

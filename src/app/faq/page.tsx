@@ -127,72 +127,72 @@ export default function FAQPage() {
     };
 
     return (
-        <div className="site-page min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-canvas">
             {/* 页面头部 */}
-            <div className="bg-white shadow-sm border-b">
+            <div className="bg-white border-b border-line">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
-                        <Link href="/" className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                        <Link href="/" className="flex items-center space-x-2 text-info hover:text-info-hover transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
                             <span>返回首页</span>
                         </Link>
-                        <h1 className="text-2xl font-bold text-gray-900">常见问题</h1>
+                        <h1 className="text-2xl font-bold text-ink">常见问题</h1>
                         <div className="w-20"></div>
                     </div>
                 </div>
             </div>
 
             {/* 主要内容 */}
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {/* 简介 */}
-                <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+                <div className="bg-white rounded-lg border border-line p-6 mb-16">
                     <div className="flex items-center space-x-3 mb-4">
-                        <div className="w-10 h-10 bg-[#b45c16] rounded-lg flex items-center justify-center">
+                        <div className="w-10 h-10 bg-copper rounded-lg flex items-center justify-center">
                             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
                         <div>
-                            <h2 className="text-xl font-semibold text-gray-900">常见问题解答</h2>
-                            <p className="text-gray-600">快速找到您需要的答案</p>
+                            <h2 className="text-xl font-semibold text-ink">常见问题解答</h2>
+                            <p className="text-ink-muted">快速找到您需要的答案</p>
                         </div>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-ink leading-relaxed">
                         这里收集了用户最常遇到的问题和详细解答。如果您没有找到需要的答案，欢迎通过
-                        <Link href="/feedback" className="text-blue-600 hover:text-blue-800 mx-1">意见反馈</Link>
+                        <Link href="/feedback" className="text-info hover:text-info-hover mx-1">意见反馈</Link>
                         联系我们。
                     </p>
                 </div>
 
                 {/* FAQ 内容 */}
                 {faqs.map((category, categoryIndex) => (
-                    <div key={categoryIndex} className="mb-8">
-                        <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-                            <div className="bg-[#eef6f3] px-6 py-4 border-b">
-                                <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-                                    <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full mr-3">
+                    <div key={categoryIndex} className="mb-16">
+                        <div className="bg-white rounded-lg border border-line overflow-hidden">
+                            <div className="bg-surface-tint px-6 py-4 border-b border-line">
+                                <h3 className="text-lg font-semibold text-ink flex items-center">
+                                    <span className="bg-info-tint text-info text-sm font-medium px-3 py-1 rounded-full mr-3">
                                         {category.category}
                                     </span>
                                     {category.questions.length} 个问题
                                 </h3>
                             </div>
-                            <div className="divide-y divide-gray-200">
+                            <div className="divide-y divide-line">
                                 {category.questions.map((faq, questionIndex) => {
                                     const globalIndex = categoryIndex * 1000 + questionIndex;
                                     const isOpen = openIndex === globalIndex;
 
                                     return (
-                                        <div key={questionIndex} className="border-b border-gray-100 last:border-b-0">
+                                        <div key={questionIndex} className="border-b border-line last:border-b-0">
                                             <button
                                                 onClick={() => toggleFAQ(globalIndex)}
-                                                className="w-full text-left px-6 py-4 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors"
+                                                className="w-full text-left px-6 py-4 hover:bg-wash focus:outline-none focus:bg-wash transition-colors"
                                             >
                                                 <div className="flex items-center justify-between">
-                                                    <h4 className="text-gray-900 font-medium pr-4">{faq.question}</h4>
+                                                    <h4 className="text-ink font-medium pr-4">{faq.question}</h4>
                                                     <svg
-                                                        className={`w-5 h-5 text-gray-500 transform transition-transform ${
+                                                        className={`w-5 h-5 text-ink-muted transform transition-transform ${
                                                             isOpen ? 'rotate-180' : ''
                                                         }`}
                                                         fill="none"
@@ -205,7 +205,7 @@ export default function FAQPage() {
                                             </button>
                                             {isOpen && (
                                                 <div className="px-6 pb-4">
-                                                    <div className="text-blue-900 leading-relaxed px-4 py-3 rounded-md border border-blue-200 bg-blue-50">
+                                                    <div className="text-info leading-relaxed px-4 py-3 rounded-md border border-info/20 bg-info-tint">
                                                         {faq.answer}
                                                     </div>
                                                 </div>
@@ -219,21 +219,21 @@ export default function FAQPage() {
                 ))}
 
                 {/* 联系我们 */}
-                <div className="bg-[#eef6f3] rounded-lg border border-[#cfe3dc] p-6">
+                <div className="bg-surface-tint rounded-lg border border-line-strong p-6">
                     <div className="text-center">
-                        <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div className="w-12 h-12 bg-info-tint text-info rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">没找到您要的答案？</h3>
-                        <p className="text-gray-600 mb-4">
+                        <h3 className="text-lg font-semibold text-ink mb-2">没找到您要的答案？</h3>
+                        <p className="text-ink-muted mb-4">
                             我们很乐意帮助您解决问题！请通过以下方式联系我们：
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <Link
                                 href="/feedback"
-                                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                                className="inline-flex items-center px-4 py-2 bg-brand text-white text-sm font-medium rounded-lg hover:bg-brand-hover transition-colors"
                             >
                                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -242,7 +242,7 @@ export default function FAQPage() {
                             </Link>
                             <a
                                 href="mailto:yaolifeng666@gmail.com"
-                                className="inline-flex items-center px-4 py-2 bg-white text-blue-600 text-sm font-medium rounded-lg border border-blue-600 hover:bg-blue-50 transition-colors"
+                                className="inline-flex items-center px-4 py-2 bg-white text-brand text-sm font-medium rounded-lg border border-brand hover:bg-brand-tint transition-colors"
                             >
                                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

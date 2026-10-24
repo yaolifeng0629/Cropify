@@ -11,7 +11,8 @@ interface LogoProps {
 }
 
 /**
- * Cropify Logo 组件 - 现代化设计的品牌标识
+ * Cropify Logo 组件 - 遵循 DESIGN.md 的扁平品牌标识
+ * 主青（#00695c）底 + 白色裁剪标记；无渐变、无投影
  */
 export const Logo: React.FC<LogoProps> = ({
     size = 'md',
@@ -40,19 +41,20 @@ export const Logo: React.FC<LogoProps> = ({
     const getVariantClasses = () => {
         switch (variant) {
             case 'white':
+                // 墨绿导航内保持品牌青托板，文字反白
                 return {
-                    container: 'bg-white text-blue-600',
+                    container: 'bg-[#00695c]',
                     text: 'text-white'
                 };
             case 'dark':
                 return {
-                    container: 'bg-gray-900 text-white',
-                    text: 'text-gray-900'
+                    container: 'bg-ink',
+                    text: 'text-white'
                 };
             default:
                 return {
-                    container: 'bg-[#00695c] text-white',
-                    text: 'text-[#0f3d36]'
+                    container: 'bg-[#00695c]',
+                    text: 'text-ink'
                 };
         }
     };
@@ -64,54 +66,27 @@ export const Logo: React.FC<LogoProps> = ({
             {/* Logo Icon */}
             <div className="relative">
                 <div className={cn(
-                    "rounded-lg flex items-center justify-center shadow-sm transition-colors duration-200",
+                    "rounded-lg flex items-center justify-center transition-colors duration-200",
                     sizeClasses[size],
                     variantClasses.container
                 )}>
-                    {/* Cropify 专用图标 - 裁剪框和图像的组合 */}
+                    {/* Cropify 专用图标 - 批量图卡 + 裁剪框标记 */}
                     <svg
                         className={logoIconSize[size]}
-                        viewBox="0 0 24 24"
+                        viewBox="0 0 32 32"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
                     >
-                        {/* 外层图像框架 */}
-                        <rect
-                            x="2"
-                            y="2"
-                            width="20"
-                            height="20"
-                            rx="3"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            fill="none"
-                        />
-
-                        {/* 内层裁剪框 - 用虚线表示裁剪区域 */}
-                        <rect
-                            x="6"
-                            y="6"
-                            width="12"
-                            height="8"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeDasharray="2,2"
-                            fill="none"
-                        />
-
-                        {/* 裁剪控制点 */}
-                        <circle cx="6" cy="6" r="1" fill="currentColor" />
-                        <circle cx="18" cy="6" r="1" fill="currentColor" />
-                        <circle cx="6" cy="14" r="1" fill="currentColor" />
-                        <circle cx="18" cy="14" r="1" fill="currentColor" />
-
-                        {/* 图像内容示意 - 简化的山和太阳 */}
-                        <path
-                            d="M8 12l2-2 2 2 3-3 1 1v3H8v-1z"
-                            fill="currentColor"
-                            opacity="0.6"
-                        />
-                        <circle cx="14" cy="8.5" r="0.8" fill="currentColor" opacity="0.6" />
+                        <rect x="11" y="5.5" width="14.5" height="14.5" rx="3" fill="#ffffff" opacity="0.32" />
+                        <rect x="6.5" y="11.5" width="16.5" height="15" rx="3" fill="#ffffff" />
+                        <g stroke="#00695c" strokeWidth="1.5" strokeLinecap="round" fill="none">
+                            <path d="M12.4 14.4H10V16.8" />
+                            <path d="M17.6 14.4H20V16.8" />
+                            <path d="M12.4 23.4H10V21" />
+                            <path d="M17.6 23.4H20V21" />
+                        </g>
+                        <circle cx="15" cy="18.9" r="1" fill="#00695c" />
                     </svg>
                 </div>
 
@@ -121,7 +96,7 @@ export const Logo: React.FC<LogoProps> = ({
             {showText && (
                 <div>
                     <h1 className={cn(
-                        "font-bold tracking-tight",
+                        "font-bold tracking-tight leading-none",
                         textSizeClasses[size],
                         variantClasses.text
                     )}>

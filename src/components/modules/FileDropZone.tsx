@@ -120,8 +120,8 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
       className={`
         relative border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 
         ${isDragging 
-          ? 'border-blue-400 bg-blue-50' 
-          : 'border-gray-300 hover:border-gray-400'
+          ? 'border-crop bg-crop-tint' 
+          : 'border-line-strong hover:border-ink-faint'
         }
         ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
       `}
@@ -145,7 +145,7 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
       
       {children || (
         <div className="space-y-4">
-          <div className="mx-auto w-12 h-12 text-gray-400">
+          <div className="mx-auto w-12 h-12 text-ink-faint">
             <svg fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
@@ -156,13 +156,13 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
           </div>
           
           <div>
-            <p className="text-lg font-medium text-gray-900 mb-2">
+            <p className="text-lg font-medium text-ink mb-2">
               {isDragging ? '释放以添加图片' : '添加图片文件'}
             </p>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-ink-muted mb-4">
               拖拽图片文件到此处，或点击选择文件
             </p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-ink-faint">
               支持 JPG、PNG、WebP、BMP、TIFF、GIF 格式
               <br />
               单个文件最大 10MB，最多 {maxFiles} 张
@@ -173,7 +173,7 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
             <Button variant="outline" size="sm">
               选择文件
             </Button>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-ink-faint">
               或使用 Ctrl+V 粘贴剪贴板图片
             </span>
           </div>
@@ -182,8 +182,8 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
       
       {/* 拖拽覆盖层 */}
       {isDragging && (
-        <div className="absolute inset-0 bg-blue-50 bg-opacity-50 rounded-lg flex items-center justify-center">
-          <div className="text-blue-600 font-medium">
+        <div className="absolute inset-0 bg-crop-tint/60 rounded-lg flex items-center justify-center">
+          <div className="text-crop font-medium">
             释放文件以开始上传
           </div>
         </div>

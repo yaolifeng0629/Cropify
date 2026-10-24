@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({
     if (isEditMode) {
         // 编辑模式下的简化头部
         return (
-            <header className="bg-[#14221f] border-b border-white/10 flex-shrink-0">
+            <header className="bg-ink border-b border-white/10 flex-shrink-0">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                         {/* 左侧：Logo 和应用名称 */}
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 href="https://yaolifeng.com/sponsor.html"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-white underline hover:text-blue-300 hover:underline transition-colors"
+                                className="text-white underline hover:text-brand-bright hover:underline transition-colors"
                             >
                                 yaolifeng
                             </a>
@@ -115,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             variant="outline"
                                             size="sm"
                                             onClick={onStartBatch}
-                                            className="bg-emerald-600 border-emerald-500 text-white hover:bg-emerald-700 hover:border-emerald-400 transition-colors duration-200"
+                                            className="bg-brand border-[#0f7a6b] text-white hover:bg-brand-hover hover:border-brand-bright transition-colors duration-200"
                                         >
                                             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-6V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8z" />
@@ -133,7 +133,7 @@ export const Header: React.FC<HeaderProps> = ({
                                                     variant="outline"
                                                     size="sm"
                                                     onClick={onPauseBatch}
-                                                    className="bg-amber-500 border-amber-400 text-[#1f2b29] hover:bg-amber-400 hover:border-amber-300 transition-colors duration-200"
+                                                    className="bg-copper border-[#c56a1f] text-white hover:bg-copper-hover hover:border-copper transition-colors duration-200"
                                                 >
                                                     <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
@@ -153,22 +153,6 @@ export const Header: React.FC<HeaderProps> = ({
                                         </>
                                     )}
 
-                                    {/* 停止/重置按钮 */}
-                                    {/* {onCancelBatch && (
-                                        <Button
-                                            variant="outline"
-                                            size="sm"
-                                            onClick={onCancelBatch}
-                                            disabled={stats.total === 0}
-                                            className="bg-red-600/90 border-red-500/50 text-white hover:bg-red-700/90 hover:border-red-400/60 backdrop-blur-sm transition-all duration-200 disabled:opacity-50"
-                                        >
-                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                            <span className="hidden sm:inline">{isProcessing ? '停止' : '重置'}</span>
-                                            <span className="sm:hidden">{isProcessing ? '停止' : '重置'}</span>
-                                        </Button>
-                                    )} */}
 
                                     {/* 重试失败项目按钮 */}
                                     {hasErrors && onRetryFailed && (
@@ -176,7 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             variant="outline"
                                             size="sm"
                                             onClick={onRetryFailed}
-                                            className="bg-rose-600 border-rose-500 text-white hover:bg-rose-700 hover:border-rose-400 transition-colors duration-200"
+                                            className="bg-destructive border-transparent text-white hover:bg-destructive/90 transition-colors duration-200"
                                         >
                                             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -192,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({
                                             variant="outline"
                                             size="sm"
                                             onClick={() => setIsExportModalOpen(true)}
-                                            className="bg-[#1d4f91] border-[#2f6bb9] text-white hover:bg-[#173f73] hover:border-[#5489ca] transition-colors duration-200"
+                                            className="bg-info border-[#2a64a8] text-white hover:bg-info-hover hover:border-[#5489ca] transition-colors duration-200"
                                         >
                                             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -225,7 +209,7 @@ export const Header: React.FC<HeaderProps> = ({
 
     // 默认模式下的完整头部（用于空状态页面）
     return (
-        <header className="bg-[#14221f] border-b border-white/10 w-full">
+        <header className="bg-ink border-b border-white/10 w-full">
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div className="flex items-center justify-between">
                     {/* 左侧：Logo 和应用名称 */}
@@ -288,7 +272,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={onStartBatch}
-                                        className="bg-emerald-600 border-emerald-500 text-white hover:bg-emerald-700 hover:border-emerald-400 transition-colors duration-200"
+                                        className="bg-brand border-[#0f7a6b] text-white hover:bg-brand-hover hover:border-brand-bright transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-6V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8z" />
@@ -306,7 +290,7 @@ export const Header: React.FC<HeaderProps> = ({
                                                 variant="outline"
                                                 size="sm"
                                                 onClick={onPauseBatch}
-                                                className="bg-amber-500 border-amber-400 text-[#1f2b29] hover:bg-amber-400 hover:border-amber-300 transition-colors duration-200"
+                                                className="bg-copper border-[#c56a1f] text-white hover:bg-copper-hover hover:border-copper transition-colors duration-200"
                                             >
                                                 <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
@@ -326,22 +310,6 @@ export const Header: React.FC<HeaderProps> = ({
                                     </>
                                 )}
 
-                                {/* 停止/重置按钮 */}
-                                {/* {onCancelBatch && (
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={onCancelBatch}
-                                        disabled={stats.total === 0}
-                                        className="bg-red-600/90 border-red-500/50 text-white hover:bg-red-700/90 hover:border-red-400/60 backdrop-blur-sm transition-all duration-200 disabled:opacity-50"
-                                    >
-                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                        <span className="hidden sm:inline">{isProcessing ? '停止' : '重置'}</span>
-                                        <span className="sm:hidden">{isProcessing ? '停止' : '重置'}</span>
-                                    </Button>
-                                )} */}
 
                                 {/* 重试失败项目按钮 */}
                                 {hasErrors && onRetryFailed && (
@@ -349,7 +317,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={onRetryFailed}
-                                            className="bg-rose-600 border-rose-500 text-white hover:bg-rose-700 hover:border-rose-400 transition-colors duration-200"
+                                            className="bg-destructive border-transparent text-white hover:bg-destructive/90 transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -365,7 +333,7 @@ export const Header: React.FC<HeaderProps> = ({
                                         variant="outline"
                                         size="sm"
                                         onClick={() => setIsExportModalOpen(true)}
-                                            className="bg-[#1d4f91] border-[#2f6bb9] text-white hover:bg-[#173f73] hover:border-[#5489ca] transition-colors duration-200"
+                                            className="bg-info border-[#2a64a8] text-white hover:bg-info-hover hover:border-[#5489ca] transition-colors duration-200"
                                     >
                                         <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

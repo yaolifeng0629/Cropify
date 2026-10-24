@@ -54,15 +54,15 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900 mb-3">高级裁剪选项</h3>
+      <h3 className="text-sm font-medium text-ink mb-3">高级裁剪选项</h3>
       <div className="space-y-4">
         {/* 旋转控制 */}
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-3">旋转</h4>
+          <h4 className="text-sm font-medium text-ink mb-3">旋转</h4>
 
           {/* 旋转滑块 */}
           <div className="mb-3">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+            <div className="flex items-center justify-between text-sm text-ink-muted mb-2">
               <span>角度</span>
               <span>{Math.round(rotationInput)}°</span>
             </div>
@@ -73,7 +73,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               step={1}
               value={rotationInput}
               onChange={(e) => handleRotationChange(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full h-2 bg-wash rounded-lg appearance-none cursor-pointer"
             />
           </div>
 
@@ -86,10 +86,10 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
                 onChange={(e) => handleRotationChange(parseInt(e.target.value) || 0)}
                 min={0}
                 max={360}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-input rounded-md text-sm focus:ring-2 focus:ring-ring focus:border-transparent"
                 placeholder="角度"
               />
-              <span className="text-sm text-gray-500">度</span>
+              <span className="text-sm text-ink-muted">度</span>
             </div>
           </div>
 
@@ -131,8 +131,8 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         </div>
 
         {/* 翻转控制 */}
-        <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">翻转</h4>
+        <div className="pt-3 border-t border-line">
+          <h4 className="text-sm font-medium text-ink mb-3">翻转</h4>
 
           <div className="grid grid-cols-2 gap-3">
             {/* 水平翻转 */}
@@ -140,8 +140,8 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               onClick={() => handleParamChange('flipHorizontal', !cropParams.flipHorizontal)}
               className={`flex items-center justify-center p-3 border rounded-lg transition-colors ${
                 cropParams.flipHorizontal
-                  ? 'border-blue-500 bg-blue-50 text-blue-700'
-                  : 'border-gray-300 hover:border-gray-400'
+                  ? 'border-crop bg-crop-tint text-crop-hover'
+                  : 'border-line-strong hover:border-ink-faint'
               }`}
             >
               <div className="text-center">
@@ -155,8 +155,8 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               onClick={() => handleParamChange('flipVertical', !cropParams.flipVertical)}
               className={`flex items-center justify-center p-3 border rounded-lg transition-colors ${
                 cropParams.flipVertical
-                  ? 'border-blue-500 bg-blue-50 text-blue-700'
-                  : 'border-gray-300 hover:border-gray-400'
+                  ? 'border-crop bg-crop-tint text-crop-hover'
+                  : 'border-line-strong hover:border-ink-faint'
               }`}
             >
               <div className="text-center">
@@ -168,12 +168,12 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
         </div>
 
         {/* 圆角设置 */}
-        {/* <div className="pt-3 border-t border-gray-200">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">圆角</h4> */}
+        {/* <div className="pt-3 border-t border-line">
+          <h4 className="text-sm font-medium text-ink mb-3">圆角</h4> */}
 
           {/* 圆角滑块 */}
           {/* <div className="mb-3">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+            <div className="flex items-center justify-between text-sm text-ink-muted mb-2">
               <span>圆角程度</span>
               <span>{Math.round((cropParams.borderRadius || 0) * 100)}%</span>
             </div>
@@ -184,7 +184,7 @@ export const AdvancedCropOptions: React.FC<AdvancedCropOptionsProps> = ({
               step={0.01}
               value={cropParams.borderRadius || 0}
               onChange={(e) => handleParamChange('borderRadius', parseFloat(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full h-2 bg-wash rounded-lg appearance-none cursor-pointer"
             />
           </div> */}
 

@@ -105,19 +105,19 @@ export const CropifyApp: React.FC = () => {
             {isEditMode ? (
                 <div className="flex flex-col md:flex-row flex-1 md:h-0 overflow-visible md:overflow-hidden">
                     {/* 左侧面板 */}
-                    <div className={`bg-white border-b md:border-b-0 md:border-r border-gray-200 transition-all duration-300 ${
+                    <div className={`bg-white border-b md:border-b-0 md:border-r border-line transition-all duration-300 ${
                         leftPanelCollapsed ? 'h-0 md:h-auto md:w-0' : 'w-full md:w-86'
                     } overflow-hidden md:flex-shrink-0`}>
                         <div className="flex flex-col h-full">
                             {/* 左侧面板头部 */}
-                            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white z-10 flex-shrink-0">
-                                <h2 className="text-lg font-medium text-gray-900">图片管理</h2>
+                            <div className="flex items-center justify-between p-4 border-b border-line bg-white z-10 flex-shrink-0">
+                                <h2 className="text-lg font-medium text-ink">图片管理</h2>
                                 <button
                                     onClick={() => setLeftPanelCollapsed(!leftPanelCollapsed)}
-                                    className="hidden md:inline-flex p-1 hover:bg-gray-100 rounded transition-colors"
+                                    className="hidden md:inline-flex p-1 hover:bg-muted rounded transition-colors"
                                     title="收起左侧面板"
                                 >
-                                    <PanelLeftClose className="w-4 h-4 text-gray-500" />
+                                    <PanelLeftClose className="w-4 h-4 text-ink-muted" />
                                 </button>
                             </div>
 
@@ -145,13 +145,13 @@ export const CropifyApp: React.FC = () => {
 
                     {/* 左侧面板收起时的展开按钮 */}
                     {leftPanelCollapsed && (
-                        <div className="hidden md:flex flex-shrink-0 w-8 bg-gray-50 border-r border-gray-200 items-center justify-center">
+                        <div className="hidden md:flex flex-shrink-0 w-8 bg-canvas border-r border-line items-center justify-center">
                             <button
                                 onClick={() => setLeftPanelCollapsed(false)}
-                                className="p-1 hover:bg-gray-200 rounded transition-colors"
+                                className="p-1 hover:bg-wash rounded transition-colors"
                                 title="展开左侧面板"
                             >
-                                <ChevronRight className="w-4 h-4 text-gray-500" />
+                                <ChevronRight className="w-4 h-4 text-ink-muted" />
                             </button>
                         </div>
                     )}
@@ -160,7 +160,7 @@ export const CropifyApp: React.FC = () => {
                     <div className="flex-1 min-w-0 flex flex-col overflow-visible md:overflow-hidden">
                         <div className="flex-1 flex flex-col p-4 lg:p-6 gap-4 overflow-visible md:overflow-hidden">
                             {/* 预览系统 */}
-                            <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden min-h-[320px] md:min-h-0">
+                            <div className="flex-1 bg-white rounded-lg border border-line overflow-hidden min-h-[320px] md:min-h-0">
                                 <PreviewSystem
                                     selectedImage={selectedImage}
                                     cropParams={cropParams}
@@ -181,31 +181,31 @@ export const CropifyApp: React.FC = () => {
 
                     {/* 右侧面板收起时的展开按钮 */}
                     {rightPanelCollapsed && (
-                        <div className="hidden md:flex flex-shrink-0 w-8 bg-gray-50 border-l border-gray-200 items-center justify-center">
+                        <div className="hidden md:flex flex-shrink-0 w-8 bg-canvas border-l border-line items-center justify-center">
                             <button
                                 onClick={() => setRightPanelCollapsed(false)}
-                                className="p-1 hover:bg-gray-200 rounded transition-colors"
+                                className="p-1 hover:bg-wash rounded transition-colors"
                                 title="展开右侧面板"
                             >
-                                <ChevronLeft className="w-4 h-4 text-gray-500" />
+                                <ChevronLeft className="w-4 h-4 text-ink-muted" />
                             </button>
                         </div>
                     )}
 
                     {/* 右侧面板 */}
-                    <div className={`bg-white border-t md:border-t-0 md:border-l border-gray-200 transition-all duration-300 ${
+                    <div className={`bg-white border-t md:border-t-0 md:border-l border-line transition-all duration-300 ${
                         rightPanelCollapsed ? 'h-0 md:h-auto md:w-0' : 'w-full md:w-96'
                     } overflow-hidden md:flex-shrink-0`}>
                         <div className="flex flex-col h-full">
                             {/* 右侧面板头部 */}
-                            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white z-10 flex-shrink-0">
-                                <h2 className="text-lg font-medium text-gray-900">工具面板</h2>
+                            <div className="flex items-center justify-between p-4 border-b border-line bg-white z-10 flex-shrink-0">
+                                <h2 className="text-lg font-medium text-ink">工具面板</h2>
                                 <button
                                     onClick={() => setRightPanelCollapsed(!rightPanelCollapsed)}
-                                    className="hidden md:inline-flex p-1 hover:bg-gray-100 rounded transition-colors"
+                                    className="hidden md:inline-flex p-1 hover:bg-muted rounded transition-colors"
                                     title="收起右侧面板"
                                 >
-                                    <PanelRightClose className="w-4 h-4 text-gray-500" />
+                                    <PanelRightClose className="w-4 h-4 text-ink-muted" />
                                 </button>
                             </div>
 
@@ -224,13 +224,13 @@ export const CropifyApp: React.FC = () => {
                                     />
 
                                     {/* 分割线 */}
-                                    <div className="border-t border-gray-200"></div>
+                                    <div className="border-t border-line"></div>
 
                                     {/* 高级裁剪选项 */}
                                     <AdvancedCropOptions cropParams={cropParams} onCropChange={setCropParams} />
 
                                     {/* 分割线 */}
-                                    <div className="border-t border-gray-200"></div>
+                                    <div className="border-t border-line"></div>
 
                                     {/* 视图设置 */}
                                     <ViewSettings
@@ -243,13 +243,13 @@ export const CropifyApp: React.FC = () => {
                                     />
 
                                     {/* 分割线 */}
-                                    <div className="border-t border-gray-200"></div>
+                                    <div className="border-t border-line"></div>
 
                                     {/* 质量控制 */}
                                     <QualityControlPanel outputSettings={outputSettings} onSettingsChange={setOutputSettings} />
 
                                     {/* 分割线 */}
-                                    <div className="border-t border-gray-200"></div>
+                                    <div className="border-t border-line"></div>
 
                                     {/* 批处理和导出 */}
                                     {/* <BatchProcessor

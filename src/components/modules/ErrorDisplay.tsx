@@ -26,24 +26,24 @@ export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
   const getErrorColor = (type: AppError['type']) => {
     switch (type) {
       case 'upload':
-        return 'bg-yellow-50 border-yellow-200 text-yellow-800';
+        return 'bg-copper-tint border-copper/25 text-copper';
       case 'processing':
-        return 'bg-orange-50 border-orange-200 text-orange-800';
+        return 'bg-copper-tint border-copper/25 text-copper';
       case 'export':
-        return 'bg-rose-50 border-rose-200 text-rose-800';
+        return 'bg-error-tint border-destructive/25 text-destructive';
       case 'system':
       default:
-        return 'bg-red-50 border-red-200 text-red-800';
+        return 'bg-error-tint border-destructive/25 text-destructive';
     }
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+    <div className="bg-white rounded-lg border border-line">
       {/* 头部 */}
-      <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+      <div className="px-6 py-4 border-b border-line flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <AlertTriangle className="w-5 h-5 text-red-600" aria-hidden="true" />
-          <h3 className="text-lg font-medium text-gray-900">
+          <AlertTriangle className="w-5 h-5 text-destructive" aria-hidden="true" />
+          <h3 className="text-lg font-medium text-ink">
             错误信息 ({errors.length})
           </h3>
         </div>

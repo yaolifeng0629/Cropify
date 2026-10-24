@@ -64,14 +64,14 @@ export const CropDemo: React.FC<CropDemoProps> = ({
 
   if (!selectedImage) {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 text-center">
-        <div className="text-gray-500">
-          <div className="w-16 h-16 mx-auto mb-3 bg-gray-100 rounded-lg flex items-center justify-center">
-            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="bg-white rounded-lg border border-line p-6 text-center">
+        <div className="text-ink-muted">
+          <div className="w-16 h-16 mx-auto mb-3 bg-wash rounded-lg flex items-center justify-center">
+            <svg className="w-8 h-8 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <p className="font-medium text-gray-900 mb-1">裁剪预览</p>
+          <p className="font-medium text-ink mb-1">裁剪预览</p>
           <p className="text-sm">选择图片查看裁剪效果</p>
         </div>
       </div>
@@ -79,21 +79,21 @@ export const CropDemo: React.FC<CropDemoProps> = ({
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full flex flex-col">
+    <div className="bg-white rounded-lg border border-line h-full flex flex-col">
       {/* 标题 */}
-      <div className="flex-shrink-0 px-3 py-2 border-b border-gray-200">
-        <h3 className="text-sm font-medium text-gray-900">裁剪预览</h3>
+      <div className="flex-shrink-0 px-3 py-2 border-b border-line">
+        <h3 className="text-sm font-medium text-ink">裁剪预览</h3>
       </div>
 
       {/* 预览内容 */}
       <div className="flex-1 p-3 flex flex-col">
         {/* 裁剪结果展示 */}
         <div className="flex-1 mb-3">
-          <div className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden relative h-full max-h-30 flex items-center justify-center">
+          <div className="bg-canvas rounded-lg border border-line overflow-hidden relative h-full max-h-30 flex items-center justify-center">
             {isGenerating ? (
               <div className="w-full h-full flex items-center justify-center">
-                <div className="flex items-center space-x-2 text-gray-500">
-                  <div className="w-4 h-4 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                <div className="flex items-center space-x-2 text-ink-muted">
+                  <div className="w-4 h-4 border-2 border-line-strong border-t-crop rounded-full animate-spin"></div>
                   <span className="text-sm">生成预览中...</span>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export const CropDemo: React.FC<CropDemoProps> = ({
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center text-gray-400">
+                <div className="text-center text-ink-faint">
                   <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -118,30 +118,30 @@ export const CropDemo: React.FC<CropDemoProps> = ({
 
         {/* 裁剪信息 */}
         <div className="flex-shrink-0 grid grid-cols-4 gap-2 text-xs">
-          <div className="bg-gray-50 rounded p-2 text-center">
-            <div className="text-gray-500 mb-1">尺寸</div>
-            <div className="font-medium text-gray-900">
+          <div className="bg-canvas rounded p-2 text-center">
+            <div className="text-ink-muted mb-1">尺寸</div>
+            <div className="font-medium text-ink">
               {Math.round(cropParams.height)}×{Math.round(cropParams.width)}
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded p-2 text-center">
-            <div className="text-gray-500 mb-1">比例</div>
-            <div className="font-medium text-gray-900">
+          <div className="bg-canvas rounded p-2 text-center">
+            <div className="text-ink-muted mb-1">比例</div>
+            <div className="font-medium text-ink">
               {(cropParams.width / cropParams.height).toFixed(1)}:1
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded p-2 text-center">
-            <div className="text-gray-500 mb-1">位置</div>
-            <div className="font-medium text-gray-900">
+          <div className="bg-canvas rounded p-2 text-center">
+            <div className="text-ink-muted mb-1">位置</div>
+            <div className="font-medium text-ink">
               {Math.round(cropParams.x)},{Math.round(cropParams.y)}
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded p-2 text-center">
-            <div className="text-gray-500 mb-1">占比</div>
-            <div className="font-medium text-gray-900">
+          <div className="bg-canvas rounded p-2 text-center">
+            <div className="text-ink-muted mb-1">占比</div>
+            <div className="font-medium text-ink">
               {Math.round((cropParams.width * cropParams.height) / (selectedImage.width * selectedImage.height) * 100)}%
             </div>
           </div>
