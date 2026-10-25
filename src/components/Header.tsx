@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { ImageFile, CropParams, OutputSettings, ProcessTask, ProcessStatus } from '@/types';
 import { Button, Logo } from '@/components/ui';
 import { ExportModal } from '@/components/modules';
+import { Menu, X, Github, Pause, Play, Download, Trash2, RotateCcw, Images, Loader2 } from 'lucide-react';
 
 interface HeaderProps {
     images?: ImageFile[];
@@ -24,8 +26,16 @@ interface HeaderProps {
     onZipDownload?: (tasks: ProcessTask[]) => void;
 }
 
+const NAV_LINKS = [
+    { href: '/features', label: '功能特性' },
+    { href: '/user-guide', label: '使用指南' },
+    { href: '/faq', label: '常见问题' },
+    { href: '/about', label: '关于我们' },
+];
+
 /**
- * 应用头部组件 - 现代化官方网站风格的导航栏
+ * 应用头部 —— DESIGN.md 7.1：36px 黑色公告栏 + 60px 浅灰吸顶导航
+ * 导航文字 Inter 14px；右侧 CTA 高 36px（主：炭黑 / 次：外壳按钮）
  */
 export const Header: React.FC<HeaderProps> = ({
     images,
@@ -44,313 +54,236 @@ export const Header: React.FC<HeaderProps> = ({
     onZipDownload
 }) => {
     const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // 移动菜单展开时锁定背景滚动
+    useEffect(() => {
+        document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [isMobileMenuOpen]);
+
     // 计算统计信息
     const stats = {
         total: images?.length || 0,
         completed: tasks.filter(t => t.status === ProcessStatus.COMPLETED).length,
         failed: tasks.filter(t => t.status === ProcessStatus.FAILED).length,
-        processing: tasks.filter(t => t.status === ProcessStatus.PROCESSING).length,
-        pending: tasks.filter(t => t.status === ProcessStatus.PENDING).length,
-        cancelled: tasks.filter(t => t.status === ProcessStatus.CANCELLED).length,
     };
 
     const hasErrors = stats.failed > 0;
-    if (isEditMode) {
-        // 编辑模式下的简化头部
-        return (
-            <header className="bg-ink border-b border-white/10 flex-shrink-0">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                        {/* 左侧：Logo 和应用名称 */}
-                        <Logo
-                            size="sm"
-                            variant="white"
-                            showText={true}
-                            className="flex-shrink-0"
-                        />
+    const canExport = stats.completed > 0 && onSingleDownload && onBatchDownload && onZipDownload;
 
-                        <div className="hidden lg:block text-white text-sm">
-                            由开源维护{' '}
-                            <a
-                                href="https://yaolifeng.com/sponsor.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-white underline hover:text-brand-bright hover:underline transition-colors"
-                            >
-                                yaolifeng
-                            </a>
-                        </div>
+    // 落地页主 CTA：若导入控件已在页面中，直接唤起文件选择
+    const triggerFileInput = () => {
+        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement | null;
+        if (fileInput) {
+            fileInput.click();
+        } else {
+            window.location.href = '/';
+        }
+    };
 
-                        {/* 右侧：状态信息和操作 */}
-                        <div className="flex items-center flex-wrap justify-end gap-2">
-                            {images && images.length > 0 && (
-                                <>
-                                    {/* 图片计数器 */}
-                                    <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
-                                        <svg className="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                        <span className="text-white text-sm font-medium whitespace-nowrap">
-                                            {images.length} 张图片
-                                        </span>
-                                    </div>
+    /** 编辑模式操作区 */
+    const editActions = (
+        <>
+            {images && images.length > 0 && (
+                <>
+                    {/* 图片计数 Badge（指标 Badge 规范） */}
+                    <div className="flex h-9 items-center gap-1.5 rounded-[7px] bg-surface px-3 shadow-[0_2px_6px_rgba(12,10,9,0.08),0_0_0_1px_rgba(23,23,23,0.08)]">
+                        <Images className="size-4 text-ink-muted" />
+                        <span className="font-display text-sm font-medium tracking-[-0.01em] text-ink whitespace-nowrap">
+                            {images.length} 张图片
+                        </span>
+                    </div>
 
-                                    {/* 清空按钮 */}
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={onClearImages}
-                                        className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-colors duration-200"
-                                    >
-                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
-                                        <span className="hidden sm:inline">清空全部</span>
-                                        <span className="sm:hidden">清空</span>
-                                    </Button>
+                    <Button variant="outline" onClick={onClearImages}>
+                        <Trash2 />
+                        <span className="hidden sm:inline">清空全部</span>
+                        <span className="sm:hidden">清空</span>
+                    </Button>
 
-                                     {/* 批处理控制按钮 */}
-                                     {onStartBatch && !isProcessing && (
-                                        <Button
-                                            variant="outline"
-                                            size="sm"
-                                            onClick={onStartBatch}
-                                            className="bg-brand border-[#0f7a6b] text-white hover:bg-brand-hover hover:border-brand-bright transition-colors duration-200"
-                                        >
-                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-6V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8z" />
-                                            </svg>
-                                            <span className="hidden sm:inline">开始批处理</span>
-                                            <span className="sm:hidden">处理</span>
-                                        </Button>
-                                    )}
+                    {onStartBatch && !isProcessing && (
+                        <Button onClick={onStartBatch}>
+                            <Play />
+                            <span className="hidden sm:inline">开始批处理</span>
+                            <span className="sm:hidden">处理</span>
+                        </Button>
+                    )}
 
-                                    {/* 处理中控制按钮 */}
-                                    {isProcessing && (
-                                        <>
-                                            {onPauseBatch && (
-                                                <Button
-                                                    variant="outline"
-                                                    size="sm"
-                                                    onClick={onPauseBatch}
-                                                    className="bg-copper border-[#c56a1f] text-white hover:bg-copper-hover hover:border-copper transition-colors duration-200"
-                                                >
-                                                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
-                                                    </svg>
-                                                    <span className="hidden sm:inline">暂停</span>
-                                                </Button>
-                                            )}
-
-                                            <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
-                                                <div className="w-4 h-4 mr-2">
-                                                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                                                </div>
-                                                <span className="text-white text-sm font-medium">
-                                                    处理中...
-                                                </span>
-                                            </div>
-                                        </>
-                                    )}
-
-
-                                    {/* 重试失败项目按钮 */}
-                                    {hasErrors && onRetryFailed && (
-                                        <Button
-                                            variant="outline"
-                                            size="sm"
-                                            onClick={onRetryFailed}
-                                            className="bg-destructive border-transparent text-white hover:bg-destructive/90 transition-colors duration-200"
-                                        >
-                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                            </svg>
-                                            <span className="hidden sm:inline">重试失败 ({stats.failed})</span>
-                                            <span className="sm:hidden">重试</span>
-                                        </Button>
-                                    )}
-
-                                    {/* 导出按钮 */}
-                                    {stats.completed > 0 && onSingleDownload && onBatchDownload && onZipDownload && (
-                                        <Button
-                                            variant="outline"
-                                            size="sm"
-                                            onClick={() => setIsExportModalOpen(true)}
-                                            className="bg-info border-[#2a64a8] text-white hover:bg-info-hover hover:border-[#5489ca] transition-colors duration-200"
-                                        >
-                                            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                            <span className="hidden sm:inline">导出 ({stats.completed})</span>
-                                            <span className="sm:hidden">导出</span>
-                                        </Button>
-                                    )}
-                                </>
+                    {isProcessing && (
+                        <>
+                            {onPauseBatch && (
+                                <Button variant="outline" onClick={onPauseBatch}>
+                                    <Pause />
+                                    <span className="hidden sm:inline">暂停</span>
+                                </Button>
                             )}
-                        </div>
+                            <div className="flex h-9 items-center gap-2 rounded-[7px] bg-surface px-3 shadow-[0_2px_6px_rgba(12,10,9,0.08),0_0_0_1px_rgba(23,23,23,0.08)]">
+                                <Loader2 className="size-4 animate-spin text-ink" />
+                                <span className="font-display text-sm font-medium text-ink">处理中...</span>
+                            </div>
+                        </>
+                    )}
+
+                    {hasErrors && onRetryFailed && (
+                        <Button variant="danger" onClick={onRetryFailed}>
+                            <RotateCcw />
+                            <span className="hidden sm:inline">重试失败 ({stats.failed})</span>
+                            <span className="sm:hidden">重试</span>
+                        </Button>
+                    )}
+
+                    {canExport && (
+                        <Button onClick={() => setIsExportModalOpen(true)}>
+                            <Download />
+                            <span className="hidden sm:inline">导出 ({stats.completed})</span>
+                            <span className="sm:hidden">导出</span>
+                        </Button>
+                    )}
+                </>
+            )}
+        </>
+    );
+
+    return (
+        <div className="sticky top-0 z-50">
+            {/* 公告栏 36px（编辑模式隐藏，保持工作台密度） */}
+            {!isEditMode && (
+                <div className="flex h-9 items-center justify-center bg-footer px-4 text-center">
+                    <p className="truncate text-[13px] leading-none text-white/70">
+                        <span className="hidden sm:inline">Cropify 已开源 —— 完全免费，所有图片处理均在浏览器本地完成</span>
+                        <span className="sm:hidden">完全免费 · 图片处理 100% 本地完成</span>
+                        <a
+                            href="https://github.com/yaolifeng0629/Cropify"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-2 font-medium text-white underline decoration-white/40 underline-offset-2 transition-colors hover:decoration-white"
+                        >
+                            GitHub
+                        </a>
+                    </p>
+                </div>
+            )}
+
+            {/* 主导航 60px */}
+            <header className="border-b border-line bg-canvas/95 backdrop-blur-sm">
+                <div className="mx-auto flex h-[60px] w-full max-w-[1200px] items-center justify-between px-[10px] xl:px-[5px]">
+                    {/* 左侧：Logo + 导航链接 */}
+                    <div className="flex items-center gap-8">
+                        <Link href="/" aria-label="Cropify 首页">
+                            <Logo size="sm" />
+                        </Link>
+                        <nav className="hidden items-center gap-6 lg:flex">
+                            {NAV_LINKS.map(link => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="text-sm leading-none text-nav-text transition-colors hover:text-ink"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
+
+                    {/* 右侧：操作区 */}
+                    <div className="flex items-center gap-2">
+                        {isEditMode ? (
+                            <div className="flex flex-wrap items-center justify-end gap-2">
+                                {editActions}
+                            </div>
+                        ) : (
+                            <div className="hidden items-center gap-2 lg:flex">
+                                <Button variant="outline" asChild>
+                                    <a
+                                        href="https://github.com/yaolifeng0629/Cropify"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Github />
+                                        Star
+                                    </a>
+                                </Button>
+                                <Button onClick={triggerFileInput}>
+                                    开始使用
+                                </Button>
+                            </div>
+                        )}
+
+                        {/* 移动端菜单按钮（三横线图标） */}
+                        <button
+                            type="button"
+                            aria-label={isMobileMenuOpen ? '关闭菜单' : '打开菜单'}
+                            onClick={() => setIsMobileMenuOpen(v => !v)}
+                            className="inline-flex size-9 items-center justify-center rounded-md text-ink transition-colors hover:bg-brand-tint lg:hidden"
+                        >
+                            {isMobileMenuOpen ? <X className="size-[22px]" /> : <Menu className="size-[22px]" />}
+                        </button>
                     </div>
                 </div>
-
-                {/* 导出模态框 */}
-                {onSingleDownload && onBatchDownload && onZipDownload && outputSettings && (
-                    <ExportModal
-                        isOpen={isExportModalOpen}
-                        onClose={() => setIsExportModalOpen(false)}
-                        tasks={tasks}
-                        outputSettings={outputSettings}
-                        onSingleDownload={onSingleDownload}
-                        onBatchDownload={onBatchDownload}
-                        onZipDownload={onZipDownload}
-                    />
-                )}
             </header>
-        );
-    }
 
-    // 默认模式下的完整头部（用于空状态页面）
-    return (
-        <header className="bg-ink border-b border-white/10 w-full">
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                <div className="flex items-center justify-between">
-                    {/* 左侧：Logo 和应用名称 */}
-                    <Logo
-                        size="md"
-                        variant="white"
-                        showText={true}
-                        className="flex-shrink-0"
-                    />
-
-                    {/* 右侧：导航菜单、状态信息和操作 */}
-                    <div className="flex items-center space-x-6 lg:space-x-8">
-                        {/* 导航菜单 (隐藏在移动端) */}
-                        <nav className="hidden lg:flex items-center space-x-6">
-                            <a href="/features" className="text-white/80 hover:text-white transition-colors duration-200 font-medium">
-                                功能特性
-                            </a>
-                            <a href="/user-guide" className="text-white/80 hover:text-white transition-colors duration-200 font-medium">
-                                使用指南
-                            </a>
-                            <a href="/about" className="text-white/80 hover:text-white transition-colors duration-200 font-medium">
-                                关于我们
-                            </a>
-                        </nav>
-
-                        {/* 状态信息和操作 */}
-                        <div className="flex items-center space-x-3 lg:space-x-4">
-                        {images && images.length > 0 && (
+            {/* 移动端全屏菜单（顶部 Logo + 关闭，纵向链接，底部整行按钮） */}
+            {isMobileMenuOpen && (
+                <div className="fixed inset-0 z-[60] flex flex-col bg-canvas lg:hidden">
+                    <div className="flex h-[60px] items-center justify-between border-b border-line px-[10px]">
+                        <Logo size="sm" />
+                        <button
+                            type="button"
+                            aria-label="关闭菜单"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="inline-flex size-9 items-center justify-center rounded-md text-ink transition-colors hover:bg-brand-tint"
+                        >
+                            <X className="size-6" />
+                        </button>
+                    </div>
+                    <nav className="flex-1 overflow-y-auto px-[10px] py-6">
+                        <ul className="flex flex-col">
+                            {NAV_LINKS.map(link => (
+                                <li key={link.href}>
+                                    <Link
+                                        href={link.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="flex items-center border-b border-line py-4 font-display text-lg font-medium text-ink"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                    <div className="flex flex-col gap-3 border-t border-line p-[10px] pb-8">
+                        {!isEditMode && (
                             <>
-                                {/* 图片计数器 */}
-                                <div className="flex items-center space-x-2">
-                                    <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
-                                        <svg className="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                        <span className="text-white text-sm font-medium">
-                                            {images.length} 张图片
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* 清空按钮 */}
                                 <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={onClearImages}
-                                    className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 transition-colors duration-200"
+                                    className="w-full"
+                                    size="lg"
+                                    onClick={() => { setIsMobileMenuOpen(false); triggerFileInput(); }}
                                 >
-                                    <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                    <span className="hidden sm:inline">清空全部</span>
-                                    <span className="sm:hidden">清空</span>
+                                    开始使用
                                 </Button>
-
-
-                                {/* 批处理控制按钮 */}
-                                {onStartBatch && !isProcessing && (
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={onStartBatch}
-                                        className="bg-brand border-[#0f7a6b] text-white hover:bg-brand-hover hover:border-brand-bright transition-colors duration-200"
+                                <Button variant="outline" size="lg" className="w-full" asChild>
+                                    <a
+                                        href="https://github.com/yaolifeng0629/Cropify"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                     >
-                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m6-6V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8z" />
-                                        </svg>
-                                        <span className="hidden sm:inline">开始批处理</span>
-                                        <span className="sm:hidden">处理</span>
-                                    </Button>
-                                )}
-
-                                {/* 处理中控制按钮 */}
-                                {isProcessing && (
-                                    <>
-                                        {onPauseBatch && (
-                                            <Button
-                                                variant="outline"
-                                                size="sm"
-                                                onClick={onPauseBatch}
-                                                className="bg-copper border-[#c56a1f] text-white hover:bg-copper-hover hover:border-copper transition-colors duration-200"
-                                            >
-                                                <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
-                                                </svg>
-                                                <span className="hidden sm:inline">暂停</span>
-                                            </Button>
-                                        )}
-
-                                        <div className="flex items-center bg-white/10 rounded-full px-3 py-1.5">
-                                            <div className="w-4 h-4 mr-2">
-                                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                                            </div>
-                                            <span className="text-white text-sm font-medium">
-                                                处理中...
-                                            </span>
-                                        </div>
-                                    </>
-                                )}
-
-
-                                {/* 重试失败项目按钮 */}
-                                {hasErrors && onRetryFailed && (
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={onRetryFailed}
-                                            className="bg-destructive border-transparent text-white hover:bg-destructive/90 transition-colors duration-200"
-                                    >
-                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                        </svg>
-                                        <span className="hidden sm:inline">重试失败 ({stats.failed})</span>
-                                        <span className="sm:hidden">重试</span>
-                                    </Button>
-                                )}
-
-                                {/* 导出按钮 */}
-                                {stats.completed > 0 && onSingleDownload && onBatchDownload && onZipDownload && (
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() => setIsExportModalOpen(true)}
-                                            className="bg-info border-[#2a64a8] text-white hover:bg-info-hover hover:border-[#5489ca] transition-colors duration-200"
-                                    >
-                                        <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                        </svg>
-                                        <span className="hidden sm:inline">导出 ({stats.completed})</span>
-                                        <span className="sm:hidden">导出</span>
-                                    </Button>
-                                )}
+                                        <Github />
+                                        GitHub Star
+                                    </a>
+                                </Button>
                             </>
                         )}
-                        </div>
+                        {isEditMode && (
+                            <Button variant="outline" size="lg" className="w-full" asChild>
+                                <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>返回首页</Link>
+                            </Button>
+                        )}
                     </div>
                 </div>
-            </div>
+            )}
 
             {/* 导出模态框 */}
-            {onSingleDownload && onBatchDownload && onZipDownload && outputSettings && (
+            {canExport && outputSettings && (
                 <ExportModal
                     isOpen={isExportModalOpen}
                     onClose={() => setIsExportModalOpen(false)}
@@ -361,6 +294,6 @@ export const Header: React.FC<HeaderProps> = ({
                     onZipDownload={onZipDownload}
                 />
             )}
-        </header>
+        </div>
     );
 };

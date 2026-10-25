@@ -16,7 +16,7 @@ export default function PrivacyPage() {
                             </svg>
                             <span>返回首页</span>
                         </Link>
-                        <h1 className="text-2xl font-bold text-ink">隐私政策</h1>
+                        <h1 className="text-2xl font-medium text-ink">隐私政策</h1>
                         <div className="w-20"></div>
                     </div>
                 </div>

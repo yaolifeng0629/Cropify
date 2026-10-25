@@ -89,19 +89,19 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
         {/* 统计信息 */}
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-3 bg-brand-tint rounded-lg">
-            <div className="text-2xl font-bold text-brand">{stats.completed}</div>
+            <div className="text-2xl font-medium text-brand">{stats.completed}</div>
             <div className="text-xs text-brand">已完成</div>
           </div>
           <div className="text-center p-3 bg-info-tint rounded-lg">
-            <div className="text-2xl font-bold text-info">{stats.processing}</div>
+            <div className="text-2xl font-medium text-info">{stats.processing}</div>
             <div className="text-xs text-info">处理中</div>
           </div>
           <div className="text-center p-3 bg-copper-tint rounded-lg">
-            <div className="text-2xl font-bold text-copper">{stats.pending}</div>
+            <div className="text-2xl font-medium text-copper">{stats.pending}</div>
             <div className="text-xs text-copper">等待中</div>
           </div>
           <div className="text-center p-3 bg-error-tint rounded-lg">
-            <div className="text-2xl font-bold text-destructive">{stats.failed}</div>
+            <div className="text-2xl font-medium text-destructive">{stats.failed}</div>
             <div className="text-xs text-destructive">失败</div>
           </div>
         </div>

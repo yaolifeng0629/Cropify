@@ -6,7 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -37,13 +38,16 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  /* DESIGN.md brand tokens */
+  /* DESIGN.md brand tokens — Peec 式极简体系 */
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
+  --color-ink-dim: var(--ink-dim);
+  --color-nav-text: var(--nav-text);
   --color-canvas: var(--canvas);
   --color-wash: var(--wash);
   --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
   --color-surface-tint: var(--surface-tint);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
@@ -51,6 +55,11 @@
   --color-brand-hover: var(--brand-hover);
   --color-brand-tint: var(--brand-tint);
   --color-brand-bright: var(--brand-bright);
+  --color-accent-red: var(--accent-red);
+  --color-accent-red-tint: var(--accent-red-tint);
+  --color-status: var(--status);
+  --color-status-tint: var(--status-tint);
+  --color-footer: var(--footer);
   --color-info: var(--info);
   --color-info-hover: var(--info-hover);
   --color-info-tint: var(--info-tint);
@@ -65,36 +74,38 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  /* 关键投影（SOURCE：实测值） */
+  --shadow-card-low: 0 1px 2px rgba(0, 0, 0, .05);
+  --shadow-badge: 0 2px 6px rgba(12, 10, 9, .08), 0 0 0 1px rgba(23, 23, 23, .08);
+  --shadow-button-shell: 0 4px 4px rgba(23, 23, 23, .04);
 }
 
 /* 强制亮色主题，禁用深色模式 */
-
-/* 确保始终使用亮色主题 */
 * {
   color-scheme: light;
 }
 
-/* 自定义滚动条样式 */
+/* 自定义滚动条样式 —— 低饱和灰阶 */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4f7f6;
+  background: #f7f7f7;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #d4d4d4;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #a3a3a3;
 }
 
-/* 拖拽区域样式 */
+/* 拖拽区域样式 —— 功能数据色（裁剪蓝豁免） */
 .drag-over {
   border-color: #3b82f6 !important;
   background-color: #dbeafe !important;
@@ -114,10 +125,10 @@
   right: 0;
   bottom: 0;
   background-image:
-    linear-gradient(45deg, #f8fafc 25%, transparent 25%),
-    linear-gradient(-45deg, #f8fafc 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f8fafc 75%),
-    linear-gradient(-45deg, transparent 75%, #f8fafc 75%);
+    linear-gradient(45deg, #f5f5f5 25%, transparent 25%),
+    linear-gradient(-45deg, #f5f5f5 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f5f5f5 75%),
+    linear-gradient(-45deg, transparent 75%, #f5f5f5 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   z-index: -1;
@@ -140,7 +151,7 @@
   fill: none;
 }
 
-/* 裁剪框样式 */
+/* 裁剪框样式 —— 精度操作保持功能蓝 */
 .crop-selection {
   border: 2px solid #3b82f6;
   background: rgba(59, 130, 246, 0.08);
@@ -178,8 +189,6 @@
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
-
-
 
 /* 边缘箭头样式 - 柔和的箭头设计 */
 .edge-arrow {
@@ -251,8 +260,6 @@
   box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
-/* 移除裁剪框额外动画 */
-
 /* 手柄出现动画 */
 @keyframes handleAppear {
   from {
@@ -269,24 +276,14 @@
   animation: handleAppear 0.2s ease-out;
 }
 
-/* 边缘箭头快速淡入动画 */
 @keyframes arrowFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* 中心点淡入动画 */
 @keyframes centerPointFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* 加载动画 */
@@ -294,22 +291,22 @@
   animation: spin 1s linear infinite;
 }
 
-/* 滑块控件 - 主青拇指（DESIGN.md button-primary） */
+/* 滑块控件 - 炭黑拇指（DESIGN.md button-primary） */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #00695c;
+  background: #171717;
   border: 2px solid #ffffff;
-  box-shadow: 0 1px 3px rgba(20, 34, 31, 0.25);
+  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.25);
   cursor: pointer;
   transition: transform 0.15s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  background: #005147;
+  background: #000000;
   transform: scale(1.1);
 }
 
@@ -317,15 +314,15 @@ input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #00695c;
+  background: #171717;
   border: 2px solid #ffffff;
-  box-shadow: 0 1px 3px rgba(20, 34, 31, 0.25);
+  box-shadow: 0 1px 3px rgba(23, 23, 23, 0.25);
   cursor: pointer;
   transition: transform 0.15s ease;
 }
 
 input[type="range"]::-moz-range-thumb:hover {
-  background: #005147;
+  background: #000000;
 }
 
 @media (max-width: 768px) {
@@ -347,7 +344,6 @@ input[type="range"]::-moz-range-thumb:hover {
 
 /* 移动端优化 */
 @media (max-width: 768px) {
-  /* 确保移动端触摸友好 */
   .crop-handle.corner-handle {
     width: 16px;
     height: 16px;
@@ -363,42 +359,115 @@ input[type="range"]::-moz-range-thumb:hover {
     height: 14px;
   }
 
-  /* 移动端滚动条优化 */
   ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
   }
 }
 
+/* 「外壳 + 1px padding + 内层表面」描边构造（DESIGN.md 3.2 / 7.2） */
+.shell {
+  padding: 1px;
+  border-radius: 7px;
+  background: linear-gradient(to bottom, rgba(23, 23, 23, 0.10), rgba(23, 23, 23, 0.06));
+  box-shadow: 0 4px 4px rgba(23, 23, 23, 0.04);
+}
+
+.shell-inner {
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.shell-card {
+  padding: 1px;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, rgba(23, 23, 23, 0.08), rgba(23, 23, 23, 0.05));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shell-card-inner {
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.shell-panel {
+  padding: 1px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, rgba(23, 23, 23, 0.08), rgba(23, 23, 23, 0.05));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shell-panel-inner {
+  border-radius: 11px;
+  background: #ffffff;
+}
+
+/* 首屏框架两侧的 1px 渐变竖线（SOURCE：首屏 Line Left / Line Right） */
+.frame-line {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(32, 32, 32, 0.16) 18%,
+    rgba(96, 96, 96, 0.42) 55%,
+    transparent
+  );
+}
+
+/* 首屏 CTA 后方的浅方格带，边缘消融进画布 */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 23, 23, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 62% 58% at 50% 42%, black 30%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 42%, black 30%, transparent 76%);
+}
+
 :root {
-  /* ============ DESIGN.md: Cropify — "The Calm Workbench" ============ */
-  /* 品牌与功能色 */
-  --ink: #14221f;
-  --ink-muted: #5e706a;
-  --ink-faint: #93a5a0;
-  --canvas: #f4f7f6;
-  --wash: #e9f1ee;
+  /* ============ DESIGN.md: Cropify — Peec 式极简工作台 ============ */
+  /* 品牌与灰阶 */
+  --ink: #171717;
+  --ink-muted: #737373;
+  --ink-faint: #a3a3a3;
+  --ink-dim: rgba(23, 23, 23, 0.5);
+  --nav-text: rgba(23, 23, 23, 0.8);
+  --canvas: #f7f7f7;
+  --wash: #f5f5f5;
   --surface: #ffffff;
-  --surface-tint: #eef6f3;
-  --line: #d7e4df;
-  --line-strong: #c2d5cf;
-  --brand: #00695c;
-  --brand-hover: #005147;
-  --brand-tint: #e5f3ef;
-  --brand-bright: #83b9ae;
-  --info: #1d4f91;
-  --info-hover: #173f73;
-  --info-tint: #e7eff8;
-  --copper: #b45c16;
-  --copper-hover: #95490e;
-  --copper-tint: #fff0df;
+  --surface-soft: #fafafa;
+  --surface-tint: #f5f5f5;
+  --line: rgba(23, 23, 23, 0.08);
+  --line-strong: rgba(23, 23, 23, 0.15);
+
+  /* 主操作：炭黑；hover 仅轻微加深 */
+  --brand: #171717;
+  --brand-hover: #000000;
+  --brand-tint: rgba(23, 23, 23, 0.04);
+  --brand-bright: #a3a3a3;
+
+  /* 有限强调：提示红 / 状态绿 */
+  --accent-red: #da314a;
+  --accent-red-tint: rgba(218, 49, 74, 0.08);
+  --status: #22c55e;
+  --status-tint: rgba(34, 197, 94, 0.1);
+  --footer: #000000;
+
+  /* 兼容旧语义：信息 = 炭黑系（链接/步骤），注意 = 提示红 */
+  --info: #171717;
+  --info-hover: #000000;
+  --info-tint: rgba(23, 23, 23, 0.05);
+  --copper: #da314a;
+  --copper-hover: #b82530;
+  --copper-tint: rgba(218, 49, 74, 0.07);
+
+  /* 裁剪精度控件（功能数据色豁免） */
   --crop: #3b82f6;
   --crop-hover: #2563eb;
   --crop-tint: #dbeafe;
-  --error-tint: #fdecea;
+  --error-tint: rgba(218, 49, 74, 0.06);
 
-  /* 形状：4px / 6px / 8px */
-  --radius: 0.5rem;
+  /* 形状基准：rounded-md=6px 按钮 / rounded-lg=8px / rounded-xl=12px 面板 / rounded-2xl=16px 卡片外壳 */
+  --radius: 8px;
 
   /* shadcn 语义令牌映射 */
   --background: var(--canvas);
@@ -414,11 +483,11 @@ input[type="range"]::-moz-range-thumb:hover {
   --muted: var(--wash);
   --muted-foreground: var(--ink-muted);
   --accent: var(--brand-tint);
-  --accent-foreground: #0c3b33;
-  --destructive: oklch(0.577 0.245 27.325);
+  --accent-foreground: var(--ink);
+  --destructive: var(--accent-red);
   --border: var(--line);
-  --input: #c8d9d2;
-  --ring: var(--brand);
+  --input: rgba(23, 23, 23, 0.12);
+  --ring: var(--ink);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -439,31 +508,40 @@ input[type="range"]::-moz-range-thumb:hover {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     min-height: 100vh;
     text-rendering: optimizeLegibility;
     line-height: 1.5;
   }
 
-  /* DESIGN.md 标题层级：700 / 1.15 */
-  h1 {
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+  /* DESIGN.md 字体分工：标题/按钮 Geist；正文/导航 Inter（font-sans 默认） */
+  h1, h2, h3, h4, h5, h6, button {
+    font-family: var(--font-display);
   }
-  h2,
-  h3 {
-    font-weight: 700;
+  h1 {
+    font-weight: 500;
+    line-height: 1em;
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-weight: 500;
     line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
   h4 {
     font-weight: 600;
     line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   ::selection {
-    background: oklch(0.83 0.07 175);
-    color: oklch(0.2 0.02 165);
+    background: rgba(23, 23, 23, 0.14);
+    color: #171717;
   }
 }
 

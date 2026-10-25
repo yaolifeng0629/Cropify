@@ -16,6 +16,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
   children: React.ReactNode;
   loading?: boolean;
+  asChild?: boolean;
 }
 
 /**
@@ -26,6 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'md',
   children,
   loading = false,
+  asChild = false,
   disabled,
   className = '',
   ...props
@@ -50,12 +52,19 @@ export const Button: React.FC<ButtonProps> = ({
     <ShadcnButton
       variant={variantMap[variant]}
       size={sizeMap[size]}
+      asChild={asChild}
       disabled={disabled || loading}
       className={className}
       {...props}
     >
-      {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      {children}
+      {asChild ? (
+        children
+      ) : (
+        <>
+          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {children}
+        </>
+      )}
     </ShadcnButton>
   );
 };

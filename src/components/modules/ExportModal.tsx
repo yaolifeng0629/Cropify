@@ -90,15 +90,15 @@ export const ExportModal: React.FC<ExportModalProps> = ({
         {/* 导出统计 */}
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center p-4 bg-brand-tint rounded-lg border border-brand/20">
-            <div className="text-2xl font-bold text-brand">{completedTasks.length}</div>
+            <div className="text-2xl font-medium text-brand">{completedTasks.length}</div>
             <div className="text-sm text-brand font-medium">已完成</div>
           </div>
           <div className="text-center p-4 bg-info-tint rounded-lg border border-info/20">
-            <div className="text-lg font-bold text-info">{formatFileSize(totalSize)}</div>
+            <div className="text-lg font-semibold text-info">{formatFileSize(totalSize)}</div>
             <div className="text-sm text-info font-medium">总大小</div>
           </div>
           <div className="text-center p-4 bg-info-tint rounded-lg border border-info/20">
-            <div className="text-lg font-bold text-info">{outputSettings.format.toUpperCase()}</div>
+            <div className="text-lg font-semibold text-info">{outputSettings.format.toUpperCase()}</div>
             <div className="text-sm text-info font-medium">格式</div>
           </div>
         </div>

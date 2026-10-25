@@ -48,7 +48,7 @@ export default function FeedbackPage() {
                             </svg>
                             <span>返回首页</span>
                         </Link>
-                        <h1 className="text-2xl font-bold text-ink">意见反馈</h1>
+                        <h1 className="text-2xl font-medium text-ink">意见反馈</h1>
                         <div className="w-20"></div>
                     </div>
                 </div>

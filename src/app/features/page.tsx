@@ -145,7 +145,7 @@ export default function FeaturesPage() {
                             </svg>
                             <span>返回首页</span>
                         </Link>
-                        <h1 className="text-2xl font-bold text-ink">功能特性</h1>
+                        <h1 className="text-2xl font-medium text-ink">功能特性</h1>
                         <div className="w-20"></div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ export default function FeaturesPage() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </div>
-                        <h2 className="text-2xl font-bold text-ink mb-4">强大的图片处理能力</h2>
+                        <h2 className="text-2xl font-medium text-ink mb-4">强大的图片处理能力</h2>
                         <p className="text-ink-muted max-w-3xl mx-auto leading-relaxed">
                             Cropify 提供专业级的图片裁剪功能，结合现代化的用户界面和完全的隐私保护。
                             无论是个人用户还是专业设计师，都能在这里找到满足需求的工具。
@@ -176,7 +176,7 @@ export default function FeaturesPage() {
                             {/* 分类头部 */}
                             <div className={`${category.color} px-6 py-4 border-b border-line`}>
                                 <div className="flex items-center">
-                                    <h3 className="text-xl font-bold text-ink">{category.category}</h3>
+                                    <h3 className="text-xl font-semibold text-ink">{category.category}</h3>
                                 </div>
                             </div>
 
@@ -227,7 +227,7 @@ export default function FeaturesPage() {
                             <p className="text-sm text-ink-muted">后台批量处理</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-12 h-12 bg-copper-tint text-copper rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-wash text-ink rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>

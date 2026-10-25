@@ -85,11 +85,11 @@ export const ExportSystem: React.FC<ExportSystemProps> = ({
           <h4 className="text-sm font-medium text-ink mb-3">导出统计</h4>
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center p-3 bg-brand-tint rounded-lg">
-              <div className="text-2xl font-bold text-brand">{completedTasks.length}</div>
+              <div className="text-2xl font-medium text-brand">{completedTasks.length}</div>
               <div className="text-xs text-brand">已完成</div>
             </div>
             <div className="text-center p-3 bg-info-tint rounded-lg">
-              <div className="text-lg font-bold text-info">{formatFileSize(totalSize)}</div>
+              <div className="text-lg font-semibold text-info">{formatFileSize(totalSize)}</div>
               <div className="text-xs text-info">总大小</div>
             </div>
           </div>

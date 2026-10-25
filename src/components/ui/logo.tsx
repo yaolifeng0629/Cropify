@@ -5,14 +5,14 @@ import { cn } from '@/lib/utils';
 
 interface LogoProps {
     size?: 'sm' | 'md' | 'lg';
-    variant?: 'default' | 'white' | 'dark';
+    variant?: 'default' | 'white';
     showText?: boolean;
     className?: string;
 }
 
 /**
- * Cropify Logo 组件 - 遵循 DESIGN.md 的扁平品牌标识
- * 主青（#00695c）底 + 白色裁剪标记；无渐变、无投影
+ * Cropify Logo —— DESIGN.md「Peec 式极简」品牌标识
+ * 炭黑（#171717）圆角托板 + 白色裁剪角框 + 叠卡（批量）+ 中心定位点（精度）
  */
 export const Logo: React.FC<LogoProps> = ({
     size = 'md',
@@ -27,97 +27,50 @@ export const Logo: React.FC<LogoProps> = ({
     };
 
     const textSizeClasses = {
-        sm: 'text-lg',
+        sm: 'text-[17px]',
         md: 'text-xl',
         lg: 'text-2xl'
     };
 
-    const logoIconSize = {
-        sm: 'w-5 h-5',
-        md: 'w-6 h-6',
-        lg: 'w-7 h-7'
-    };
-
-    const getVariantClasses = () => {
-        switch (variant) {
-            case 'white':
-                // 墨绿导航内保持品牌青托板，文字反白
-                return {
-                    container: 'bg-[#00695c]',
-                    text: 'text-white'
-                };
-            case 'dark':
-                return {
-                    container: 'bg-ink',
-                    text: 'text-white'
-                };
-            default:
-                return {
-                    container: 'bg-[#00695c]',
-                    text: 'text-ink'
-                };
-        }
-    };
-
-    const variantClasses = getVariantClasses();
+    const palette = variant === 'white'
+        ? { tile: '#ffffff', glyph: '#171717', text: 'text-white' }
+        : { tile: '#171717', glyph: '#ffffff', text: 'text-ink' };
 
     return (
-        <div className={cn("flex items-center space-x-3", className)}>
-            {/* Logo Icon */}
-            <div className="relative">
-                <div className={cn(
-                    "rounded-lg flex items-center justify-center transition-colors duration-200",
-                    sizeClasses[size],
-                    variantClasses.container
-                )}>
-                    {/* Cropify 专用图标 - 批量图卡 + 裁剪框标记 */}
-                    <svg
-                        className={logoIconSize[size]}
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                    >
-                        <rect x="11" y="5.5" width="14.5" height="14.5" rx="3" fill="#ffffff" opacity="0.32" />
-                        <rect x="6.5" y="11.5" width="16.5" height="15" rx="3" fill="#ffffff" />
-                        <g stroke="#00695c" strokeWidth="1.5" strokeLinecap="round" fill="none">
-                            <path d="M12.4 14.4H10V16.8" />
-                            <path d="M17.6 14.4H20V16.8" />
-                            <path d="M12.4 23.4H10V21" />
-                            <path d="M17.6 23.4H20V21" />
-                        </g>
-                        <circle cx="15" cy="18.9" r="1" fill="#00695c" />
-                    </svg>
-                </div>
+        <div className={cn("flex items-center gap-2.5", className)}>
+            {/* Logo 图标 */}
+            <svg
+                className={cn(sizeClasses[size], "flex-shrink-0")}
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Cropify"
+            >
+                {/* 圆角托板（7px @32 / 22%） */}
+                <rect width="32" height="32" rx="7" fill={palette.tile} />
+                {/* 批量：错位叠放的图卡 */}
+                <rect x="13" y="5.5" width="12.5" height="12.5" rx="2.5" fill={palette.glyph} opacity="0.32" />
+                {/* 裁剪角框 */}
+                <g stroke={palette.glyph} strokeWidth="2" strokeLinecap="round" fill="none">
+                    <path d="M13.25 10.5H10.5V13.25" />
+                    <path d="M18.75 10.5H21.5V13.25" />
+                    <path d="M13.25 21.5H10.5V18.75" />
+                    <path d="M18.75 21.5H21.5V18.75" />
+                </g>
+                {/* 中心定位点 */}
+                <circle cx="16" cy="16" r="1.3" fill={palette.glyph} />
+            </svg>
 
-            </div>
-
-            {/* 品牌文字 */}
+            {/* 品牌字标：Geist / 600 / -0.02em */}
             {showText && (
-                <div>
-                    <h1 className={cn(
-                        "font-bold tracking-tight leading-none",
-                        textSizeClasses[size],
-                        variantClasses.text
-                    )}>
-                        Cropify
-                        <span className={cn(
-                            "ml-1.5 font-medium opacity-80",
-                            size === 'sm' ? 'text-sm' : size === 'md' ? 'text-base' : 'text-lg'
-                        )}>
-                            Pro
-                        </span>
-                    </h1>
-                    {size !== 'sm' && (
-                        <p className={cn(
-                            "opacity-80 hidden sm:block font-medium",
-                            size === 'md' ? 'text-xs' : 'text-sm',
-                            variantClasses.text
-                        )}>
-                            智能图片批量裁剪工具
-                        </p>
-                    )}
-                </div>
+                <span className={cn(
+                    "font-display font-semibold tracking-[-0.02em] leading-none",
+                    textSizeClasses[size],
+                    palette.text
+                )}>
+                    Cropify
+                </span>
             )}
         </div>
     );

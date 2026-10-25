@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { Logo } from '@/components/ui';
 
 export default function AboutPage() {
     const stats = [
@@ -65,7 +66,7 @@ export default function AboutPage() {
                             </svg>
                             <span>返回首页</span>
                         </Link>
-                        <h1 className="text-2xl font-bold text-ink">关于我们</h1>
+                        <h1 className="text-2xl font-medium text-ink">关于我们</h1>
                         <div className="w-20"></div>
                     </div>
                 </div>
@@ -76,12 +77,10 @@ export default function AboutPage() {
                 {/* 项目介绍 */}
                 <div className="bg-white rounded-lg border border-line p-8 mb-16">
                     <div className="text-center mb-16">
-                        <div className="w-20 h-20 bg-brand rounded-lg flex items-center justify-center mx-auto mb-6">
-                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
+                        <div className="flex justify-center mb-6">
+                            <Logo size="lg" showText={false} className="[&>svg]:w-20 [&>svg]:h-20" />
                         </div>
-                        <h2 className="text-3xl font-bold text-ink mb-4">Cropify</h2>
+                        <h2 className="text-3xl font-medium text-ink mb-4">Cropify</h2>
                         <p className="text-xl text-ink-muted mb-6">专业的在线图片批量裁剪工具</p>
                     </div>
 
@@ -99,7 +98,7 @@ export default function AboutPage() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {stats.map((stat, index) => (
                             <div key={index} className="text-center">
-                                <div className="text-2xl font-bold text-brand mb-1">{stat.value}</div>
+                                <div className="text-2xl font-medium text-brand mb-1">{stat.value}</div>
                                 <div className="text-sm text-ink-muted">{stat.label}</div>
                             </div>
                         ))}
@@ -259,7 +258,7 @@ export default function AboutPage() {
                             </Link>
                         </div>
                         <div>
-                            <div className="w-12 h-12 bg-[#fff0df] text-[#b45c16] rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <div className="w-12 h-12 bg-wash text-ink rounded-lg flex items-center justify-center mx-auto mb-3">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>

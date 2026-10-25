@@ -23,28 +23,28 @@ export const ImageInfoPanel: React.FC<ImageInfoPanelProps> = ({
       <Card title="批处理概览" className="bg-white">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-info">
+            <div className="text-2xl font-medium text-info">
               {batchSummary.totalCount}
             </div>
             <div className="text-sm text-ink-muted">总数量</div>
           </div>
 
           <div className="text-center">
-            <div className="text-2xl font-bold text-brand">
+            <div className="text-2xl font-medium text-brand">
               {batchSummary.completedCount}
             </div>
             <div className="text-sm text-ink-muted">已处理</div>
           </div>
 
           <div className="text-center">
-            <div className="text-2xl font-bold text-copper">
+            <div className="text-2xl font-medium text-copper">
               {batchSummary.pendingCount + batchSummary.processingCount}
             </div>
             <div className="text-sm text-ink-muted">待处理</div>
           </div>
 
           <div className="text-center">
-            <div className="text-2xl font-bold text-destructive">
+            <div className="text-2xl font-medium text-destructive">
               {batchSummary.failedCount}
             </div>
             <div className="text-sm text-ink-muted">失败</div>
